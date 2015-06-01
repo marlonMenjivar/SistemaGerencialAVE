@@ -1,0 +1,72 @@
+2015-06-01 22:04:42 Error: [MissingControllerException] Controller class PluginsController could not be found.
+Exception Attributes: array (
+  'class' => 'PluginsController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/plugins/jQuery/jQuery-2.1.4.min.js
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-06-01 22:05:27 Error: [MissingControllerException] Controller class PluginsController could not be found.
+Exception Attributes: array (
+  'class' => 'PluginsController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/plugins/jQuery/jQuery-2.1.4.min.js
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-06-01 22:20:14 Error: [MissingControllerException] Controller class Index2.htmlController could not be found.
+Exception Attributes: array (
+  'class' => 'Index2.htmlController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/index2.html
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-06-01 22:20:17 Error: [MissingControllerException] Controller class Index2.htmlController could not be found.
+Exception Attributes: array (
+  'class' => 'Index2.htmlController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/index2.html
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-06-01 22:24:23 Error: [MissingControllerException] Controller class DistController could not be found.
+Exception Attributes: array (
+  'class' => 'DistController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/dist/img/photo.jpg
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-06-01 22:24:23 Error: [MissingControllerException] Controller class DistController could not be found.
+Exception Attributes: array (
+  'class' => 'DistController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/dist/img/photo.jpg
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-06-01 22:31:45 Error: [MissingControllerException] Controller class DistController could not be found.
+Exception Attributes: array (
+  'class' => 'DistController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/dist/img/photo
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-06-01 22:31:45 Error: [MissingControllerException] Controller class DistController could not be found.
+Exception Attributes: array (
+  'class' => 'DistController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/dist/img/photo
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
