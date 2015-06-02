@@ -528,14 +528,16 @@ a:focus {
   margin-right: 10px;
   margin-top: 3px;
 }
-.sidebar-menu li.active > a > .fa-angle-left {
+.sidebar-menu li:hover > a > .fa-angle-left {
   -webkit-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
-.sidebar-menu li.active > .treeview-menu {
-  display: block;
+.sidebar-menu li:hover > .treeview-menu {
+  display: inline-block;
+  width: 498px;
+  border-radius: 4px;
 }
 .sidebar-menu .treeview-menu {
   display: none;

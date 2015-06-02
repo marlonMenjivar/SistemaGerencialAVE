@@ -31,5 +31,28 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-    public $components = array('DebugKit.Toolbar');
+    //public $components = array('DebugKit.Toolbar');
+    public $components = array(
+        'Session',
+        'Auth' => array(
+            'loginRedirect' => array(
+                'controller' => 'Users',
+                'action' => 'add'
+            ),
+            'logoutRedirect' => array(
+                'controller' => 'Users',
+                'action' => 'login',
+                'home'
+            ),
+            'authenticate' => array(
+                'Form' => array(
+                    'passwordHasher' => 'Blowfish'
+                )
+            )
+        )
+    );
+
+    public function beforeFilter() {
+        $this->Auth->allow('login');
+    }
 }
