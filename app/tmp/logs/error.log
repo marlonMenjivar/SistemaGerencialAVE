@@ -3628,3 +3628,13 @@ Stack Trace:
 #17 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
 #18 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #19 {main}
+2015-06-03 04:31:22 Error: Fatal Error (4): syntax error, unexpected ')', expecting ',' or ';' in [C:\xampp\htdocs\SistemaGerencialAVE\app\View\Layouts\default.ctp, line 116]
+2015-06-03 04:31:22 Error: [FatalErrorException] syntax error, unexpected ')', expecting ',' or ';'
+Request URL: /SistemaGerencialAVE/pages/home
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Error\ErrorHandler.php(213): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 116)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 116, Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(933): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 116, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

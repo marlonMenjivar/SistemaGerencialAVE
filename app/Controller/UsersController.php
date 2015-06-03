@@ -3,6 +3,10 @@ App::uses('AppController', 'Controller');
 
 class UsersController extends AppController {
 
+    public $paginate=array(
+        'limit'=>10,
+        'order'=>array('Teacher.id'=>'asc')
+    );
     public function beforeFilter() {
         parent::beforeFilter();
         // Allow users to register and logout.

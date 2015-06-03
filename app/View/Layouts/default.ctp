@@ -105,29 +105,28 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    <div class="pull-left">
-                        <div class="btn btn-default btn-flat">
+                    <div class="pull-left">                     
                             <?php
                               echo $this->Html->link('Editar Cuenta',
                                                       array(
                                                               'controller'=>'Users',
                                                               'action'=>'editMe'
-                                                          )
+                                                          ),
+                                                      array('class'=>'btn btn-default btn-flat')
                                       );  
                             ?>
-                        </div>
                     </div>
                     <div class="pull-right">
-                        <div  class="btn btn-default btn-flat">
                             <?php
-                              echo $this->Html->link('Cerrar Sesión',
+                              echo $this->Html->link(
+                                      'Cerrar Sesión',
                                                       array(
                                                               'controller'=>'Users',
-                                                              'action'=>'logout'                                    
-                                                          )
+                                                              'action'=>'logout',
+                                                          ),
+                                                      array('class'=>'btn btn-default btn-flat')
                                       );  
                             ?>
-                        </div>
                     </div>
                   </li>
                 </ul>

@@ -38,9 +38,16 @@
                 </td>
             </tr>
      <?php   endforeach;?>
+
+</table>
     <div class="paging">
         <?php echo $this->Paginator->prev('<', array(),null,array('class'=>'prev disabled'))?>
         <?php echo $this->Paginator->numbers(array('separator'=>''));?>
         <?php echo $this->Paginator->next('>',array(),null,array('class'=> 'next disabled'));?>
     </div>
-</table>
+    <br>
+    <p>
+        <?php echo $this->Paginator->counter(
+                    array('format'=>'Página {:page} de {:pages}, mostrando {:current} registros de {:count}')
+                );?>
+    </p>
