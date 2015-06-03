@@ -25,8 +25,8 @@
 <div class="avtar">
         <?php echo $this->Html->image('logo-large.png', array('alt' => 'logo'));?>    
 </div>
-	<?php echo $this->Session->flash(); ?>
         <?php echo $this->fetch('content'); ?>
+        <div class='sessionFlash'><?php echo $this->Session->flash(); ?></div>
 <!--/User-Login-->
 <!--start-copyright-->
 <div class="copy-right">

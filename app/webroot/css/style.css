@@ -117,8 +117,12 @@ form li{
 .submit{
     width:100%;
 }
+.sessionFlash{
+    color:#AE0E0E;
+    text-align: center;
+}
 input[type="submit"] {
-	background: #ff6600;
+	background: #F08523;
 	padding: .8em .6em .8em .6em;
 	outline: none;
 	border: none;

@@ -53,14 +53,36 @@ class UsersController extends AppController {
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('El usuario fue guardado'));
+                $this->Session->setFlash(__('Cambios guardados con éxito'));
                 return $this->redirect(array('action' => 'index'));
             }
             $this->Session->setFlash(
-                __('El usuario no pudo ser guardado. Porfavor intente de nuevo.')
+                __('Cambios no guardados. Porfavor intente de nuevo.')
             );
         } else {
             $this->request->data = $this->User->read(null, $id);
+            unset($this->request->data['User']['password']);
+        }
+    }
+    public function editMe(){
+        $this->User->id = $this->Auth->user('id');
+        if (!$this->User->exists()) {
+            throw new NotFoundException(__('Usuario Invalido'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('Cambios guardados con éxito'));
+                return $this->redirect(array(
+                                        'controller' => 'pages',
+                                        'action' => 'display',
+                                        'home')
+                        );
+            }
+            $this->Session->setFlash(
+                __('Cambios no guardados. Porfavor intente de nuevo.')
+            );
+        } else {
+            $this->request->data = $this->User->read(null, $this->Auth->user('id'));
             unset($this->request->data['User']['password']);
         }
     }
