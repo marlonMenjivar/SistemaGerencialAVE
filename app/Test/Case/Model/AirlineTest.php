@@ -13,7 +13,8 @@ class AirlineTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.airline'
+		'app.airline',
+		'app.goal_airline'
 	);
 
 /**

@@ -30,7 +30,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
             'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css',
             'AdminLTE',
-            'skin-blue'
+            'skin-blue',
+            'datepicker'
             ));
     ?>
   </head>
@@ -310,5 +311,21 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
           Both of these plugins are recommended to enhance the
           user experience. Slimscroll is required when using the
           fixed layout. -->
+    <?php
+    echo $this->Html->script(array('bootstrap-datepicker','bootstrap-datepicker.es.min'));
+    ?>
+    <script type="text/javascript">
+            // When the document is ready
+            $(document).ready(function () {
+                
+                $('.fecha').datepicker({
+                    language: "es",
+                    format: "yyyy/mm/dd",
+                    todayHighlight: true,
+                    autoclose:true
+                });  
+            
+            });
+        </script>
   </body>
 </html>

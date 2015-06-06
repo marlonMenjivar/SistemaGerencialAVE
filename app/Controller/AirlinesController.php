@@ -5,6 +5,7 @@ App::uses('AppController', 'Controller');
  *
  * @property Airline $Airline
  * @property PaginatorComponent $Paginator
+ * @property SessionComponent $Session
  */
 class AirlinesController extends AppController {
 
@@ -13,13 +14,11 @@ class AirlinesController extends AppController {
  *
  * @var array
  */
+	public $components = array('Session');
         public $paginate=array(
             'limit'=>10,
             'order'=>array('Airline.id'=>'asc')
         );
-	
-        
-
 /**
  * index method
  *
@@ -57,7 +56,7 @@ class AirlinesController extends AppController {
 				$this->Session->setFlash(__('La aerolínea fue guardada.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('La aerolínea no fue guardada. Porfavor intente de nuevo.'));
+				$this->Session->setFlash(__('La aerolínea no pudo ser guardada. Por Favor, intente de nuevo.'));
 			}
 		}
 	}
@@ -71,14 +70,14 @@ class AirlinesController extends AppController {
  */
 	public function edit($id = null) {
 		if (!$this->Airline->exists($id)) {
-			throw new NotFoundException(__('Aerolínea inválida'));
+			throw new NotFoundException(__('Aerolínea Inválida'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Airline->save($this->request->data)) {
 				$this->Session->setFlash(__('La aerolínea fue guardada.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('La aerolínea no fue guardada. Porfavor intente de nuevo.'));
+				$this->Session->setFlash(__('La aerolínea no pudo ser guardada. Por favor, intente de nuevo.'));
 			}
 		} else {
 			$options = array('conditions' => array('Airline.' . $this->Airline->primaryKey => $id));
@@ -96,13 +95,13 @@ class AirlinesController extends AppController {
 	public function delete($id = null) {
 		$this->Airline->id = $id;
 		if (!$this->Airline->exists()) {
-			throw new NotFoundException(__('Aerolínea inválida'));
+			throw new NotFoundException(__('Aerolínea Inválida'));
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Airline->delete()) {
 			$this->Session->setFlash(__('La aerolínea fue eliminada.'));
 		} else {
-			$this->Session->setFlash(__('La aerolínea no fue guardada. Porfavor intente de nuevo.'));
+			$this->Session->setFlash(__('La aerolínea no pudo ser eliminada. Por favor, intenten de nuevo.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

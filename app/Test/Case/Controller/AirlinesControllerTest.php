@@ -13,7 +13,8 @@ class AirlinesControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.airline'
+		'app.airline',
+		'app.goal_airline'
 	);
 
 /**
