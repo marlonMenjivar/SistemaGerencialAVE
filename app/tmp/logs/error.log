@@ -3638,3 +3638,144 @@ Stack Trace:
 #3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2015-06-03 07:27:59 Error: [MissingLayoutException] Layout file "Layouts\default_2.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Layouts\\default_2.ctp',
+)
+Request URL: /SistemaGerencialAVE/pages/home
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\View\View.php(514): View->_getLayoutFileName('default_2')
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\View\View.php(481): View->renderLayout('', 'default_2')
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(960): View->render('home', NULL)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\PagesController.php(68): Controller->render('home')
+#4 [internal function]: PagesController->display('home')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PagesController), Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#7 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
+#8 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2015-06-03 07:36:41 Error: [MissingControllerException] Controller class AirlinesController could not be found.
+Exception Attributes: array (
+  'class' => 'AirlinesController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/airlines
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-06-03 07:39:08 Error: [MissingControllerException] Controller class BranchoficesController could not be found.
+Exception Attributes: array (
+  'class' => 'BranchoficesController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/branchofices
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-06-03 07:39:22 Error: [MissingControllerException] Controller class BranchofficesController could not be found.
+Exception Attributes: array (
+  'class' => 'BranchofficesController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/branchoffices
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-06-03 07:39:31 Error: [MissingControllerException] Controller class BranchOfficesController could not be found.
+Exception Attributes: array (
+  'class' => 'BranchOfficesController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/branchOffices
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-06-03 07:41:06 Error: [MissingControllerException] Controller class FulfillmentBranchOfficeGoalsController could not be found.
+Exception Attributes: array (
+  'class' => 'FulfillmentBranchOfficeGoalsController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/fulfillmentBranchOfficeGoals
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-06-03 07:43:14 Error: [MissingControllerException] Controller class GoalAirlinesController could not be found.
+Exception Attributes: array (
+  'class' => 'GoalAirlinesController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/goalAirlines
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-06-03 07:43:56 Error: [MissingTableException] Table goal_airlines for model GoalAirline was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'goal_airlines',
+  'class' => 'GoalAirline',
+  'ds' => 'default',
+)
+Request URL: /SistemaGerencialAVE/goalAirlines
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3644): Model->setSource('goal_airlines')
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(1387): Model->getDataSource()
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(1483): Model->schema()
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(1470): Model->hasField('title', false)
+#4 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(907): Model->hasField(Array)
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Scaffold.php(130): Model->__get('displayField')
+#6 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(535): Scaffold->__construct(Object(GoalAirlinesController), Object(CakeRequest))
+#7 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(494): Controller->_getScaffold(Object(CakeRequest))
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2015-06-03 07:47:44 Error: [MissingControllerException] Controller class GoalBranchOfficesController could not be found.
+Exception Attributes: array (
+  'class' => 'GoalBranchOfficesController',
+  'plugin' => NULL,
+)
+Request URL: /SistemaGerencialAVE/goalBranchOffices
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-06-03 07:00:42 Error: [NotFoundException] Invalid Goal Branch Office
+Request URL: /SistemaGerencialAVE/goalBranchOffices/view
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Scaffold.php(386): Scaffold->_scaffoldView(Object(CakeRequest))
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Scaffold.php(150): Scaffold->_scaffold(Object(CakeRequest))
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(535): Scaffold->__construct(Object(GoalBranchOfficesController), Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(494): Controller->_getScaffold(Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+2015-06-03 07:00:51 Error: [NotFoundException] Invalid GoalBranchOffice
+Request URL: /SistemaGerencialAVE/goalBranchOffices/delete
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Scaffold.php(397): Scaffold->_scaffoldDelete(Object(CakeRequest))
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Scaffold.php(150): Scaffold->_scaffold(Object(CakeRequest))
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(535): Scaffold->__construct(Object(GoalBranchOfficesController), Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(494): Controller->_getScaffold(Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+2015-06-06 03:21:15 Error: Fatal Error (1): Call to a member function paginate() on null in [C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\BranchOfficesController.php, line 29]
+2015-06-06 03:21:15 Error: [FatalErrorException] Call to a member function paginate() on null
+Request URL: /SistemaGerencialAVE/BranchOffices
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Error\ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 29)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 29, Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 29, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-06-06 03:42:00 Error: Fatal Error (4): syntax error, unexpected end of file in [C:\xampp\htdocs\SistemaGerencialAVE\app\View\BranchOffices\view.ctp, line 26]
+2015-06-06 03:42:00 Error: [FatalErrorException] syntax error, unexpected end of file
+Request URL: /SistemaGerencialAVE/BranchOffices/view/20
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Error\ErrorHandler.php(213): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 26)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 26, Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(933): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 26, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

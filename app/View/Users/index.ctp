@@ -1,7 +1,7 @@
 <h1>Gestión de Usuarios</h1>
 <?php 
-    echo $this->Html->link("Agregar Usuario", array("action"=>"add",
-                                                    'class'=>'btn btn-primary'));
+    echo $this->Html->link("Agregar Usuario", array("action"=>"add"),
+                                                    array('class'=>'btn btn-primary'));
 ?>
 <br>
 <br>

@@ -263,16 +263,26 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
           <ul class="sidebar-menu">
             <li class="header">CONFIGURACIONES GENERALES</li>
             <!-- Optionally, you can add icons to the links -->
-            <!--<li><a href="#"><i class='fa fa-link'></i> <span>Usuarios</span></a></li>-->
+            <li><?php echo $this->Html->link('Sucursales',array('controller'=>'BranchOffices',
+                                                      'action'=>'index'
+                ))?>
+            </li>
+            <li><?php echo $this->Html->link('Metas por Sucursales',array('controller'=>'GoalBranchOffices',
+                                                      'action'=>'index'
+                ))?>
+            </li>
+            <li><?php echo $this->Html->link('Aerolínea',array('controller'=>'Airlines',
+                                                      'action'=>'index'
+                ))?>
+            </li>
+            <li><?php echo $this->Html->link('Metas por Aerolínea',array('controller'=>'GoalAirlines',
+                                                      'action'=>'index'
+                ))?>
+            </li>
             <li><?php echo $this->Html->link('Usuarios',array('controller'=>'Users',
                                                       'action'=>'index'
                 ))?>
             </li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>Metas por Sucursales</span></a></li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>Metas por Aerolínea</span></a></li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>Sucursales</span></a></li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>Aerolínea</span></a></li>
-          
           
           
           

@@ -5,7 +5,7 @@ class UsersController extends AppController {
 
     public $paginate=array(
         'limit'=>10,
-        'order'=>array('Teacher.id'=>'asc')
+        'order'=>array('User.id'=>'asc')
     );
     public function beforeFilter() {
         parent::beforeFilter();
@@ -99,13 +99,13 @@ class UsersController extends AppController {
 
         $this->User->id = $id;
         if (!$this->User->exists()) {
-            throw new NotFoundException(__('Invalid user'));
+            throw new NotFoundException(__('Usuario Inválido'));
         }
         if ($this->User->delete()) {
-            $this->Session->setFlash(__('User deleted'));
+            $this->Session->setFlash(__('Usuario Eliminado'));
             return $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash(__('User was not deleted'));
+        $this->Session->setFlash(__('El usuario no fue eliminado'));
         return $this->redirect(array('action' => 'index'));
     }
 
