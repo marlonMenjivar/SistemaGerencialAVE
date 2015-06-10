@@ -1,5 +1,9 @@
+<?php
+    $this->start('pageHeader');
+    echo '<h1>Gestión de Aerolíneas</h1>';
+    $this->end();
+?>
 <div class="actions">
-	<h2><?php echo __('Aerolíneas'); ?></h2>
         <h3><?php echo __('Opciones'); ?></h3>
 		<?php echo $this->Html->link('Agregar Aerolínea', 
                         array('action' => 'add'),
@@ -18,6 +22,7 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id','ID'); ?></th>
 			<th><?php echo $this->Paginator->sort('name','Nombre de Aerolínea'); ?></th>
+                        <th><?php echo $this->Paginator->sort('abrevia','Abreviatura'); ?></th>
 			<th class="actions"><?php echo __('Acciones'); ?></th>
 	</tr>
 	</thead>
@@ -26,6 +31,7 @@
 	<tr>
 		<td><?php echo h($airline['Airline']['id']); ?>&nbsp;</td>
 		<td><?php echo h($airline['Airline']['name']); ?>&nbsp;</td>
+                <td><?php echo h($airline['Airline']['abrevia']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $airline['Airline']['id'])); ?>
 			<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $airline['Airline']['id'])); ?>

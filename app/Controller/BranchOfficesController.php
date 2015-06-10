@@ -5,6 +5,7 @@ App::uses('AppController', 'Controller');
  *
  * @property BranchOffice $BranchOffice
  * @property PaginatorComponent $Paginator
+ * @property SessionComponent $Session
  */
 class BranchOfficesController extends AppController {
 
@@ -13,11 +14,11 @@ class BranchOfficesController extends AppController {
  *
  * @var array
  */
-	//public $components = array('Paginator');
-    public $paginate=array(
-        'limit'=>10,
-        'order'=>array('User.id'=>'asc')
-    );
+	public $components = array('Session');
+         public $paginate=array(
+            'limit'=>10,
+            'order'=>array('BranchOfficesController.id'=>'asc')
+        );
 
 /**
  * index method
@@ -56,7 +57,7 @@ class BranchOfficesController extends AppController {
 				$this->Session->setFlash(__('La sucursal fue guardada.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('La sucursal no fue guardad. Por favor intente de nuevo.'));
+				$this->Session->setFlash(__('La sucursal no pudo ser guardada. Por favor, intente de nuevo.'));
 			}
 		}
 	}
@@ -77,7 +78,7 @@ class BranchOfficesController extends AppController {
 				$this->Session->setFlash(__('La sucursal fue guardada.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('La sucursal no pudo ser guardad. Por favor intente de nuevo.'));
+				$this->Session->setFlash(__('La sucursal no pudo ser guardad. Por favor, intente de nuevo.'));
 			}
 		} else {
 			$options = array('conditions' => array('BranchOffice.' . $this->BranchOffice->primaryKey => $id));
@@ -95,13 +96,13 @@ class BranchOfficesController extends AppController {
 	public function delete($id = null) {
 		$this->BranchOffice->id = $id;
 		if (!$this->BranchOffice->exists()) {
-			throw new NotFoundException(__('Sucursal Inválido'));
+			throw new NotFoundException(__('Sucursal Inválida'));
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->BranchOffice->delete()) {
 			$this->Session->setFlash(__('La sucursal fue eliminada.'));
 		} else {
-			$this->Session->setFlash(__('La sucursal no fue eliminada. Porfavor, intente de nuevo.'));
+			$this->Session->setFlash(__('La sucursal no pudo ser eliminada. Por favor, intente de nuevo.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

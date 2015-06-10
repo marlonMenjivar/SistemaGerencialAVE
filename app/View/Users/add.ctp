@@ -1,4 +1,9 @@
-<h1>Ingresar Usuario</h1>
+<?php
+    $this->start('pageHeader');
+    echo '<h1>Ingresar Usuario</h1>';
+    $this->end();
+?>
+
     <?php  
             echo $this->Form->create('User', array('class'=>'form'));
             

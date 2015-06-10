@@ -1,4 +1,8 @@
-<h2><?php echo __('Meta por Aerolínea'); ?></h2>
+<?php
+    $this->start('pageHeader');
+    echo '<h1>Meta por Aerolínea</h1>';
+    $this->end();
+?>
 <div class="actions">
 	<h3><?php echo __('Opciones'); ?></h3>
 	

@@ -64,9 +64,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <!-- Logo -->
         <a href="#" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>SG</b>AVE</span>
+          <span class="logo-mini"><?php echo $this->Html->image('logo-mini.png',array('alt'=>'Logo mini'));?>
+          </span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>SG</b>AVE</span>
+          <span class="logo-lg"><?php echo $this->Html->image('logo-small.png',array('alt'=>'User Image'));?></span>
         </a>
 
         <!-- Header Navbar -->
@@ -219,7 +220,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Page Header
+            <?php echo $this->fetch('pageHeader');?>
             <small>Optional description</small>
           </h1>
           <ol class="breadcrumb">
@@ -323,7 +324,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     format: "yyyy/mm/dd",
                     todayHighlight: true,
                     autoclose:true
-                });  
+                }); 
+                $('.mes').datepicker({
+                    format: "yyyy/mm/dd",
+                    startView: "months", 
+                    minViewMode: "months",
+                    autoclose:true,
+                    language:"es"
+                }); 
             
             });
         </script>

@@ -1,4 +1,8 @@
-<h2><?php echo __('Aerolínea'); ?></h2>
+<?php
+    $this->start('pageHeader');
+    echo '<h1>Aerolínea</h1>';
+    $this->end();
+?>
 <div class="airlines view">
 <div class="actions">
 	<h3><?php echo __('Opciones'); ?></h3>
@@ -21,6 +25,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre de Aerolínea</th>
+                    <th>Abreviatura</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +33,8 @@
                     <td><?php echo h($airline['Airline']['id']); ?>
 			&nbsp;</td>
                     <td><?php echo h($airline['Airline']['name']); ?>
+			&nbsp;</td>
+                    <td><?php echo h($airline['Airline']['abrevia']); ?>
 			&nbsp;</td>
                 </tr>
             </tbody>

@@ -1,4 +1,9 @@
-<h1>Editar Meta por Aerolínea</h1>
+<?php
+    $this->start('pageHeader');
+    echo '<h1>Editar Meta por Aerolínea</h1>';
+    $this->end();
+?>
+
 <div class="actions">
 	<h3><?php echo __('Opciones'); ?></h3>
 

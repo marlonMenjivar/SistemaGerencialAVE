@@ -1,4 +1,9 @@
-<h1>Gestión de Usuarios</h1>
+<?php
+    $this->start('pageHeader');
+    echo '<h1>Gestión de Usuarios</h1>';
+    $this->end();
+?>
+
 <?php 
     echo $this->Html->link("Agregar Usuario", array("action"=>"add"),
                                                     array('class'=>'btn btn-primary'));

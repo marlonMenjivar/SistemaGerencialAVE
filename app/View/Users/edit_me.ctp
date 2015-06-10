@@ -1,4 +1,9 @@
-<h1>Editar Cuenta</h1>
+<?php
+    $this->start('pageHeader');
+    echo '<h1>Editar mi Cuenta</h1>';
+    $this->end();
+?>
+
 <?php
     echo $this->Form->create('User', array('action'=>'edit',
                                             'class'=>'form'));

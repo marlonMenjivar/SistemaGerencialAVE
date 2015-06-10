@@ -1,4 +1,9 @@
-<h1>Ingresar Meta</h1>
+<?php
+    $this->start('pageHeader');
+    echo '<h1>Ingresar Meta</h1>';
+    $this->end();
+?>
+
 <div class="actions">
 	<h3><?php echo __('Opciones'); ?></h3>
         

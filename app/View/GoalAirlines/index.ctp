@@ -1,4 +1,8 @@
-<h2><?php echo __('Metas por Aerolíneas'); ?></h2>
+<?php
+    $this->start('pageHeader');
+    echo '<h1>Gestión de Metas por Aerolíneas</h1>';
+    $this->end();
+?>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 		<?php echo $this->Html->link(__('Nueva Meta'), array('action' => 'add'),array('class'=>'btn btn-primary')); ?>

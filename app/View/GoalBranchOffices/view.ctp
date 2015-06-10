@@ -1,49 +1,51 @@
-<div class="goalBranchOffices view">
-<h2><?php echo __('Goal Branch Office'); ?></h2>
-	<dl>
-		<dt><?php echo __('SUCURSAL'); ?></dt>
-		<dd>
-			<?php echo h($goalBranchOffice['GoalBranchOffice']['SUCURSAL']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('MES'); ?></dt>
-		<dd>
-			<?php echo h($goalBranchOffice['GoalBranchOffice']['MES']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('IDSUCURSAL'); ?></dt>
-		<dd>
-			<?php echo h($goalBranchOffice['GoalBranchOffice']['IDSUCURSAL']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('SUCURSAL C'); ?></dt>
-		<dd>
-			<?php echo h($goalBranchOffice['GoalBranchOffice']['SUCURSAL_C']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('MES CUMPLIMIENTO'); ?></dt>
-		<dd>
-			<?php echo h($goalBranchOffice['GoalBranchOffice']['MES_CUMPLIMIENTO']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('META BOLETOS'); ?></dt>
-		<dd>
-			<?php echo h($goalBranchOffice['GoalBranchOffice']['META_BOLETOS']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('META SERVICIOS'); ?></dt>
-		<dd>
-			<?php echo h($goalBranchOffice['GoalBranchOffice']['META_SERVICIOS']); ?>
-			&nbsp;
-		</dd>
-	</dl>
-</div>
+<?php
+    $this->start('pageHeader');
+    echo '<h1>Meta por Sucursal</h1>';
+    $this->end();
+?>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Goal Branch Office'), array('action' => 'edit', $goalBranchOffice['GoalBranchOffice']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Goal Branch Office'), array('action' => 'delete', $goalBranchOffice['GoalBranchOffice']['id']), array(), __('Are you sure you want to delete # %s?', $goalBranchOffice['GoalBranchOffice']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Goal Branch Offices'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Goal Branch Office'), array('action' => 'add')); ?> </li>
-	</ul>
+	<h3><?php echo __('Opciones'); ?></h3>
+		<?php echo $this->Html->link(__('Editar meta por sucursal'), array('action' => 'edit', $goalBranchOffice['GoalBranchOffice']['id']),array('class'=>'btn btn-primary')); ?> 
+		<?php echo $this->Form->postLink(__('Eliminar meta por sucursal'), array('action' => 'delete', $goalBranchOffice['GoalBranchOffice']['id']), array('class'=>'btn btn-primary'), __('¿Está seguro de eliminar la meta # %s?', $goalBranchOffice['GoalBranchOffice']['id'])); ?>
+		<?php echo $this->Html->link(__('Lista de meta por sucursales'), array('action' => 'index'),array('class'=>'btn btn-primary')); ?>
+		<?php echo $this->Html->link(__('Nueva meta por sucursal'), array('action' => 'add'),array('class'=>'btn btn-primary')); ?>
+		<?php echo $this->Html->link(__('Lista de sucursales'), array('controller' => 'branch_offices', 'action' => 'index'),array('class'=>'btn btn-primary')); ?>
+		<?php echo $this->Html->link(__('Nueva sucursal'), array('controller' => 'branch_offices', 'action' => 'add'),array('class'=>'btn btn-primary')); ?>
+</div>
+<div class="goalBranchOffices view">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <?php echo __('ID'); ?>
+                </th>
+                <th>
+                    <?php echo __('Sucursal'); ?>
+                </th>
+                <th>
+                    <?php echo __('Mes'); ?>
+                </th>
+                <th>
+                    <?php echo __('Meta de boletos'); ?>
+                </th>
+                <th>
+                    <?php echo __('Meta de servicios'); ?>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><?php echo h($goalBranchOffice['GoalBranchOffice']['id']); ?>
+			&nbsp;</td>
+                <td><?php echo $this->Html->link($goalBranchOffice['BranchOffice']['name'], array('controller' => 'branch_offices', 'action' => 'view', $goalBranchOffice['BranchOffice']['id'])); ?>
+			&nbsp;</td>
+                <td><?php echo h($goalBranchOffice['GoalBranchOffice']['MES']); ?>
+			&nbsp;</td>
+                <td><?php echo h($goalBranchOffice['GoalBranchOffice']['META_BOLETOS']); ?>
+			&nbsp;</td>
+                <td><?php echo h($goalBranchOffice['GoalBranchOffice']['META_SERVICIOS']); ?>
+			&nbsp;</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

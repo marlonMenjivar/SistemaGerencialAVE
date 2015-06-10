@@ -1,4 +1,9 @@
-<h1>Ingresar Aerolínea</h1>
+<?php
+    $this->start('pageHeader');
+    echo '<h1>Ingresar Aerolínea</h1>';
+    $this->end();
+?>
+
 <div class="actions">
 	<h3><?php echo __('Opciones'); ?></h3>
 
@@ -18,6 +23,11 @@
 		echo $this->Form->input('name',array('label'=>'Nombre de Aerolínea',
                                                     'class'=>'form-control',
                                                     'placeholder'=>'Ingrese nombre de aerolínea'));
+	echo '</div>';
+        echo '<div class="form-group">';	
+		echo $this->Form->input('abrevia',array('label'=>'Abreviatura',
+                                                    'class'=>'form-control',
+                                                    'placeholder'=>'Ingrese la abreviatura'));
 	echo '</div>';
 ?>
 
