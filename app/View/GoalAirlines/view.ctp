@@ -3,6 +3,15 @@
     echo '<h1>Meta por Aerolínea</h1>';
     $this->end();
 ?>
+<?php
+    $this->start('pagePath');
+    echo '<ol class="breadcrumb">';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Metas por Aerolíneas'), array('action' => 'index')).'</li>';
+    echo  '<li class="active">Aquí</li>
+          </ol>';
+    $this->end();
+?>
 <div class="actions">
 	<h3><?php echo __('Opciones'); ?></h3>
 	
@@ -19,30 +28,18 @@
     <table>
         <thead>
             <tr>   
-                <th>
-                    <?php echo __('ID'); ?>
-                </th>
-                <th>
-                    <?php echo __('Aerolínea'); ?>
-                </th>
-                <th>
-                    <?php echo __('Fecha de Inicio'); ?>
-                </th>
-                <th>
-                    <?php echo __('Fecha de Fin'); ?>
-                </th>
-                <th>
-                    <?php echo __('Meta BSP'); ?>
-                </th>
-                <th>
-                    <?php echo __('Venta'); ?>
-                </th>
-                <th>
-                    <?php echo __('Faltante'); ?>
-                </th>
-                <th>
-                    <?php echo __('Porcentaje'); ?>
-                </th>
+                <th><?php echo __('ID'); ?></th>
+                <th><?php echo __('Aerolínea'); ?></th>
+                <th><?php echo __('Periodo BSP'); ?></th>
+                <th><?php echo __('Fecha de inicio'); ?></th>
+                <th><?php echo __('Fecha de fin'); ?></th>
+                <th><?php echo __('Boletos de Periodo'); ?></th>
+                <th><?php echo __('Total de Periodo'); ?></th>
+                <th><?php echo __('Meta BSP'); ?></th>
+                <th><?php echo __('Faltante'); ?></th>
+                <th><?php echo __('Porcentaje'); ?></th>
+                <th><?php echo __('Comisión'); ?></th>
+                <th><?php echo __('Ingreso por Comisión'); ?></th>
             </tr>
         </thead>
         <tbody>
@@ -56,27 +53,43 @@
 			&nbsp;
                 </td>
                 <td>
-                    <?php echo h($goalAirline['GoalAirline']['FECHA_INICIO_D']); ?>
+                    <?php echo h($goalAirline['GoalAirline']['periodo_bsp']); ?>
 			&nbsp;
                 </td>
                 <td>
-                    <?php echo h($goalAirline['GoalAirline']['FECHA_FIN']); ?>
+                    <?php echo h($goalAirline['GoalAirline']['fecha_inicio']); ?>
 			&nbsp;
                 </td>
                 <td>
-                    <?php echo h($goalAirline['GoalAirline']['META_BSP']); ?>
+                    <?php echo h($goalAirline['GoalAirline']['fecha_fin']); ?>
 			&nbsp;
                 </td>
                 <td>
-                    <?php echo h($goalAirline['GoalAirline']['VENTA']); ?>
+                    <?php echo h($goalAirline['GoalAirline']['boletos_periodo']); ?>
 			&nbsp;
                 </td>
                 <td>
-                    <?php echo h($goalAirline['GoalAirline']['FALTANTE']); ?>
+                    <?php echo h($goalAirline['GoalAirline']['total_periodo']); ?>
 			&nbsp;
                 </td>
                 <td>
-                    <?php echo h($goalAirline['GoalAirline']['PORCENTAJE']); ?>
+                    <?php echo h($goalAirline['GoalAirline']['meta_bsp']); ?>
+			&nbsp;
+                </td>
+                <td>
+                    <?php echo h($goalAirline['GoalAirline']['faltante']); ?>
+			&nbsp;
+                </td>
+                <td>
+                    <?php echo h($goalAirline['GoalAirline']['porcentaje']); ?>
+			&nbsp;
+                </td>
+                <td>
+                    <?php echo h($goalAirline['GoalAirline']['comision']); ?>
+			&nbsp;
+                </td>
+                <td>
+                    <?php echo h($goalAirline['GoalAirline']['ingreso_comision']); ?>
 			&nbsp;
                 </td>
             </tr>

@@ -7,7 +7,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'marlonmm',
 		'password' => '114i2012mm10020',
-		'database' => 'bdprueba',
+		'database' => 'sigave',
 		'prefix' => '',
 		'encoding' => 'utf8'
 	);

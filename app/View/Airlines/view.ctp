@@ -3,6 +3,15 @@
     echo '<h1>Aerolínea</h1>';
     $this->end();
 ?>
+<?php
+    $this->start('pagePath');
+    echo '<ol class="breadcrumb">';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Aerolíneas'), array('action' => 'index')).'</li>';
+    echo  '<li class="active">Aquí</li>
+          </ol>';
+    $this->end();
+?>
 <div class="airlines view">
 <div class="actions">
 	<h3><?php echo __('Opciones'); ?></h3>
@@ -51,23 +60,32 @@
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('ID'); ?></th>
-		<th><?php echo __('FECHA INICIO'); ?></th>
-		<th><?php echo __('FECHA FIN'); ?></th>
-		<th><?php echo __('META BSP'); ?></th>
-		<th><?php echo __('VENTA'); ?></th>
-		<th><?php echo __('FALTANTE'); ?></th>
-		<th><?php echo __('PORCENTAJE'); ?></th>
+                <th><?php echo __('Periodo BSP'); ?></th>
+                <th><?php echo __('Fecha de inicio'); ?></th>
+                <th><?php echo __('Fecha de fin'); ?></th>
+                <th><?php echo __('Boletos de Periodo'); ?></th>
+                <th><?php echo __('Total de Periodo'); ?></th>
+                <th><?php echo __('Meta BSP'); ?></th>
+                <th><?php echo __('Faltante'); ?></th>
+                <th><?php echo __('Porcentaje'); ?></th>
+                <th><?php echo __('Comisión'); ?></th>
+                <th><?php echo __('Ingreso por Comisión'); ?></th>
 		<th class="actions"><?php echo __('Acciones'); ?></th>
 	</tr>
 	<?php foreach ($airline['GoalAirline'] as $goalAirline): ?>
 		<tr>
 			<td><?php echo $goalAirline['id']; ?></td>
-			<td><?php echo $goalAirline['FECHA_INICIO_D']; ?></td>
-			<td><?php echo $goalAirline['FECHA_FIN']; ?></td>
-			<td><?php echo $goalAirline['META_BSP']; ?></td>
-			<td><?php echo $goalAirline['VENTA']; ?></td>
-			<td><?php echo $goalAirline['FALTANTE']; ?></td>
-			<td><?php echo $goalAirline['PORCENTAJE']; ?></td>
+			<td><?php echo $goalAirline['periodo_bsp']; ?></td>
+			<td><?php echo $goalAirline['fecha_inicio']; ?></td>
+			<td><?php echo $goalAirline['fecha_fin']; ?></td>
+			<td><?php echo $goalAirline['boletos_periodo']; ?></td>
+                        <td><?php echo $goalAirline['total_periodo']; ?></td>
+			<td><?php echo $goalAirline['meta_bsp']; ?></td>
+                        <td><?php echo $goalAirline['faltante']; ?></td>
+                        <td><?php echo $goalAirline['porcentaje']; ?></td>
+                        <td><?php echo $goalAirline['comision']; ?></td>
+                        <td><?php echo $goalAirline['ingreso_comision']; ?></td>
+                        
 			<td class="actions">
 				<?php echo $this->Html->link(__('Ver'), array('controller' => 'goal_airlines', 'action' => 'view', $goalAirline['id'])); ?>
 				<?php echo $this->Html->link(__('Editar'), array('controller' => 'goal_airlines', 'action' => 'edit', $goalAirline['id'])); ?>

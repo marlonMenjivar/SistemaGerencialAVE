@@ -223,10 +223,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <?php echo $this->fetch('pageHeader');?>
             <small>Optional description</small>
           </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
-          </ol>
+          <?php echo $this->fetch('pagePath');?>
         </section>
 
         <!-- Main content -->

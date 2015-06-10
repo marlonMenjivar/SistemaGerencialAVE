@@ -3,6 +3,15 @@
     echo '<h1>Meta por Sucursal</h1>';
     $this->end();
 ?>
+<?php
+    $this->start('pagePath');
+    echo '<ol class="breadcrumb">';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
+    echo '<li>'.$this->Html->link(__('Metas por Sucursales'), array('action' => 'index')).'</li>';
+    echo  '<li class="active">Aquí</li>
+          </ol>';
+    $this->end();
+?>
 <div class="actions">
 	<h3><?php echo __('Opciones'); ?></h3>
 		<?php echo $this->Html->link(__('Editar meta por sucursal'), array('action' => 'edit', $goalBranchOffice['GoalBranchOffice']['id']),array('class'=>'btn btn-primary')); ?> 
@@ -39,11 +48,11 @@
 			&nbsp;</td>
                 <td><?php echo $this->Html->link($goalBranchOffice['BranchOffice']['name'], array('controller' => 'branch_offices', 'action' => 'view', $goalBranchOffice['BranchOffice']['id'])); ?>
 			&nbsp;</td>
-                <td><?php echo h($goalBranchOffice['GoalBranchOffice']['MES']); ?>
+                <td><?php echo h($goalBranchOffice['GoalBranchOffice']['mes']); ?>
 			&nbsp;</td>
-                <td><?php echo h($goalBranchOffice['GoalBranchOffice']['META_BOLETOS']); ?>
+                <td><?php echo h($goalBranchOffice['GoalBranchOffice']['meta_boletos']); ?>
 			&nbsp;</td>
-                <td><?php echo h($goalBranchOffice['GoalBranchOffice']['META_SERVICIOS']); ?>
+                <td><?php echo h($goalBranchOffice['GoalBranchOffice']['meta_servicios']); ?>
 			&nbsp;</td>
             </tr>
         </tbody>

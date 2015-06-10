@@ -3,6 +3,14 @@
     echo '<h1>Metas por Sucursales</h1>';
     $this->end();
 ?>
+<?php
+    $this->start('pagePath');
+    echo '<ol class="breadcrumb">';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
+    echo  '<li class="active">Aquí</li>
+          </ol>';
+    $this->end();
+?>
 <fieldset>
     <legend><h3><?php echo __('Opciones'); ?></h3></legend>
 <div class="actions">
@@ -17,9 +25,9 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id','ID'); ?></th>
 			<th><?php echo $this->Paginator->sort('branch_office_id','Sucursal'); ?></th>
-			<th><?php echo $this->Paginator->sort('MES','Mes'); ?></th>
-			<th><?php echo $this->Paginator->sort('META_BOLETOS','Meta de boletos'); ?></th>
-			<th><?php echo $this->Paginator->sort('META_SERVICIOS','Meta de servicios'); ?></th>
+			<th><?php echo $this->Paginator->sort('mes','Mes'); ?></th>
+			<th><?php echo $this->Paginator->sort('meta_boletos','Meta de boletos'); ?></th>
+			<th><?php echo $this->Paginator->sort('meta_servicios','Meta de servicios'); ?></th>
 			<th class="actions"><?php echo __('Acciones'); ?></th>
 	</tr>
 	</thead>
@@ -30,9 +38,9 @@
 		<td>
 			<?php echo $this->Html->link($goalBranchOffice['BranchOffice']['name'], array('controller' => 'branch_offices', 'action' => 'view', $goalBranchOffice['BranchOffice']['id'])); ?>
 		</td>
-		<td><?php echo h($goalBranchOffice['GoalBranchOffice']['MES']); ?>&nbsp;</td>
-		<td><?php echo h($goalBranchOffice['GoalBranchOffice']['META_BOLETOS']); ?>&nbsp;</td>
-		<td><?php echo h($goalBranchOffice['GoalBranchOffice']['META_SERVICIOS']); ?>&nbsp;</td>
+		<td><?php echo h($goalBranchOffice['GoalBranchOffice']['mes']); ?>&nbsp;</td>
+		<td><?php echo h($goalBranchOffice['GoalBranchOffice']['meta_boletos']); ?>&nbsp;</td>
+		<td><?php echo h($goalBranchOffice['GoalBranchOffice']['meta_servicios']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $goalBranchOffice['GoalBranchOffice']['id'])); ?>
 			<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $goalBranchOffice['GoalBranchOffice']['id'])); ?>

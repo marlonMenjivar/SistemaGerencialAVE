@@ -3,6 +3,15 @@
     echo '<h1>Sucursal</h1>';
     $this->end();
 ?>
+<?php
+    $this->start('pagePath');
+    echo '<ol class="breadcrumb">';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
+    echo '<li>'.$this->Html->link(__('Sucursales'), array('action' => 'index')).'</li>';
+    echo  '<li class="active">Aquí</li>
+          </ol>';
+    $this->end();
+?>
 <div class="actions">
 	<h3><?php echo __('Opciones'); ?></h3>
 	
@@ -56,9 +65,9 @@
 	<?php foreach ($branchOffice['GoalBranchOffice'] as $goalBranchOffice): ?>
 		<tr>
 			<td><?php echo $goalBranchOffice['id']; ?></td>
-			<td><?php echo $goalBranchOffice['MES']; ?></td>
-			<td><?php echo $goalBranchOffice['META_BOLETOS']; ?></td>
-			<td><?php echo $goalBranchOffice['META_SERVICIOS']; ?></td>
+			<td><?php echo $goalBranchOffice['mes']; ?></td>
+			<td><?php echo $goalBranchOffice['meta_boletos']; ?></td>
+			<td><?php echo $goalBranchOffice['meta_servicios']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('Ver'), array('controller' => 'goal_branch_offices', 'action' => 'view', $goalBranchOffice['id'])); ?>
 				<?php echo $this->Html->link(__('Editar'), array('controller' => 'goal_branch_offices', 'action' => 'edit', $goalBranchOffice['id'])); ?>

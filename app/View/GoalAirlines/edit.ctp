@@ -3,7 +3,15 @@
     echo '<h1>Editar Meta por Aerolínea</h1>';
     $this->end();
 ?>
-
+<?php
+    $this->start('pagePath');
+    echo '<ol class="breadcrumb">';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Metas por Aerolíneas'), array('action' => 'index')).'</li>';
+    echo  '<li class="active">Aquí</li>
+          </ol>';
+    $this->end();
+?>
 <div class="actions">
 	<h3><?php echo __('Opciones'); ?></h3>
 
@@ -19,57 +27,55 @@
 	
 	<?php
             echo '<br>';
-            
+            echo $this->Form->input('id');
             echo '<div class="form-group">';
-		echo $this->Form->input('id');
+		echo $this->Form->input('airline_id',array('label'=>'Aerolínea',
+                                        'class'=>'form-control'));
             echo '</div>';
-            
             echo '<div class="form-group">';
-		echo $this->Form->input('airline_id',
-                                        array('label'=>'Aerolínea',
+		echo $this->Form->input('periodo_bsp',array('label'=>'Período BSP',
+                                        'class'=>'form-control'));
+            echo '</div>';
+            echo '<div class="form-group">';
+		echo $this->Form->input('fecha_inicio',array('label'=>'Fecha de inicio',
+                                        'type'=>'text',
+                                        'class'=>'fecha form-control'));
+            echo '</div>';
+            echo '<div class="form-group">';
+		echo $this->Form->input('fecha_fin',array('label'=>'Fecha de fin',
+                                        'type'=>'text',
+                                        'class'=>'fecha form-control'));
+            echo '</div>';
+            echo '<div class="form-group">';
+		echo $this->Form->input('boletos_periodo',array('label'=>'Boletos del periodo',
+                                        'class'=>'form-control'));
+            echo '</div>';
+            echo '<div class="form-group">';
+		echo $this->Form->input('total_periodo',array('label'=>'Total del periodo',
+                                        'class'=>'form-control'));
+            echo '</div>';
+            echo '<div class="form-group">';
+		echo $this->Form->input('meta_bsp',array('label'=>'Meta BSP',
+                                        'class'=>'form-control'));
+            echo '</div>';
+            echo '<div class="form-group">';
+		echo $this->Form->input('faltante',array('label'=>'Faltante',
+                                        'class'=>'form-control'));
+            echo '</div>';
+            echo '<div class="form-group">';
+		echo $this->Form->input('porcentaje',array('label'=>'Porcentaje',
+                                        'class'=>'form-control'));
+            echo '</div>';
+            echo '<div class="form-group">';
+		echo $this->Form->input('comision',array('label'=>'Comision',
+                                        'class'=>'form-control'));
+            echo '</div>';
+            echo '<div class="form-group">';
+		echo $this->Form->input('ingreso_comision',array('label'=>'Ingreso por comisión',
                                         'class'=>'form-control'));
             echo '</div>';
             
-            echo '<div class="form-group">';
-		echo $this->Form->input('FECHA_INICIO_D',
-                        array('label'=>'Fecha de inicio',
-                                        'type'=>'text',
-                                        'class'=>'fecha form-control',
-                                        'placeholder'=>'Seleccione la fecha de inicio de meta'));
-            echo '</div>';
             
-            echo '<div class="form-group">';
-		echo $this->Form->input('FECHA_FIN',
-                        array('label'=>'Fecha de fin',
-                                        'type'=>'text',
-                                        'class'=>'fecha form-control',
-                                        'placeholder'=>'Seleccione la fecha de inicio de meta'));
-            echo '</div>';
-            
-            echo '<div class="form-group">';
-		echo $this->Form->input('META_BSP',
-                        array('label'=>'Meta BSP',
-                                        'class'=>'form-control',
-                                        'placeholder'=>'Ingrese la meta BSP'));
-            echo '</div>';
-            
-            echo '<div class="form-group">';
-		echo $this->Form->input('VENTA',array('label'=>'Venta',
-                                        'class'=>'form-control',
-                                        'placeholder'=>'Ingrese el monto de venta'));
-            echo '</div>';
-            
-            echo '<div class="form-group">';
-		echo $this->Form->input('FALTANTE',array('label'=>'Faltante',
-                                        'class'=>'form-control',
-                                        'palceholder'=>'Ingrese el monto faltante'));
-            echo '</div>';
-            
-            echo '<div class="form-group">';
-		echo $this->Form->input('PORCENTAJE',array('label'=>'Porcentaje',
-                                        'class'=>'form-control',
-                                        'placeholder'=>'Porcentaje'));
-            echo '</div>';
 	?>
 	
 <?php echo $this->Form->end(array('label'=>'Guardar Meta',
