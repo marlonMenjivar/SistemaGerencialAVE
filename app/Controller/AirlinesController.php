@@ -105,4 +105,11 @@ class AirlinesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+        
+        public function nombres(){
+            $airlines = $this->Airline->find('list');
+            if($this->request->is('requested')):
+                return $airlines;
+            endif;
+        }
 }

@@ -26,9 +26,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!--<link href="dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" />-->
     <!--<link href="../../webroot/dist/css/AdminLTE.css" rel="stylesheet" type="text/css"/>-->
     <?php
-        echo $this->Html->css(array('bootstrap.min',
+        echo $this->Html->css(array('bootstrap',
             'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
             'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css',
+            'dataTables.bootstrap',
             'AdminLTE',
             'skin-blue',
             'datepicker'
@@ -159,7 +160,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
               <ul class="treeview-menu">
                   <li><?php 
                         echo $this->Html->link("Comparativo de cumplimiento de metas por línea aérea por periodo BSP",
-                                array('controller'=>'pages','action'=>'comparativoMetasAerolinea'));
+                                array('controller'=>'GoalAirlines','action'=>'comparativoMetasAerolinea'));
                         ?>
                   </li>
                   <li><a href="#">
@@ -298,9 +299,22 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!-- jQuery 2.1.4
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>-->
     <?php echo $this->Html->script('jQuery-2.1.4.min.js') ?>
+    
     <!-- Bootstrap 3.3.2 JS
     <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script> -->
     <?php echo $this->Html->script('bootstrap.min.js') ?>
+    
+    <!-- DATA TABES SCRIPT 
+    <script src="../../plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>-->
+    <?php echo $this->Html->script('jquery.dataTables.min.js') ?>
+    <!--<script src="../../plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+    <?php echo $this->Html->script('dataTables.bootstrap.min.js') ?>
+    <!-- SlimScroll 
+    <script src="../../plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>-->
+    <?php echo $this->Html->script('jquery.slimscroll.min.js') ?>
+    <!-- FastClick 
+    <script src='../../plugins/fastclick/fastclick.min.js'></script>-->
+    <?php echo $this->Html->script('fastclick.min.js') ?>
     <!-- AdminLTE App 
     <script src="dist/js/app.min.js" type="text/javascript"></script>-->
     <?php echo $this->Html->script('app.min.js') ?>
@@ -330,6 +344,35 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 }); 
             
             });
+        </script>
+        <!-- page script -->
+        <script type="text/javascript">
+          $(function () {
+            $(".tablitaBonita").dataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "Sin registros encontrados",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "paginate": {
+                        first:      "Primero",
+                        previous:   "Anterior",
+                        next:       "Siguiente",
+                        last:       "Último"
+                    }
+                },
+                searching: false,
+            });
+            $('#example2').dataTable({
+              "bPaginate": true,
+              "bLengthChange": false,
+              "bFilter": false,
+              "bSort": true,
+              "bInfo": true,
+              "bAutoWidth": false
+            });
+          });
         </script>
   </body>
 </html>

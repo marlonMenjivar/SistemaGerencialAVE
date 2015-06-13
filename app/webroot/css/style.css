@@ -68,6 +68,9 @@ form {
   background: #dee1e8;
   border-radius: .4em;
 }
+formulario {
+    width: 34%;
+}
 form li{
 	list-style: none;
 	margin-bottom: 25px;

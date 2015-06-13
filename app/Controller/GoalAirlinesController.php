@@ -117,4 +117,55 @@ class GoalAirlinesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+        public function comparativoMetasAerolinea() {
+                //Lee la lista de aerolíneas
+                $airlines = $this->GoalAirline->Airline->find('list');
+		//manda lista a vista
+                $this->set(compact('airlines'));
+                
+                //Si el formulario se envió
+                if ($this->request->is(array('post', 'put'))) {
+                    
+                    //Saca el id del request
+                    $id=$this->request->data["GoalAirline"]['airline_id'];
+                    
+                    //Saca la fecha del request
+                    $fecha=$this->request->data["GoalAirline"]['fecha_inicio'];
+                  
+                    //ejecuta consulta de metas para aerolínea y por fecha
+                    $queryConsultaMetas="SELECT * FROM `goal_airlines` as GoalAirline "
+                            . "WHERE `fecha_inicio`<='".$fecha."' and `fecha_fin`>='".$fecha."' and airline_id=".$id;
+                    $consultaMetas=$this->GoalAirline->query($queryConsultaMetas);
+                    
+                    
+                    //Si la consulta retorna vacía
+                    if(empty($consultaMetas)):
+                        $this->Session->setFlash(__('Meta no encontrada para este mes.'));
+                    //Si encuentra la meta
+                    else:
+                        //Esta línea hace que el resultado de la consulta se ponga en el form
+                        $this->request->data=$consultaMetas[0];
+                    
+                        //Manda el array consultaMetas a la vista
+                        $this->set('consultaMetas',$consultaMetas[0]);
+                        $this->Session->setFlash(__('Datos leídos.'));
+                        
+                        //Sacando fechas de inicio y fin de resultado de query de metas para consulta
+                        $fecha_inicio=$consultaMetas[0]['GoalAirline']['fecha_inicio'];
+                        $fecha_fin=$consultaMetas[0]['GoalAirline']['fecha_fin'];
+                        
+                        //Si encuentra meta ejecuta consulta de boletos por aerolínea y por fecha
+                        $consultaBoletos=""
+                            . " SELECT * from invoiced_tickets"
+                            . " WHERE airline_id=".$id." and "
+                                . "fecha between '".$fecha_inicio."' and '".$fecha_fin."'";
+                        //Carga modelo
+                        $this->loadModel('InvoicedTicket');
+                        
+                        $consultaBoletos=$this->InvoicedTicket->query($consultaBoletos);
+
+                        $this->set('consultaBoletos',$consultaBoletos);
+                    endif;                    
+		}
+	}
 }
