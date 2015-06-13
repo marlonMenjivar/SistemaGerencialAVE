@@ -27,13 +27,8 @@
 			<th><?php echo $this->Paginator->sort('periodo_bsp','Periodo BSP'); ?></th>
                         <th><?php echo $this->Paginator->sort('fecha_inicio','Fecha de Inicio'); ?></th>
                         <th><?php echo $this->Paginator->sort('fecha_fin','Fecha de Fin'); ?></th>
-                        <th><?php echo $this->Paginator->sort('boletos_periodo','Boletos de Periodo'); ?></th>
-			<th><?php echo $this->Paginator->sort('total_periodo','Total de Periodo'); ?></th>
-                        <th><?php echo $this->Paginator->sort('meta_bsp','Meta BSP'); ?></th>
-                        <th><?php echo $this->Paginator->sort('faltante','Faltante'); ?></th>
-                        <th><?php echo $this->Paginator->sort('porcentaje','Porcentaje'); ?></th>
-                        <th><?php echo $this->Paginator->sort('comision','Comisión'); ?></th>
-                        <th><?php echo $this->Paginator->sort('ingreso_comision','Ingreso por comisión'); ?></th>
+			<th><?php echo $this->Paginator->sort('meta_bsp','Meta BSP'); ?></th>
+                        <th><?php echo $this->Paginator->sort('comision','Comisión por Meta (%)'); ?></th>
                         <th class="actions"><?php echo __('Acciones'); ?></th>
 	</tr>
 	</thead>
@@ -47,14 +42,9 @@
 		<td><?php echo h($goalAirline['GoalAirline']['periodo_bsp']); ?>&nbsp;</td>
                 <td><?php echo h($goalAirline['GoalAirline']['fecha_inicio']); ?>&nbsp;</td>
                 <td><?php echo h($goalAirline['GoalAirline']['fecha_fin']); ?>&nbsp;</td>
-                <td><?php echo h($goalAirline['GoalAirline']['boletos_periodo']); ?>&nbsp;</td>
-                <td><?php echo h($goalAirline['GoalAirline']['total_periodo']); ?>&nbsp;</td>
                 <td><?php echo h($goalAirline['GoalAirline']['meta_bsp']); ?>&nbsp;</td>
-                <td><?php echo h($goalAirline['GoalAirline']['faltante']); ?>&nbsp;</td>
-                <td><?php echo h($goalAirline['GoalAirline']['porcentaje']); ?>&nbsp;</td>
                 <td><?php echo h($goalAirline['GoalAirline']['comision']); ?>&nbsp;</td>
-                <td><?php echo h($goalAirline['GoalAirline']['ingreso_comision']); ?>&nbsp;</td>
-		<td class="actions">
+                <td class="actions">
 			<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $goalAirline['GoalAirline']['id'])); ?>
 			<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $goalAirline['GoalAirline']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $goalAirline['GoalAirline']['id']), array('confirm' => __('Está seguro de eliminar la meta # %s?', $goalAirline['GoalAirline']['id']))); ?>

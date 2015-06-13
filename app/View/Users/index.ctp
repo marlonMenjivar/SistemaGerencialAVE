@@ -3,7 +3,14 @@
     echo '<h1>Gestión de Usuarios</h1>';
     $this->end();
 ?>
-
+<?php
+    $this->start('pagePath');
+    echo '<ol class="breadcrumb">';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
+    echo  '<li class="active">Aquí</li>
+          </ol>';
+    $this->end();
+?>
 <?php 
     echo $this->Html->link("Agregar Usuario", array("action"=>"add"),
                                                     array('class'=>'btn btn-primary'));

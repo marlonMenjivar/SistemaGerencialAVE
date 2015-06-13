@@ -7,7 +7,7 @@
     $this->start('pagePath');
     echo '<ol class="breadcrumb">';
     echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
-    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Metas por Aerolíneas'), array('action' => 'index')).'</li>';
+    echo '<li>'.$this->Html->link(__('Metas por Aerolíneas'), array('action' => 'index')).'</li>';
     echo  '<li class="active">Aquí</li>
           </ol>';
     $this->end();
@@ -45,35 +45,13 @@
                                         'class'=>'fecha form-control'));
             echo '</div>';
             echo '<div class="form-group">';
-		echo $this->Form->input('boletos_periodo',array('label'=>'Boletos del periodo',
-                                        'class'=>'form-control'));
-            echo '</div>';
-            echo '<div class="form-group">';
-		echo $this->Form->input('total_periodo',array('label'=>'Total del periodo',
-                                        'class'=>'form-control'));
-            echo '</div>';
-            echo '<div class="form-group">';
 		echo $this->Form->input('meta_bsp',array('label'=>'Meta BSP',
                                         'class'=>'form-control'));
             echo '</div>';
             echo '<div class="form-group">';
-		echo $this->Form->input('faltante',array('label'=>'Faltante',
+		echo $this->Form->input('comision',array('label'=>'Comision por Meta (%)',
                                         'class'=>'form-control'));
-            echo '</div>';
-            echo '<div class="form-group">';
-		echo $this->Form->input('porcentaje',array('label'=>'Porcentaje',
-                                        'class'=>'form-control'));
-            echo '</div>';
-            echo '<div class="form-group">';
-		echo $this->Form->input('comision',array('label'=>'Comision',
-                                        'class'=>'form-control'));
-            echo '</div>';
-            echo '<div class="form-group">';
-		echo $this->Form->input('ingreso_comision',array('label'=>'Ingreso por comisión',
-                                        'class'=>'form-control'));
-            echo '</div>';
-            
-            
+            echo '</div>';         
 	?>
 
 <?php echo $this->Form->end( (array('label'=>'Guardar Meta',

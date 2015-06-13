@@ -22,6 +22,29 @@ class BranchOffice extends AppModel {
  *
  * @var array
  */
+        public $validate=array(
+            'name'=>array(
+                'rule'=>'notEmpty'
+            ),
+            'abrevia'=>array(
+               'alphaNumeric' => array(
+                'rule' => 'alphaNumeric',
+                'required' => true,
+                'message' => 'Sólo letras y números permitidos'
+            ))
+            /**'name'=>array(
+               'alphaNumeric' => array(
+                'rule' => 'alphaNumeric',
+                'required' => true,
+                'message' => 'Sólo letras y números permitidos'
+            )),
+            'abrevia'=>array(
+               'alphaNumeric' => array(
+                'rule' => 'alphaNumeric',
+                'required' => true,
+                'message' => 'Sólo letras y números permitidos'
+            ))**/
+        ); 
 	public $hasMany = array(
 		'GoalBranchOffice' => array(
 			'className' => 'GoalBranchOffice',

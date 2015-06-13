@@ -22,6 +22,17 @@ class Airline extends AppModel {
  *
  * @var array
  */
+        public $validate=array(
+            'name'=>array(
+                'rule'=>'notEmpty'
+            ),
+            'abrevia'=>array(
+               'alphaNumeric' => array(
+                'rule' => 'alphaNumeric',
+                'required' => true,
+                'message' => 'Sólo letras y números permitidos'
+            ))
+        );
 	public $hasMany = array(
 		'GoalAirline' => array(
 			'className' => 'GoalAirline',

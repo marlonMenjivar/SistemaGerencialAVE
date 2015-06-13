@@ -22,6 +22,21 @@ class GoalBranchOffice extends AppModel {
  *
  * @var array
  */
+        public $validate=array(
+            'mes' => array(
+                'rule' => 'notEmpty',
+                'message' => 'Por favor ingrese un valor monetario válido.'
+            ),
+            'meta_boletos' => array(
+                'rule' => array('money','left'),
+                'message' => 'Por favor ingrese un valor monetario válido.'
+            ),
+            'meta_servicios' => array(
+                'rule' => array('money','left'),
+                'message' => 'Por favor ingrese un valor monetario válido.'
+            ),
+            
+        );
 	public $belongsTo = array(
 		'BranchOffice' => array(
 			'className' => 'BranchOffice',

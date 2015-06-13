@@ -64,7 +64,7 @@ class GoalAirlinesController extends AppController {
 				$this->Session->setFlash(__('La meta fue guardada.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('La meta no pudo ser guardad. Por favor, intente de nuevo.'));
+				$this->Session->setFlash(__('La meta no pudo ser guardada. Por favor, intente de nuevo.'));
 			}
 		}
 		$airlines = $this->GoalAirline->Airline->find('list');
@@ -87,7 +87,7 @@ class GoalAirlinesController extends AppController {
 				$this->Session->setFlash(__('La meta fue guardada.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('La meta no pudo ser guardad. Por favor, intente de nuevo.'));
+				$this->Session->setFlash(__('La meta no pudo ser guardada. Por favor, intente de nuevo.'));
 			}
 		} else {
 			$options = array('conditions' => array('GoalAirline.' . $this->GoalAirline->primaryKey => $id));

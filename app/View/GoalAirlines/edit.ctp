@@ -7,7 +7,7 @@
     $this->start('pagePath');
     echo '<ol class="breadcrumb">';
     echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
-    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Metas por Aerolíneas'), array('action' => 'index')).'</li>';
+    echo '<li>'.$this->Html->link(__('Metas por Aerolíneas'), array('action' => 'index')).'</li>';
     echo  '<li class="active">Aquí</li>
           </ol>';
     $this->end();
@@ -30,48 +30,31 @@
             echo $this->Form->input('id');
             echo '<div class="form-group">';
 		echo $this->Form->input('airline_id',array('label'=>'Aerolínea',
-                                        'class'=>'form-control'));
+                                        'class'=>'form-control',
+                                        'disabled' => 'disabled'));
             echo '</div>';
             echo '<div class="form-group">';
 		echo $this->Form->input('periodo_bsp',array('label'=>'Período BSP',
-                                        'class'=>'form-control'));
+                                        'class'=>'form-control',
+                                        'disabled' => 'disabled'));
             echo '</div>';
             echo '<div class="form-group">';
 		echo $this->Form->input('fecha_inicio',array('label'=>'Fecha de inicio',
                                         'type'=>'text',
-                                        'class'=>'fecha form-control'));
+                                        'class'=>'fecha form-control',
+                                         'disabled' => 'disabled'));
             echo '</div>';
             echo '<div class="form-group">';
 		echo $this->Form->input('fecha_fin',array('label'=>'Fecha de fin',
                                         'type'=>'text',
-                                        'class'=>'fecha form-control'));
-            echo '</div>';
-            echo '<div class="form-group">';
-		echo $this->Form->input('boletos_periodo',array('label'=>'Boletos del periodo',
-                                        'class'=>'form-control'));
-            echo '</div>';
-            echo '<div class="form-group">';
-		echo $this->Form->input('total_periodo',array('label'=>'Total del periodo',
-                                        'class'=>'form-control'));
-            echo '</div>';
+                                        'class'=>'fecha form-control',
+                                        'disabled' => 'disabled'));
             echo '<div class="form-group">';
 		echo $this->Form->input('meta_bsp',array('label'=>'Meta BSP',
                                         'class'=>'form-control'));
             echo '</div>';
             echo '<div class="form-group">';
-		echo $this->Form->input('faltante',array('label'=>'Faltante',
-                                        'class'=>'form-control'));
-            echo '</div>';
-            echo '<div class="form-group">';
-		echo $this->Form->input('porcentaje',array('label'=>'Porcentaje',
-                                        'class'=>'form-control'));
-            echo '</div>';
-            echo '<div class="form-group">';
-		echo $this->Form->input('comision',array('label'=>'Comision',
-                                        'class'=>'form-control'));
-            echo '</div>';
-            echo '<div class="form-group">';
-		echo $this->Form->input('ingreso_comision',array('label'=>'Ingreso por comisión',
+		echo $this->Form->input('comision',array('label'=>'Comision por Meta(%)',
                                         'class'=>'form-control'));
             echo '</div>';
             

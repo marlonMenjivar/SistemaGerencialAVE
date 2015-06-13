@@ -7,7 +7,7 @@
     $this->start('pagePath');
     echo '<ol class="breadcrumb">';
     echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
-    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Metas por Aerolíneas'), array('action' => 'index')).'</li>';
+    echo '<li>'.$this->Html->link(__('Metas por Aerolíneas'), array('action' => 'index')).'</li>';
     echo  '<li class="active">Aquí</li>
           </ol>';
     $this->end();
@@ -38,8 +38,9 @@
                 <th><?php echo __('Meta BSP'); ?></th>
                 <th><?php echo __('Faltante'); ?></th>
                 <th><?php echo __('Porcentaje'); ?></th>
-                <th><?php echo __('Comisión'); ?></th>
+                <th><?php echo __('Comisión por Meta (%)'); ?></th>
                 <th><?php echo __('Ingreso por Comisión'); ?></th>
+                <th><?php echo __('Ultima Modificación'); ?></th>
             </tr>
         </thead>
         <tbody>
@@ -90,6 +91,10 @@
                 </td>
                 <td>
                     <?php echo h($goalAirline['GoalAirline']['ingreso_comision']); ?>
+			&nbsp;
+                </td>
+                <td>
+                    <?php echo h($goalAirline['GoalAirline']['modified']); ?>
 			&nbsp;
                 </td>
             </tr>

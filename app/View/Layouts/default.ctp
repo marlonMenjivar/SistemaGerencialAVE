@@ -157,11 +157,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <li class="treeview">
               <a href="#"><i class='fa fa-link'></i> <span>Salidas Tácticas</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                  <li><a href="#">
-                          <p>
-                              Comparativo de cumplimiento de metas por línea aérea por periodo BSP
-                          </p>
-                      </a>
+                  <li><?php 
+                        echo $this->Html->link("Comparativo de cumplimiento de metas por línea aérea por periodo BSP",
+                                array('controller'=>'pages','action'=>'comparativoMetasAerolinea'));
+                        ?>
                   </li>
                   <li><a href="#">
                           <p>

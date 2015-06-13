@@ -3,7 +3,15 @@
     echo '<h1>Editar mi Cuenta</h1>';
     $this->end();
 ?>
-
+<?php
+    $this->start('pagePath');
+    echo '<ol class="breadcrumb">';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
+    echo '<li>'.$this->Html->link(__('Usuarios'), array('action' => 'index')).'</li>';
+    echo  '<li class="active">Aquí</li>
+          </ol>';
+    $this->end();
+?>
 <?php
     echo $this->Form->create('User', array('action'=>'edit',
                                             'class'=>'form'));

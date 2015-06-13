@@ -28,12 +28,14 @@
 		echo '</div>';
                 echo '<div class="form-group">';
                 echo $this->Form->input('branch_office_id',array('label'=>'Nombre de Sucursal',
-                                                    'class'=>'form-control'));
+                                                    'class'=>'form-control',
+                                                    'disabled' => 'disabled'));
 		echo '</div>';
                 echo '<div class="form-group">';
                 echo $this->Form->input('mes',array('label'=>'Mes',
                                                     'type'=>'text',
-                                                    'class'=>'mes form-control'));
+                                                    'class'=>'mes form-control',
+                                                    'disabled' => 'disabled'));
 		echo '</div>';
                 echo '<div class="form-group">';
                 echo $this->Form->input('meta_boletos',array('label'=>'Meta de Boletos',
