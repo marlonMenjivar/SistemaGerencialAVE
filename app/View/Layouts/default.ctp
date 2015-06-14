@@ -334,6 +334,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     autoclose:true,
                     language:"es"
                 }); 
+                <?php echo $this->fetch('scriptReady');?>
             
             });
         </script>
