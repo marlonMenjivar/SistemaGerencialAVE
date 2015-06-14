@@ -27,8 +27,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!--<link href="../../webroot/dist/css/AdminLTE.css" rel="stylesheet" type="text/css"/>-->
     <?php
         echo $this->Html->css(array('bootstrap',
-            'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
-            'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css',
+            'font-awesome.min.css',
+            'ionicons.min.css',
             'dataTables.bootstrap',
             'AdminLTE',
             'skin-blue',
@@ -180,11 +180,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                 array('controller'=>'GoalBranchOffices','action'=>'comparativoMetas'));
                       ?>
                   </li>
-                  <li><a href="#">
-                          <p>
-                              Comparativo de cumplimiento de venta de servicios terrestres por sucursal
-                          </p>
-                      </a>
+                  <li>
+                      <?php echo $this->Html->link("Comparativo de cumplimiento de venta de servicios terrestres por sucursal",
+                                array('controller'=>'GoalBranchOffices','action'=>'comparativoMetasTerrestres'));
+                      ?>
                   </li>
                   <li><a href="#">
                           <p>

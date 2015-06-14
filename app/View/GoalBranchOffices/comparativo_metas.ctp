@@ -1,5 +1,5 @@
 <?php $this->start('pageHeader');
-    echo '<h1>Comparativo de Metas por Sucursal</h1>';
+    echo '<h1>Comparativo de Metas de Venta de Boletos por Sucursal</h1>';
     $this->end();
     //var_dump($mes);
     //var_dump($queryConsultaMetas);

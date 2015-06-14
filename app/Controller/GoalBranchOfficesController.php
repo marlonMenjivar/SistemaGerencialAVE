@@ -200,4 +200,7 @@ class GoalBranchOfficesController extends AppController {
                     $this->Session->setFlash('Método no soportado.');
                 endif;
 	}
+        public function comparativoMetasTerrestres(){
+            
+        }
 }
