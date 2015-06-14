@@ -196,8 +196,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <li class="treeview">
               <a href="#"><i class='fa fa-link'></i> <span>Salidas Estratégicas</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><?= $this->Html->link(__('Total de venta de boletos aéreos por línea aérea por periodo BSP'), array('controller' => 'reports', 'action' => 'show', 8)); ?></li>
-                <li><a href="#">Acumulado de venta de boletos aéreos por líneas aéreas mensual</a></li>
+				<li><?= $this->Html->link(__('Total de venta de boletos aéreos por línea aérea por periodo BSP'), array('controller' => 'reports', 'action' => 'show', 8)); ?></li>
+                <li><?php 
+                        echo $this->Html->link("Acumulado de venta de boletos aéreos por líneas aéreas mensual",
+                                array('controller'=>'GoalAirlines','action'=>'ventaBoletoAereosMensual'));
+                        ?>
+                </li>
                 <li><a href="#">Acumulado venta de servicios terrestres por tipo de servicio mensual</a></li>
                 <li><a href="#">Acumulado venta de servicios terrestres por proveedor mensual</a></li>
               </ul>

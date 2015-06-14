@@ -4,6 +4,19 @@ echo '<h1>Acumulado de Venta de Boletos Aéreos por Líneas Aéreas Mensual</h1>
 $this->end();
 
 setlocale(LC_MONETARY, 'en_US');
+
+$boletos_periodo=0;
+$total_periodo=0;
+
+if (!empty($consultaVentas)):
+    foreach ($consultaVentas as $k => $aerolineaRow):
+        foreach($aerolineaRow as $p=>$aerolinea):
+            $boletos_periodo = $boletos_periodo + $aerolinea['boletos_periodo'];
+            $total_periodo = $total_periodo + $aerolinea['total_periodo'];
+        endforeach;
+    endforeach;
+endif;
+
 ?>
 
 <!--Formulario para generar reporte, busca una meta por aerolínea y periodo y 
@@ -26,11 +39,11 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                 echo $this->Form->input('fecha_mes', array('label' => 'Mes',
                     'type' => 'text',
                     'class' => 'meses form-control'));
-                //Seleccionar el año
+                //Fecha inicio
                 echo "<div style='display: none;'>" . $this->Form->input('fecha_inicio', array('label' => 'Fecha inicio',
                     'type' => 'text',
                     'class' => 'fecha form-control')) . "</div>";
-                //Seleccionar el mes
+                //Fecha fin
                 echo "<div style='display: none;'>" . $this->Form->input('fecha_fin', array('label' => 'Fecha fin',
                     'type' => 'text',
                     'class' => 'fecha form-control')) . "</div>";
@@ -50,7 +63,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3></h3>
+                <h3><?php echo $boletos_periodo?></h3>
                 <p><strong>Boletos vendidos en el periodo</strong></p>
             </div>
             <div class="icon">
@@ -62,7 +75,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
         <!-- small box -->
         <div class="small-box bg-green">
             <div class="inner">
-                <h3><sup style="font-size: 20px">$</sup></h3>
+                <h3><sup style="font-size: 20px">$</sup><?php echo number_format($total_periodo, 2)?></h3>
                 <p><strong>Ventas Totales</strong></p>
             </div>
             <div class="icon">
@@ -89,24 +102,26 @@ los boletos vendidos en ese periodo por esa aerolínea-->
             <tbody>
                 <?php
                 if (!empty($consultaVentas)):
-                    foreach ($consultaVentas as $k => $aerolinea):
-                        echo '<tr>';
-                        echo '<td>';
-                        echo $aerolinea['boleto'];
-                        echo '</td>';
-                        echo '<td>';
-                        echo $aerolinea['fecha'];
-                        echo '</td>';
-                        echo '<td>';
-                        echo $aerolinea['ruta'];
-                        echo '</td>';
-                        echo '<td>';
-                        echo $aerolinea['destino'];
-                        echo '</td>';
-                        echo '<td>';
-                        echo $aerolinea['pasajero'];
-                        echo '</td>';
-                        echo '</tr>';
+                    foreach ($consultaVentas as $k => $aerolineaRow):
+                        foreach($aerolineaRow as $p=>$aerolinea):
+                            echo '<tr>';
+                            echo '<td>';
+                            echo $aerolinea['airline_id'];
+                            echo '</td>';
+                            echo '<td>';
+                            echo $aerolinea['fecha_inicio'];
+                            echo '</td>';
+                            echo '<td>';
+                            echo $aerolinea['fecha_fin'];
+                            echo '</td>';
+                            echo '<td>';
+                            echo $aerolinea['boletos_periodo'];
+                            echo '</td>';
+                            echo '<td>';
+                            echo $aerolinea['total_periodo'];
+                            echo '</td>';
+                            echo '</tr>';
+                        endforeach;
                     endforeach;
                 endif;
                 ?>
