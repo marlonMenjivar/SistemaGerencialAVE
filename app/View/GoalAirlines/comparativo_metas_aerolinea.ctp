@@ -8,7 +8,7 @@
     //var_dump($fecha_inicio);
     //var_dump($fecha_fin);
     //Se calculan recorriendo $consultaBoletos que manda el controlador.
-    $boletos_periodo_sucursal=0;
+    $servicios_periodo_sucursal=0;
     $total_periodo=0;
     
     
@@ -24,7 +24,7 @@
     else:
         foreach ($consultaBoletos as $k=>$nivel0):
             foreach($nivel0 as $p=>$boleto):
-                $boletos_periodo_sucursal++;
+                $servicios_periodo_sucursal++;
                 $total_periodo=$total_periodo+$boleto['tarifa'];
             endforeach;   
         endforeach;
@@ -32,13 +32,14 @@
 ?>
 <?php 
     //Si no se encontró meta para esa aerolínea y periodo
-    if(empty($queryConsultaMetas)):
+    if(empty($consultaMetas)):
         //no hace nada.
         $porcentajeFaltante=0;
     else:
-        $id=$queryConsultaMetas['GoalAirline']['id'];
-        $metaBSP=$queryConsultaMetas['GoalAirline']['meta_bsp'];
-        $comision=$queryConsultaMetas['GoalAirline']['comision'];
+        $id=$consultaMetas['GoalAirline']['id'];
+        //var_dump($id);
+        $metaBSP=$consultaMetas['GoalAirline']['meta_bsp'];
+        $comision=$consultaMetas['GoalAirline']['comision'];
         if(empty($consultaBoletos)):
             $porcentajeFaltante=100;
             $faltante=$metaBSP;
@@ -100,7 +101,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
             <!-- small box -->
               <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3><?php echo $boletos_periodo_sucursal?></h3>
+                    <h3><?php echo $servicios_periodo_sucursal?></h3>
                     <p><strong>Boletos vendidos en el periodo</strong></p>
                 </div>
                 <div class="icon">
@@ -165,7 +166,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                     else:
                         echo $this->Form->postlink('Guardar',array('action'=>'editar',
                         $id,
-                        $boletos_periodo_sucursal,
+                        $servicios_periodo_sucursal,
                         $total_periodo,
                         $faltante,
                         $porcentajeFaltante,

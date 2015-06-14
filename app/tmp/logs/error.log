@@ -5189,3 +5189,100 @@ Request URL: /SistemaGerencialAVE/fonts/fontawesome-webfont.ttf?v=4.3.0
 Stack Trace:
 #0 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2015-06-14 23:37:25 Error: [MissingViewException] View file "Pages\comparativo_metas_aerolinea.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Pages\\comparativo_metas_aerolinea.ctp',
+)
+Request URL: /SistemaGerencialAVE/pages/comparativoMetasAerolinea
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\View\View.php(470): View->_getViewFileName('comparativoMeta...')
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(960): View->render('comparativoMeta...', NULL)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\PagesController.php(68): Controller->render('comparativoMeta...')
+#3 [internal function]: PagesController->display('comparativoMeta...')
+#4 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(PagesController), Array)
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#6 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
+#7 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2015-06-14 23:38:41 Error: [NotFoundException] Meta Inválida
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/0/2/754/0/0/0
+Stack Trace:
+#0 [internal function]: GoalAirlinesController->editar('0', '2', '754', '0', '0', '0')
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 23:38:54 Error: [NotFoundException] Meta Inválida
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/0/2/754/0/0/0
+Stack Trace:
+#0 [internal function]: GoalAirlinesController->editar('0', '2', '754', '0', '0', '0')
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 23:39:13 Error: [NotFoundException] Meta Inválida
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/0/2/754/0/0/0
+Stack Trace:
+#0 [internal function]: GoalAirlinesController->editar('0', '2', '754', '0', '0', '0')
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 23:41:10 Error: [NotFoundException] Meta Inválida
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/0/2/754/0/0/0
+Stack Trace:
+#0 [internal function]: GoalAirlinesController->editar('0', '2', '754', '0', '0', '0')
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 23:43:56 Error: [NotFoundException] Meta Inválida
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/0/2/754/0/0/0
+Stack Trace:
+#0 [internal function]: GoalAirlinesController->editar('0', '2', '754', '0', '0', '0')
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 23:44:07 Error: [NotFoundException] Meta Inválida
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/
+Stack Trace:
+#0 [internal function]: GoalAirlinesController->editar()
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 23:44:44 Error: [NotFoundException] Meta Inválida
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/0/2/754/0/0/0
+Stack Trace:
+#0 [internal function]: GoalAirlinesController->editar('0', '2', '754', '0', '0', '0')
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 23:47:44 Error: [NotFoundException] Meta Inválida
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/0/2/754/0/0/0
+Stack Trace:
+#0 [internal function]: GoalAirlinesController->editar('0', '2', '754', '0', '0', '0')
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-15 00:54:08 Error: Fatal Error (1): Call to a member function query() on null in [C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php, line 283]
+2015-06-15 00:54:08 Error: [FatalErrorException] Call to a member function query() on null
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/editar2/3/10/976/24/2.4/01/1
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Error\ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 283)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 283, Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 283, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

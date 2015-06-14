@@ -4,7 +4,7 @@
     //var_dump($mes);
     //var_dump($queryConsultaMetas);
     //var_dump($consultaBoletos);
-    $boletos_periodo_sucursal=0;
+    $servicios_periodo_sucursal=0;
     $total_periodo=0;
     
     
@@ -26,7 +26,7 @@
             //Con los cálculos hechos antes
             foreach ($consultaBoletos as $k=>$nivel0):
                 foreach($nivel0 as $p=>$boleto):
-                    $boletos_periodo_sucursal++;
+                    $servicios_periodo_sucursal++;
                     $total_periodo=$total_periodo+$boleto['tarifa'];
                 endforeach;   
             endforeach;
@@ -39,7 +39,7 @@
         endif;
     endif;
 ?>
-<!--Formulario para generar reporte, busca una meta por aerolínea y periodo y 
+<!--Formulario para generar reporte, busca una meta por sucursal y periodo y 
 los boletos vendidos en ese periodo por esa aerolínea-->
     <div class="row">
         <div class="col-md-6">
@@ -78,7 +78,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
             <!-- small box -->
               <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3><?php echo $boletos_periodo_sucursal?></h3>
+                    <h3><?php echo $servicios_periodo_sucursal?></h3>
                     <p><strong>Boletos vendidos en el periodo</strong></p>
                 </div>
                 <div class="icon">
@@ -130,7 +130,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                         else:
                             echo $this->Form->postlink('Guardar',array('action'=>'editar',
                                 $id,
-                                $boletos_periodo_sucursal,
+                                $servicios_periodo_sucursal,
                                 $total_periodo,
                                 $faltante,
                                 $porcentajeFaltante,
