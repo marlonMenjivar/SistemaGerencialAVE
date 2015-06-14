@@ -4679,3 +4679,339 @@ Stack Trace:
 #3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
 #4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #5 {main}
+2015-06-14 02:39:23 Error: [MissingViewException] View file "GoalBranchOffices\comparativo_metas.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'GoalBranchOffices\\comparativo_metas.ctp',
+)
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\View\View.php(470): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(960): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(200): Controller->render()
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 04:05:44 Error: Fatal Error (1): Call to a member function query() on null in [C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php, line 125]
+2015-06-14 04:05:44 Error: [FatalErrorException] Call to a member function query() on null
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Error\ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 125)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 125, Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 125, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-06-14 04:06:12 Error: Fatal Error (1): Call to a member function query() on null in [C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php, line 126]
+2015-06-14 04:06:12 Error: [FatalErrorException] Call to a member function query() on null
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Error\ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 126)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 126, Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 126, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-06-14 04:08:25 Error: Fatal Error (1): Call to a member function format() on boolean in [C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php, line 121]
+2015-06-14 04:08:25 Error: [FatalErrorException] Call to a member function format() on boolean
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Error\ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 121)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 121, Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 121, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-06-14 04:08:30 Error: Fatal Error (1): Function name must be a string in [C:\xampp\htdocs\SistemaGerencialAVE\app\View\GoalBranchOffices\comparativo_metas.ctp, line 4]
+2015-06-14 04:08:30 Error: [FatalErrorException] Function name must be a string
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Error\ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Function name m...', 'C:\\xampp\\htdocs...', 4)
+#1 [internal function]: ErrorHandler::handleError(1, 'Function name m...', 'C:\\xampp\\htdocs...', 4, Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(933): call_user_func('ErrorHandler::h...', 1, 'Function name m...', 'C:\\xampp\\htdocs...', 4, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-06-14 04:09:48 Error: Fatal Error (1): Function name must be a string in [C:\xampp\htdocs\SistemaGerencialAVE\app\View\GoalBranchOffices\comparativo_metas.ctp, line 4]
+2015-06-14 04:09:48 Error: [FatalErrorException] Function name must be a string
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Error\ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Function name m...', 'C:\\xampp\\htdocs...', 4)
+#1 [internal function]: ErrorHandler::handleError(1, 'Function name m...', 'C:\\xampp\\htdocs...', 4, Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(933): call_user_func('ErrorHandler::h...', 1, 'Function name m...', 'C:\\xampp\\htdocs...', 4, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-06-14 04:12:02 Error: Fatal Error (1): Call to a member function query() on null in [C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php, line 126]
+2015-06-14 04:12:02 Error: [FatalErrorException] Call to a member function query() on null
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Error\ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 126)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 126, Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 126, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-06-14 04:30:05 Error: Fatal Error (1): Call to a member function query() on null in [C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php, line 127]
+2015-06-14 04:30:05 Error: [FatalErrorException] Call to a member function query() on null
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Error\ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 127)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 127, Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 127, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-06-14 04:31:39 Error: Fatal Error (1): Call to a member function query() on null in [C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php, line 127]
+2015-06-14 04:31:39 Error: [FatalErrorException] Call to a member function query() on null
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Error\ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 127)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 127, Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 127, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-06-14 05:29:14 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE EXTRACT(MONTH from fecha) = '02' at line 1
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute(' SELECT * from ...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(668): DboSource->execute(' SELECT * from ...', Array, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(539): DboSource->fetchAll(' SELECT * from ...')
+#4 [internal function]: DboSource->query(' SELECT * from ...')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3447): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php(146): Model->query(' SELECT * from ...')
+#7 [internal function]: GoalBranchOfficesController->comparativoMetas()
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalBranchOfficesController), Array)
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#11 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-06-14 05:29:32 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE EXTRACT(MONTH from fecha) = 02' at line 1
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute(' SELECT * from ...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(668): DboSource->execute(' SELECT * from ...', Array, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(539): DboSource->fetchAll(' SELECT * from ...')
+#4 [internal function]: DboSource->query(' SELECT * from ...')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3447): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php(146): Model->query(' SELECT * from ...')
+#7 [internal function]: GoalBranchOfficesController->comparativoMetas()
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalBranchOfficesController), Array)
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#11 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-06-14 05:30:10 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE EXTRACT(MONTH from mes) = 02' at line 1
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute(' SELECT * from ...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(668): DboSource->execute(' SELECT * from ...', Array, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(539): DboSource->fetchAll(' SELECT * from ...')
+#4 [internal function]: DboSource->query(' SELECT * from ...')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3447): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php(146): Model->query(' SELECT * from ...')
+#7 [internal function]: GoalBranchOfficesController->comparativoMetas()
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalBranchOfficesController), Array)
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#11 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-06-14 05:30:31 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE EXTRACT(MONTH from mes) = '02'' at line 1
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute(' SELECT * from ...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(668): DboSource->execute(' SELECT * from ...', Array, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(539): DboSource->fetchAll(' SELECT * from ...')
+#4 [internal function]: DboSource->query(' SELECT * from ...')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3447): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php(146): Model->query(' SELECT * from ...')
+#7 [internal function]: GoalBranchOfficesController->comparativoMetas()
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalBranchOfficesController), Array)
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#11 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-06-14 05:34:55 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE EXTRACT(MONTH from mes) = '02'' at line 1
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute(' SELECT * from ...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(668): DboSource->execute(' SELECT * from ...', Array, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(539): DboSource->fetchAll(' SELECT * from ...')
+#4 [internal function]: DboSource->query(' SELECT * from ...')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3447): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php(146): Model->query(' SELECT * from ...')
+#7 [internal function]: GoalBranchOfficesController->comparativoMetas()
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalBranchOfficesController), Array)
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#11 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-06-14 05:39:58 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE EXTRACT(MONTH from mes) = '02'' at line 1
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute(' SELECT * from ...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(668): DboSource->execute(' SELECT * from ...', Array, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(539): DboSource->fetchAll(' SELECT * from ...')
+#4 [internal function]: DboSource->query(' SELECT * from ...')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3447): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php(146): Model->query(' SELECT * from ...')
+#7 [internal function]: GoalBranchOfficesController->comparativoMetas()
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalBranchOfficesController), Array)
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#11 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-06-14 07:02:53 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where id= 1 and EXTRACT(MONTH from fecha_inicio) = '0'' at line 2
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/editar/1/29/20933/0/0/0
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute('UPDATE `fulfill...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(668): DboSource->execute('UPDATE `fulfill...', Array, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(539): DboSource->fetchAll('UPDATE `fulfill...')
+#4 [internal function]: DboSource->query('UPDATE `fulfill...')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3447): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php(169): Model->query('UPDATE `fulfill...')
+#7 [internal function]: GoalBranchOfficesController->editar('1', '29', '20933', '0', '0', '0')
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalBranchOfficesController), Array)
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#11 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-06-14 07:07:03 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where goal_branch_office_id= 1 and EXTRACT(MONTH from fecha_inicio) = '0'' at line 2
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/editar/1/29/20933/0/0/0
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute('UPDATE `fulfill...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(668): DboSource->execute('UPDATE `fulfill...', Array, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(539): DboSource->fetchAll('UPDATE `fulfill...')
+#4 [internal function]: DboSource->query('UPDATE `fulfill...')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3447): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php(169): Model->query('UPDATE `fulfill...')
+#7 [internal function]: GoalBranchOfficesController->editar('1', '29', '20933', '0', '0', '0')
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalBranchOfficesController), Array)
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#11 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-06-14 07:09:21 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE goal_branch_office_id= 1 and EXTRACT(MONTH from fecha_inicio) = '0'' at line 2
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/editar/1/29/20933/0/0/0
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute('UPDATE `fulfill...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(668): DboSource->execute('UPDATE `fulfill...', Array, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(539): DboSource->fetchAll('UPDATE `fulfill...')
+#4 [internal function]: DboSource->query('UPDATE `fulfill...')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3447): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php(169): Model->query('UPDATE `fulfill...')
+#7 [internal function]: GoalBranchOfficesController->editar('1', '29', '20933', '0', '0', '0')
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalBranchOfficesController), Array)
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#11 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-06-14 07:10:08 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`porcentaje_boletos`= 0,WHERE goal_branch_office_id= 1 and EXTRACT(MONTH from fe' at line 2
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/editar/1/29/20933/0/0/0
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute('UPDATE `fulfill...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(668): DboSource->execute('UPDATE `fulfill...', Array, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(539): DboSource->fetchAll('UPDATE `fulfill...')
+#4 [internal function]: DboSource->query('UPDATE `fulfill...')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3447): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php(169): Model->query('UPDATE `fulfill...')
+#7 [internal function]: GoalBranchOfficesController->editar('1', '29', '20933', '0', '0', '0')
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalBranchOfficesController), Array)
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#11 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-06-14 07:19:12 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`sigave`.`fulfillment_branch_office_goals`, CONSTRAINT `fk_reference_19` FOREIGN KEY (`goal_branch_office_id`) REFERENCES `goal_branch_offices` (`id`))
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/delete/2
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute('DELETE `GoalBra...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\Database\Mysql.php(455): DboSource->execute('DELETE `GoalBra...')
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(2709): Mysql->delete(Object(GoalBranchOffice), Array)
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php(106): Model->delete()
+#5 [internal function]: GoalBranchOfficesController->delete('2')
+#6 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalBranchOfficesController), Array)
+#7 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#9 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2015-06-14 07:27:40 Error: Fatal Error (1): Call to undefined function isEmpty() in [C:\xampp\htdocs\SistemaGerencialAVE\app\View\GoalBranchOffices\comparativo_metas.ctp, line 7]
+2015-06-14 07:27:40 Error: [FatalErrorException] Call to undefined function isEmpty()
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/comparativoMetas
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Error\ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\xampp\\htdocs...', 7)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\xampp\\htdocs...', 7, Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\xampp\\htdocs...', 7, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-06-14 20:40:59 Error: [MissingViewException] View file "GoalBranchOffices\editar.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'GoalBranchOffices\\editar.ctp',
+)
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/editar/3/26/21154.78/78845.22/78.85/01
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\View\View.php(470): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(960): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(200): Controller->render()
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 20:54:35 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'branch_office_id' in 'field list'
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/editar/3/26/21154.78/78845.22/78.85/01
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute('SELECT id,branc...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(668): DboSource->execute('SELECT id,branc...', Array, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(539): DboSource->fetchAll('SELECT id,branc...')
+#4 [internal function]: DboSource->query('SELECT id,branc...')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3447): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php(176): Model->query('SELECT id,branc...')
+#7 [internal function]: GoalBranchOfficesController->editar('3', '26', '21154.78', '78845.22', '78.85', '01')
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalBranchOfficesController), Array)
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#11 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-06-14 21:03:55 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'branch_office_id' in 'field list'
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/editar/3/26/21154.78/78845.22/78.85/01/1
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute('SELECT id,branc...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(668): DboSource->execute('SELECT id,branc...', Array, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(539): DboSource->fetchAll('SELECT id,branc...')
+#4 [internal function]: DboSource->query('SELECT id,branc...')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3447): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php(178): Model->query('SELECT id,branc...')
+#7 [internal function]: GoalBranchOfficesController->editar('3', '26', '21154.78', '78845.22', '78.85', '01', '1')
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalBranchOfficesController), Array)
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#11 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-06-14 21:11:34 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'fecha_inicio' in 'where clause'
+Request URL: /SistemaGerencialAVE/GoalBranchOffices/editar/3/26/21154.78/78845.22/78.85/01/1
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute('UPDATE invoiced...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(668): DboSource->execute('UPDATE invoiced...', Array, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(539): DboSource->fetchAll('UPDATE invoiced...')
+#4 [internal function]: DboSource->query('UPDATE invoiced...')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3447): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalBranchOfficesController.php(192): Model->query('UPDATE invoiced...')
+#7 [internal function]: GoalBranchOfficesController->editar('3', '26', '21154.78', '78845.22', '78.85', '01', '1')
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalBranchOfficesController), Array)
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalBranchOfficesController), Object(CakeRequest))
+#11 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}

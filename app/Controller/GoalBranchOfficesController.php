@@ -110,4 +110,94 @@ class GoalBranchOfficesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+        public function comparativoMetas() {
+            $branchOffices = $this->GoalBranchOffice->BranchOffice->find('list');
+            $this->set(compact('branchOffices'));
+            if ($this->request->is(array('post', 'put'))) {
+                //Saca el id de la sucursal del request
+                $id=$this->request->data["GoalBranchOffice"]['branch_office_id'];
+                $this->set('idSucursal',$id);
+                //Saca el del request
+                $fecha=$this->request->data["GoalBranchOffice"]['mes'];
+                $mes=  date('m',strtotime($fecha));
+                $this->set('mes',$mes);
+                
+                //ejecuta consulta de metas para aerolínea y por fecha
+                $queryConsultaMetas="SELECT * FROM goal_branch_offices as GoalBranchOffice "
+                            . "WHERE EXTRACT(MONTH from mes)= '".$mes."' and branch_office_id= ".$id;   
+                $consultaMetas=$this->GoalBranchOffice->query($queryConsultaMetas);
+                
+                
+                if(empty($consultaMetas)):
+                        $this->Session->setFlash(__('Meta no encontrada para este mes.'));
+                    //Si encuentra la meta
+                else:
+                        //Esta línea hace que el resultado de la consulta se ponga en el form
+                        $this->request->data=$consultaMetas[0];
+                        
+                        $this->set('queryConsultaMetas',$consultaMetas[0]); 
+                        $this->Session->setFlash(__('Datos leídos.'));
+                        
+                        //Si encuentra meta ejecuta consulta de boletos por sucursal y por mes
+                        $consultaBoletos=""
+                            . " SELECT * from invoiced_tickets"
+                            . " WHERE sucursal=".$id." and "
+                                . "EXTRACT(MONTH from fecha) = '".$mes."';";
+                        //Carga modelo
+                        $this->loadModel('InvoicedTicket');
+                        
+                        $consultaBoletos=$this->InvoicedTicket->query($consultaBoletos);
+
+                        $this->set('consultaBoletos',$consultaBoletos);
+                endif;
+            }
+        }
+        public function editar($id=null,
+                        $boletos_periodo=null,
+                        $total_periodo=null,
+                        $faltante=null,
+                        $porcentajeFaltante=null,
+                        $mes=null,
+                        $idSucursal=null) {
+            //El id que se recibe acá es el id de la meta
+            //Sucursal -> Meta -> Cumplimiento de meta
+            $this->loadModel('FulfillmentBranchOfficeGoal');
+		if ($this->request->is(array('post'))):
+			$query="UPDATE `fulfillment_branch_office_goals` 
+                                SET `total_boletos`= ".$total_periodo.",".
+                                    "`faltante_boletos`= ".$faltante.",".
+                                    "`cantidad_boletos`= ".$boletos_periodo.",".
+                                    "`porcentaje_boletos`= ".$porcentajeFaltante." "
+                                    . "WHERE goal_branch_office_id= ".$id." and "
+                                . "EXTRACT(MONTH from fecha_inicio) = '".$mes."';";
+                        
+                        $this->FulfillmentBranchOfficeGoal->query($query);
+                        
+                        //Consulta el id de el cumplimiento de meta actualizado
+                        $query2="SELECT id from fulfillment_branch_office_goals as FulfillmentBranchOfficeGoal"
+                                . " where goal_branch_office_id= ".$id." and "
+                                . "EXTRACT(MONTH from fecha_inicio) = '".$mes."';";
+                        $consulta_id=$this->FulfillmentBranchOfficeGoal->query($query2);
+                        
+                        //Acá extrae el id de el cumplimiento de meta actualizado
+                        $idCumplimiento=$consulta_id[0]['FulfillmentBranchOfficeGoal']['id'];
+                        
+                        $query3="UPDATE invoiced_tickets 
+                            SET fulfillment_branch_office_goal_id = ".$idCumplimiento." 
+                            WHERE sucursal = ".$idSucursal." 
+                            and EXTRACT(MONTH from fecha) = '".$mes."';";
+                        
+                        //Cargando modelo de boletos facturados
+                        $this->loadModel('InvoicedTicket');
+                        $this->InvoicedTicket->query($query3);
+                        $this->set('idCumplimiento',$idCumplimiento);
+                        $this->set('idSucursal',$idSucursal);
+                        $this->set('query3',$query3);
+                        $this->Session->setFlash('Cumplimiento de Meta Actualizada.');
+                        return $this->redirect(array('action' => 'comparativoMetas'));
+		
+                else:
+                    $this->Session->setFlash('Método no soportado.');
+                endif;
+	}
 }

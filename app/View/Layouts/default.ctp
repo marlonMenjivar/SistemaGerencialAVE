@@ -175,11 +175,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                           </p>
                       </a>
                   </li>
-                  <li><a href="#">
-                          <p>
-                              Comparativo de cumplimiento de venta de boletos aéreos por sucursal
-                          </p>
-                      </a>
+                  <li>
+                      <?php echo $this->Html->link("Comparativo de cumplimiento de venta de boletos aéreos por sucursal",
+                                array('controller'=>'GoalBranchOffices','action'=>'comparativoMetas'));
+                      ?>
                   </li>
                   <li><a href="#">
                           <p>

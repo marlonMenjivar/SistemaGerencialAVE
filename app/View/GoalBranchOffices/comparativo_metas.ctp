@@ -1,91 +1,69 @@
-<?php
-    $this->start('pageHeader');
-    echo '<h1>Comparativo de Metas por Aerolínea</h1>';
+<?php $this->start('pageHeader');
+    echo '<h1>Comparativo de Metas por Sucursal</h1>';
     $this->end();
-    //var_dump($id);
-    //var_dump($fecha);
-    //print_r($consultaMetas);
-    //var_dump($fecha_inicio);
-    //var_dump($fecha_fin);
-    //Se calculan recorriendo $consultaBoletos que manda el controlador.
+    //var_dump($mes);
+    //var_dump($queryConsultaMetas);
+    //var_dump($consultaBoletos);
     $boletos_periodo_sucursal=0;
     $total_periodo=0;
     
     
     $faltante=0;
-    $comision=0;
     $porcentajeFaltante=100;
-    $ingresoPorComision=0;
     $id=0;
-?>
-<?php 
-    if(empty($consultaBoletos)):
- 
-    else:
-        foreach ($consultaBoletos as $k=>$nivel0):
-            foreach($nivel0 as $p=>$boleto):
-                $boletos_periodo_sucursal++;
-                $total_periodo=$total_periodo+$boleto['tarifa'];
-            endforeach;   
-        endforeach;
-    endif;
-?>
-<?php 
+    
     //Si no se encontró meta para esa aerolínea y periodo
     if(empty($queryConsultaMetas)):
         //no hace nada.
         $porcentajeFaltante=0;
     else:
-        $id=$queryConsultaMetas['GoalAirline']['id'];
-        $metaBSP=$queryConsultaMetas['GoalAirline']['meta_bsp'];
-        $comision=$queryConsultaMetas['GoalAirline']['comision'];
+        $id=$queryConsultaMetas['GoalBranchOffice']['id'];
+        $metaBoletos=$queryConsultaMetas['GoalBranchOffice']['meta_boletos'];
         if(empty($consultaBoletos)):
             $porcentajeFaltante=100;
-            $faltante=$metaBSP;
+            $faltante=$metaBoletos;
         else:
             //Con los cálculos hechos antes
-            
-            if($total_periodo<$metaBSP):
-                $faltante=$metaBSP-$total_periodo;
-                $porcentajeFaltante=round(($faltante/$metaBSP)*100,2);
+            foreach ($consultaBoletos as $k=>$nivel0):
+                foreach($nivel0 as $p=>$boleto):
+                    $boletos_periodo_sucursal++;
+                    $total_periodo=$total_periodo+$boleto['tarifa'];
+                endforeach;   
+            endforeach;
+            if($total_periodo<$metaBoletos):
+                $faltante=$metaBoletos-$total_periodo;
+                $porcentajeFaltante=round(($faltante/$metaBoletos)*100,2);
             else:
                 $porcentajeFaltante=0;
-                $ingresoPorComision=$total_periodo*($comision/100);
             endif;
         endif;
     endif;
 ?>
-
 <!--Formulario para generar reporte, busca una meta por aerolínea y periodo y 
 los boletos vendidos en ese periodo por esa aerolínea-->
     <div class="row">
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                              <h3 class="box-title">Seleccione Aerolínea y mes</h3>
+                              <h3 class="box-title">Seleccione Sucursal y mes</h3>
                 </div><!-- /.box-header -->
 
-                    <?php  echo $this->Form->create('GoalAirline',array('role'=>'form')); ?>
+                    <?php  echo $this->Form->create('GoalBranchOffice',array('role'=>'form')); ?>
                         <div class="box-body">
                             <?php
                                 //Select de aerolíneas, lo llena el GoalAirlinesController
-                                echo $this->Form->input('airline_id',array('label'=>'Aerolínea',
+                                echo $this->Form->input('branch_office_id',array('label'=>'Sucursal',
                                                         'class'=>'form-control'));
                                 //El usuario lo tiene que seleccionar
-                                echo $this->Form->input('fecha_inicio',array('label'=>'Mes',
+                                echo $this->Form->input('mes',array('label'=>'Mes',
                                                             'type'=>'text',
                                                             'class'=>'mes form-control')); 
                                 //Lo llena el controlador después de ejecutar consulta
-                                echo $this->Form->input('meta_bsp',array(
-                                                        'label'=>'Meta BSP',
+                                echo $this->Form->input('meta_boletos',array(
+                                                        'label'=>'Meta',
                                                         'disabled'=>'disabled',
                                                         'class'=>'form-control'
-                                                        ));
-                                //Lo llena el controlador después de ejecutar consulta
-                                echo $this->Form->input('comision',array(
-                                                        'label'=>'Comisión',
-                                                        'disabled'=>'disabled',
-                                                        'class'=>'form-control'));?>
+                                                        ));?>
                             <!--fin del box-body-->
                         </div>
                         <?php
@@ -146,53 +124,22 @@ los boletos vendidos en ese periodo por esa aerolínea-->
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-light-blue">
-                    <div class="inner">
-                      <h3><sup style="font-size: 20px">$</sup><?php echo number_format($ingresoPorComision,2)?></h3>
-                      <p><strong>Ingreso por comisión</strong></p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-cash"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
                 <?php
-                
-                    if(empty($consultaMetas)):
-                            //No pinta botón
-                    else:
-                        echo $this->Form->postlink('Guardar',array('action'=>'editar',
-                        $id,
-                        $boletos_periodo_sucursal,
-                        $total_periodo,
-                        $faltante,
-                        $porcentajeFaltante,
-                        $ingresoPorComision),
-                        array('class'=>'btn btn-primary'));
-                    endif;
+                        if(empty($mes)):
+                            
+                        else:
+                            echo $this->Form->postlink('Guardar',array('action'=>'editar',
+                                $id,
+                                $boletos_periodo_sucursal,
+                                $total_periodo,
+                                $faltante,
+                                $porcentajeFaltante,
+                                $mes,
+                                $idSucursal),
+                                array('class'=>'btn btn-primary'));
+                        endif;
                     ?>
-            </div><!-- ./col -->
-        <!--<div class="col-md-6">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Resultados</h3>
-                </div><!-- /.box-header 
-                <div class="form-horizontal">   
-                    <div role="form">
-                    <div class="box-body">
-                        
-                        <div class="form-control"><?php //echo '<strong>Boletos del periodo:</strong> '.$boletos_periodo?></div>
-                        <div class="form-control"><?php //echo '<strong>Total del periodo:</strong> $'.$total_periodo?></div>
-                        <div class="form-control"><?php //echo '<strong>Faltante:</strong> $'.$faltante?></div>
-                        <div class="form-control"><?php //echo '<strong>Porcentaje faltante de meta:</strong> '.$porcentajeFaltante."%"?></div>
-                        <div class="form-control"><?php //echo '<strong>Ingreso por comisión:</strong> $'.$ingresoPorComision?></div>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>-->
     </div>
 <div class="box">
     <div class="box-header">
