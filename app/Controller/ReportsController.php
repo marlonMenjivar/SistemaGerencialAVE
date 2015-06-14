@@ -95,7 +95,27 @@ class ReportsController extends AppController {
 					INSERT INTO types(services_sales_type_id, tipo_servicio, cantidad_servicios_tipo, total_servicios_tipo)
 					SELECT ".$services_sales_type_id." as services_sales_type_id, tipo_servicio, count(id) as cantidad_por_tipo, sum(tarifa) as total_por_tipo
 					FROM invoiced_services
+					WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha1."' GROUP BY tipo_servicio ORDER BY tipo_servicio");
+					
+					// Actualiza el código de venta de servicios por tipo en la tabla de servicios facturados
+					$this->loadModel('InvoicedService');
+					$query = $this->InvoicedService->query("
+					SELECT tipo_servicio, count(id) as cantidad_por_tipo, sum(tarifa) as total_por_tipo, sum(iva) as iva_por_tipo
+					FROM invoiced_services
 					WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."' GROUP BY tipo_servicio ORDER BY tipo_servicio");
+					
+					$i = 0;
+					foreach ($query as $row) $tipos_servicios[$i++] = $row['invoiced_services']['tipo_servicio'];
+					
+					$tipos_servicios_string = '';
+					for ($i = 0; $i < count($tipos_servicios); $i++) {
+						$tipos_servicios_string .= "'".$tipos_servicios[$i]."'";
+						if ($i < count($tipos_servicios) - 1) {
+							$tipos_servicios_string .= ", ";
+						}
+					}
+					$this->loadModel('InvoicedService');
+					$query = $this->InvoicedService->query("UPDATE invoiced_services SET services_sales_type_id = ".$services_sales_type_id." WHERE tipo_servicio IN(".$tipos_servicios_string.") AND fecha BETWEEN '".$fecha1."' AND '".$fecha2."'");
 					
 					$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Venta guardada.'), 'default', array('class' => 'success'));
 				}
@@ -127,6 +147,10 @@ class ReportsController extends AppController {
 					FROM invoiced_services
 					WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."' GROUP BY proveedor_servicio ORDER BY proveedor_servicio");
 					
+					// Actualiza el código de venta de servicios por proveedor en la tabla de servicios facturados
+					$this->loadModel('InvoicedService');
+					$query = $this->InvoicedService->query("UPDATE invoiced_services SET services_sales_provider_id = ".$services_sales_provider_id." WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."'");
+					
 					$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Venta guardada.'), 'default', array('class' => 'success'));
 				}
 				else {
@@ -142,8 +166,8 @@ class ReportsController extends AppController {
 	}
 	
 	private function _validar_fechas($fecha1, $fecha2) {
-		$fecha1 = empty($fecha1) ? '0000-00-00' : $fecha1;
-		$fecha2 = empty($fecha2) ? '0000-00-00' : $fecha2;
+		$fecha1 = empty($fecha1) ? '0000/00/00' : $fecha1;
+		$fecha2 = empty($fecha2) ? '0000/00/00' : $fecha2;
 		$valores_fecha1 = explode('/', $fecha1);
 		$valores_fecha2 = explode('/', $fecha2);
 		$dia1 = $valores_fecha1[2];
