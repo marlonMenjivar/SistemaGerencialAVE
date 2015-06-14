@@ -185,24 +185,18 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                 array('controller'=>'GoalBranchOffices','action'=>'comparativoMetasTerrestres'));
                       ?>
                   </li>
-                  <li><a href="#">
-                          <p>
-                              Semi-resumen venta de servicios terrestres por tipo de servicio semanal
-                          </p>
-                      </a>
+                  <li>
+					<?= $this->Html->link(__('Semi-resumen venta de servicios terrestres por tipo de servicio semanal'), array('controller' => 'reports', 'action' => 'show', 6)); ?>
                   </li>
-                  <li><a href="#">
-                          <p>
-                              Semi-resumen venta de servicios terrestres por proveedor semanal
-                          </p>
-                      </a>
+                  <li>
+					<?= $this->Html->link(__('Semi-resumen venta de servicios terrestres por proveedor semanal'), array('controller' => 'reports', 'action' => 'show', 7)); ?>
                   </li>
               </ul>
             </li>
             <li class="treeview">
               <a href="#"><i class='fa fa-link'></i> <span>Salidas Estratégicas</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">Total de venta de boletos aéreos por línea aérea por periodo BSP</a></li>
+                <li><?= $this->Html->link(__('Total de venta de boletos aéreos por línea aérea por periodo BSP'), array('controller' => 'reports', 'action' => 'show', 8)); ?></li>
                 <li><a href="#">Acumulado de venta de boletos aéreos por líneas aéreas mensual</a></li>
                 <li><a href="#">Acumulado venta de servicios terrestres por tipo de servicio mensual</a></li>
                 <li><a href="#">Acumulado venta de servicios terrestres por proveedor mensual</a></li>
