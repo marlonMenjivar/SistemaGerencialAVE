@@ -17,6 +17,7 @@
     $comision=0;
     $porcentajeFaltante=100;
     $ingresoPorComision=0;
+    $id=0;
 ?>
 <?php 
     if(empty($consultaBoletos)):
@@ -36,6 +37,7 @@
         //no hace nada.
         $porcentajeFaltante=0;
     else:
+        $id=$consultaMetas['GoalAirline']['id'];
         $metaBSP=$consultaMetas['GoalAirline']['meta_bsp'];
         $comision=$consultaMetas['GoalAirline']['comision'];
         if(empty($consultaBoletos)):
@@ -154,6 +156,19 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                         <i class="ion ion-cash"></i>
                     </div>
                 </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <?php
+                    echo $this->Form->postlink('Guardar',array('action'=>'editar',
+                        $id,
+                        $boletos_periodo,
+                        $total_periodo,
+                        $faltante,
+                        $porcentajeFaltante,
+                        $ingresoPorComision),
+                        array('class'=>'btn btn-primary'));
+                    ?>
             </div><!-- ./col -->
         <!--<div class="col-md-6">
             <div class="box box-info">

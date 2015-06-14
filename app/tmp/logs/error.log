@@ -4540,3 +4540,142 @@ Stack Trace:
 #3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2015-06-14 01:09:29 Error: [NotFoundException] Meta Inválida
+Request URL: /SistemaGerencialAVE/GoalAirlines/edit/boletos_periodo:2/total_periodo:754/faltante:4246/comision:15/porcentaje:84.92/ingreso_comision:0
+Stack Trace:
+#0 [internal function]: GoalAirlinesController->edit()
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 01:12:28 Error: [NotFoundException] Meta Inválida
+Request URL: /SistemaGerencialAVE/GoalAirlines/edit/boletos_periodo:0/total_periodo:0/faltante:0/comision:0/porcentaje:0/ingreso_comision:0
+Stack Trace:
+#0 [internal function]: GoalAirlinesController->edit()
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 01:13:08 Error: [NotFoundException] Meta Inválida
+Request URL: /SistemaGerencialAVE/GoalAirlines/edit/boletos_periodo:0/total_periodo:0/faltante:0/comision:0/porcentaje:0/ingreso_comision:0
+Stack Trace:
+#0 [internal function]: GoalAirlinesController->edit()
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 01:13:16 Error: [MissingActionException] Action GoalAirlinesController::editar() could not be found.
+Exception Attributes: array (
+  'controller' => 'GoalAirlinesController',
+  'action' => 'editar',
+)
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/boletos_periodo:0/total_periodo:0/faltante:0/comision:0/porcentaje:0/ingreso_comision:0
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#2 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-06-14 01:14:57 Error: [MissingViewException] View file "GoalAirlines\editar.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'GoalAirlines\\editar.ctp',
+)
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/boletos_periodo:0/total_periodo:0/faltante:0/comision:0/porcentaje:0/ingreso_comision:0
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\View\View.php(470): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(960): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(200): Controller->render()
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 01:26:19 Error: [MissingViewException] View file "GoalAirlines\editar.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'GoalAirlines\\editar.ctp',
+)
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/0/0/0/0/0/0
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\View\View.php(470): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(960): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(200): Controller->render()
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 01:27:42 Error: [MissingViewException] View file "GoalAirlines\editar.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'GoalAirlines\\editar.ctp',
+)
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/0/0/0/0/0/0
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\View\View.php(470): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(960): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(200): Controller->render()
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 01:37:07 Error: [NotFoundException] Meta Inválida
+Request URL: /SistemaGerencialAVE/GoalAirlines/edit/0
+Stack Trace:
+#0 [internal function]: GoalAirlinesController->edit('0')
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 01:40:30 Error: [MissingViewException] View file "GoalAirlines\editar.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'GoalAirlines\\editar.ctp',
+)
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/1
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\View\View.php(470): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(960): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(200): Controller->render()
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 01:57:40 Error: Fatal Error (1): Call to a member function setFlash() on null in [C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalAirlinesController.php, line 188]
+2015-06-14 01:57:40 Error: [FatalErrorException] Call to a member function setFlash() on null
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/2/13
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Error\ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 188)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 188, Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\\xampp\\htdocs...', 188, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Core\App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-06-14 02:13:16 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'id= 1' at line 2
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/1/2/754/4246/84.92/0
+Stack Trace:
+#0 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(460): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(426): DboSource->_execute('UPDATE `goal_ai...', Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(668): DboSource->execute('UPDATE `goal_ai...', Array, Array)
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Datasource\DboSource.php(539): DboSource->fetchAll('UPDATE `goal_ai...')
+#4 [internal function]: DboSource->query('UPDATE `goal_ai...')
+#5 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Model\Model.php(3447): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\SistemaGerencialAVE\app\Controller\GoalAirlinesController.php(191): Model->query('UPDATE `goal_ai...')
+#7 [internal function]: GoalAirlinesController->editar('1', '2', '754', '4246', '84.92', '0')
+#8 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#9 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#11 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-06-14 02:19:54 Error: [NotFoundException] Meta Inválida
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/0/0/0/0/0/0
+Stack Trace:
+#0 [internal function]: GoalAirlinesController->editar('0', '0', '0', '0', '0', '0')
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-06-14 02:20:10 Error: [NotFoundException] Meta Inválida
+Request URL: /SistemaGerencialAVE/GoalAirlines/editar/0/0/0/0/0/0
+Stack Trace:
+#0 [internal function]: GoalAirlinesController->editar('0', '0', '0', '0', '0', '0')
+#1 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(GoalAirlinesController), Array)
+#2 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\SistemaGerencialAVE\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(GoalAirlinesController), Object(CakeRequest))
+#4 C:\xampp\htdocs\SistemaGerencialAVE\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}

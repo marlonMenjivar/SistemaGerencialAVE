@@ -168,4 +168,30 @@ class GoalAirlinesController extends AppController {
                     endif;                    
 		}
 	}
+        public function editar($id=null,
+                        $boletos_periodo=null,
+                        $total_periodo=null,
+                        $faltante=null,
+                        $porcentajeFaltante=null,
+                        $ingresoPorComision=null) {
+            if (!$this->GoalAirline->exists($id)) {
+			throw new NotFoundException(__('Meta Inválida'));
+		}
+		if ($this->request->is(array('post'))) {
+			$query="UPDATE `goal_airlines` 
+                                SET `total_periodo`= ".$total_periodo.",".
+                                    "`faltante`= ".$faltante.",".
+                                    "`boletos_periodo`= ".$boletos_periodo.",".
+                                    "`porcentaje`= ".$porcentajeFaltante.",".
+                                    "`ingreso_comision`= ".$ingresoPorComision." "
+                                    . "where id= ".$id.";";
+                        $this->GoalAirline->query($query);
+                        $this->Session->setFlash('Meta Actualizada.');
+                        return $this->redirect(array('action' => 'comparativoMetasAerolinea'));
+		}
+                else{
+                    $this->Session->setFlash('Método no soportado.');
+                }
+	}
+
 }
