@@ -36,6 +36,35 @@ class ReportsController extends AppController {
 					}
 				}
 				break;
+			case 7:
+				$this->set(array('reporte_encontrado' => true, 'nombre_reporte' => 'Semi-Resumen Venta de Servicios Terrestres por Proveedor Semanal', 'opcion' => 7));
+				if ($this->request->is(array('post', 'put'))) {
+					$fecha1 = $this->request->data['show_reporte_7']['fecha1'];
+					$fecha2 = $this->request->data['show_reporte_7']['fecha2'];
+					
+					$validacion_fechas = $this->_validar_fechas($fecha1, $fecha2);
+					if ($validacion_fechas != '') {
+						$this->set('tipo_mensaje', 1);
+						$this->Session->setFlash(__('<i class="fa fa-times-circle"></i> %s', $validacion_fechas), 'default', array('class' => 'error-message'));
+					}
+					else {
+						$this->loadModel('InvoicedService');
+						$query = $this->InvoicedService->query("
+						SELECT proveedor_servicio, count(id) as cantidad_por_proveedor, sum(tarifa) as total_por_proveedor, sum(iva) as iva_por_proveedor
+						FROM invoiced_services
+						WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."' GROUP BY proveedor_servicio ORDER BY proveedor_servicio;");
+						
+						if (empty($query)) {
+							$this->set('tipo_mensaje', 2);
+							$this->Session->setFlash(__('<i class="fa fa-times-circle"></i> No se encontraron ventas.'), 'default', array('class' => 'error-message'));
+						}
+						else {
+							$this->set(array('query' => $query, 'tipo_mensaje' => 2));
+							$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Resultado.'), 'default', array('class' => 'success'));
+						}
+					}
+				}
+				break;
 			default:
 				$this->set('reporte_encontrado', false);
 				$this->Session->setFlash(__('<i class="fa fa-times-circle"></i> Reporte no encontrado.'), 'default', array('class' => 'error-message'));
@@ -67,6 +96,36 @@ class ReportsController extends AppController {
 					SELECT ".$services_sales_type_id." as services_sales_type_id, tipo_servicio, count(id) as cantidad_por_tipo, sum(tarifa) as total_por_tipo
 					FROM invoiced_services
 					WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."' GROUP BY tipo_servicio ORDER BY tipo_servicio");
+					
+					$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Venta guardada.'), 'default', array('class' => 'success'));
+				}
+				else {
+					$this->Session->setFlash(__('<i class="fa fa-times-circle"></i> <strong>Error:</strong> No se pudo guardar la venta.'), 'default', array('class' => 'error-message'));
+				}
+				return $this->redirect(array('controller' => 'reports', 'action' => 'show', $opcion));
+				break;
+			case 7:
+				if ($this->request->is(array('post', 'put'))) {
+					$fecha1 = $this->request->data['save_reporte_7']['fecha1'];
+					$fecha2 = $this->request->data['save_reporte_7']['fecha2'];
+					
+					// Guarda los datos resultantes del reporte en la tabla venta de servicios por proveedor
+					$this->loadModel('ServicesSalesProvider');
+					if (!$this->ServicesSalesProvider->save(array('ServicesSalesProvider' => array('fecha_inicio_proveedor' => $fecha1, 'fecha_fin_proveedor' => $fecha2)))) {
+						$this->Session->setFlash(__('<i class="fa fa-times-circle"></i> No se pudo guardar el tipo de servicios de proveedor.'), 'default', array('class' => 'error-message'));
+					}
+					
+					// Obtiene el correlativo del código de los datos guardados en la tabla venta de servicios por proveedor
+					$query = $this->ServicesSalesProvider->find('all', array('fields' => 'MAX(ServicesSalesProvider.id) id'));
+					$services_sales_provider_id = $query[0][0]['id'];
+					
+					// Guarda los datos totales de los servicios por tipo
+					$this->loadModel('Provider');
+					$query = $this->Provider->query("
+					INSERT INTO providers(services_sales_provider_id, proveedor_servicio, cantidad_servicios_proveedor, total_servicios_proveedor)
+					SELECT ".$services_sales_provider_id." as services_sales_provider_id, proveedor_servicio, count(id) as cantidad_por_proveedor, sum(tarifa) as total_por_proveedor
+					FROM invoiced_services
+					WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."' GROUP BY proveedor_servicio ORDER BY proveedor_servicio");
 					
 					$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Venta guardada.'), 'default', array('class' => 'success'));
 				}
