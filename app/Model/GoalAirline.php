@@ -33,7 +33,7 @@ class GoalAirline extends AppModel {
             ),
             'periodo_bsp' => array(
             'number' => array(
-                'rule' => array('range',1,12),
+                'rule' => array('range',0,13),
                 'required' => true,
                 'message' => 'Por favor ingrese un número entre 1 y 12.'
             )
@@ -47,7 +47,7 @@ class GoalAirline extends AppModel {
             ),
             'comision'=>array(
                 'number' => array(
-                'rule' => array('range',1,100),
+                'rule' => array('range',0,101),
                 'required' => true,
                 'message' => 'Por favor ingrese un porcentaje válido (1-100).'
             ))

@@ -219,7 +219,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <section class="content-header">
           <h1>
             <?php echo $this->fetch('pageHeader');?>
-            <small>Optional description</small>
           </h1>
           <?php echo $this->fetch('pagePath');?>
         </section>
