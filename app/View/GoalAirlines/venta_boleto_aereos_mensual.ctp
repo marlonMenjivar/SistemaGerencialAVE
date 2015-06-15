@@ -9,11 +9,9 @@ $boletos_periodo=0;
 $total_periodo=0;
 
 if (!empty($consultaVentas)):
-    foreach ($consultaVentas as $k => $aerolineaRow):
-        foreach($aerolineaRow as $p=>$aerolinea):
-            $boletos_periodo = $boletos_periodo + $aerolinea['boletos_periodo'];
-            $total_periodo = $total_periodo + $aerolinea['total_periodo'];
-        endforeach;
+    foreach ($consultaVentas as $k => $aerolinea):
+        $boletos_periodo = $boletos_periodo + $aerolinea['goal_airlines']['boletos_periodo'];
+        $total_periodo = $total_periodo + $aerolinea['goal_airlines']['total_periodo'];
     endforeach;
 endif;
 
@@ -53,8 +51,8 @@ los boletos vendidos en ese periodo por esa aerolínea-->
 
             <?php
             echo '<div class="box-footer">';
-            echo $this->Form->end((array('label' => 'Generar',
-                'class' => 'btn btn-primary')));
+            echo $this->Form->end(array('label' => 'Generar',
+                'class' => 'btn btn-primary'));
             echo '</div>';
             ?>
         </div><!--fin del box-boxprimary-->
@@ -83,6 +81,32 @@ los boletos vendidos en ese periodo por esa aerolínea-->
             </div>
         </div>
     </div><!-- ./col -->
+    <!-- Generear Reportes -->
+    <div class="col-lg-3 col-xs-6">
+        <?php
+        if (!empty($consultaVentas)):
+            echo $this->Form->create('reporte_excel', array('url' => array('controller' => 'GoalAirlines', 'action' => 'ventaBoletoAereosMensualReporteExcel')));
+            echo $this->Form->input('fecha_anio', array('value' => $fechaAnio, 'type' => 'hidden'));
+            echo $this->Form->input('fecha_mes', array('value' => $fechaMes, 'type' => 'hidden'));
+            echo $this->Form->input('fecha_inicio', array('value' => $fechaInicio, 'type' => 'hidden'));
+            echo $this->Form->input('fecha_fin', array('value' => $fechaFin, 'type' => 'hidden'));
+            echo $this->Form->end(array('label' => 'Generar Reporte Excel', 'class' => 'btn btn-primary'));
+        endif;
+        ?>
+    </div><!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+    
+        <?php
+        if (!empty($consultaVentas)):
+            echo $this->Form->create('reporte_pdf', array('url' => array('controller' => 'GoalAirlines', 'action' => 'ventaBoletoAereosMensualReportePdf')));
+            echo $this->Form->input('fecha_anio', array('value' => $fechaAnio, 'type' => 'hidden'));
+            echo $this->Form->input('fecha_mes', array('value' => $fechaMes, 'type' => 'hidden'));
+            echo $this->Form->input('fecha_inicio', array('value' => $fechaInicio, 'type' => 'hidden'));
+            echo $this->Form->input('fecha_fin', array('value' => $fechaFin, 'type' => 'hidden'));
+            echo $this->Form->end(array('label' => 'Generar Reporte PDF', 'class' => 'btn btn-primary'));
+        endif;
+        ?>
+    </div><!-- ./col -->
 </div>
 <div class="box">
     <div class="box-header">
@@ -102,26 +126,24 @@ los boletos vendidos en ese periodo por esa aerolínea-->
             <tbody>
                 <?php
                 if (!empty($consultaVentas)):
-                    foreach ($consultaVentas as $k => $aerolineaRow):
-                        foreach($aerolineaRow as $p=>$aerolinea):
-                            echo '<tr>';
-                            echo '<td>';
-                            echo $aerolinea['airline_id'];
-                            echo '</td>';
-                            echo '<td>';
-                            echo $aerolinea['fecha_inicio'];
-                            echo '</td>';
-                            echo '<td>';
-                            echo $aerolinea['fecha_fin'];
-                            echo '</td>';
-                            echo '<td>';
-                            echo $aerolinea['boletos_periodo'];
-                            echo '</td>';
-                            echo '<td>';
-                            echo $aerolinea['total_periodo'];
-                            echo '</td>';
-                            echo '</tr>';
-                        endforeach;
+                    foreach ($consultaVentas as $k => $aerolinea):
+                        echo '<tr>';
+                        echo '<td>';
+                        echo $aerolinea['airlines']['name'];
+                        echo '</td>';
+                        echo '<td>';
+                        echo $aerolinea['goal_airlines']['fecha_inicio'];
+                        echo '</td>';
+                        echo '<td>';
+                        echo $aerolinea['goal_airlines']['fecha_fin'];
+                        echo '</td>';
+                        echo '<td>';
+                        echo $aerolinea['goal_airlines']['boletos_periodo'];
+                        echo '</td>';
+                        echo '<td>';
+                        echo $aerolinea['goal_airlines']['total_periodo'];
+                        echo '</td>';
+                        echo '</tr>';
                     endforeach;
                 endif;
                 ?>
@@ -134,7 +156,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
 
 </div><!-- /.row -->
 
-<!-- Datepiker personalizado -->
+<!-- Datepiker personalizado + Validacion-->
 <?php
     $this->start('scriptReady');
         echo "$('.meses').datepicker({\n"

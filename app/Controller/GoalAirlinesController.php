@@ -196,31 +196,105 @@ class GoalAirlinesController extends AppController {
 
         // Acumulado venta de boletos aéreos por líneas aéreas mensual
         public function ventaBoletoAereosMensual() {
-                //Lee la lista de aerolíneas
-                $airlines = $this->GoalAirline->Airline->find('list');
-                //manda lista a vista
-                $this->set(compact('airlines'));
+            
+            //Si el formulario se envió
+            if ($this->request->is(array('post', 'put'))) {
+                //Saca la fecha año del request
+                $fechaAnio=$this->request->data["GoalAirline"]['fecha_anio'];
+                //Saca la fecha mes del request
+                $fechaMes=$this->request->data["GoalAirline"]['fecha_mes'];
+                //Saca la fecha del request
+                $fechaInicio=$this->request->data["GoalAirline"]['fecha_inicio'];
+                //Saca la fecha del request
+                $fechaFin=$this->request->data["GoalAirline"]['fecha_fin'];
                 
-                //Si el formulario se envió
-                if ($this->request->is(array('post', 'put'))) {                    
-                    //Saca la fecha del request
-                    $fechaInicio=$this->request->data["GoalAirline"]['fecha_inicio'];
-                    //Saca la fecha del request
-                    $fechaFin=$this->request->data["GoalAirline"]['fecha_fin'];
-                    
-                    //ejecuta consulta de boletos vendidos para aerolínea por Mes
-                    $queryConsultaVentas="SELECT airline_id, fecha_inicio, fecha_fin, boletos_periodo, total_periodo "
-                            . "FROM goal_airlines WHERE fecha_inicio = '". $fechaInicio . "' AND fecha_fin = '". $fechaFin . "' ORDER BY airline_id;";
-                    $consultaVentas=$this->GoalAirline->query($queryConsultaVentas);
-                    
-                    //Si la consulta retorna vacía
-                    if(empty($consultaVentas)):
-                        $this->Session->setFlash(__('No encontrada boletos vendidos de aerolínea para este mes. '));
-                    //Si encuentra la meta
-                    else:
-                        $this->set('consultaVentas',$consultaVentas);
-                    endif;                    
-		}
-	}
+                //ejecuta consulta de boletos vendidos para aerolínea por Mes
+                $queryConsultaVentas="SELECT airline_id, name, fecha_inicio, fecha_fin, boletos_periodo, total_periodo "
+                        . "FROM goal_airlines, airlines WHERE goal_airlines.airline_id = airlines.id AND fecha_inicio = '". $fechaInicio . "' AND fecha_fin = '". $fechaFin . "' ORDER BY goal_airlines.airline_id;";
+                $consultaVentas=$this->GoalAirline->query($queryConsultaVentas);
+                
+                //Si la consulta retorna vacía
+                if(empty($consultaVentas)):
+                    $this->Session->setFlash(__('No encontrada boletos vendidos de aerolínea para este mes. '));
+                //Si encuentra la meta
+                else:
+                    $this->set('consultaVentas',$consultaVentas);
+                    $this->set('fechaInicio',$fechaInicio);
+                    $this->set('fechaFin',$fechaFin);
+                    $this->set('fechaAnio',$fechaAnio);
+                    $this->set('fechaMes',$fechaMes);
+                endif;                    
+            }
+        }
+
+        // Acumulado venta de boletos aéreos por líneas aéreas mensual
+        public function ventaBoletoAereosMensualReporteExcel() {
+            //Lee la lista de aerolíneas
+            $airlines = $this->GoalAirline->Airline->find('list');
+            //manda lista a vista
+            $this->set(compact('airlines'));
+            
+            //Si el formulario se envió
+            if ($this->request->is(array('post', 'put'))) {                    
+                //Saca la fecha año del request
+                $fechaAnio=$this->request->data["reporte_excel"]['fecha_anio'];
+                //Saca la fecha mes del request
+                $fechaMes=$this->request->data["reporte_excel"]['fecha_mes'];
+                //Saca la fecha inicio del request
+                $fechaInicio=$this->request->data["reporte_excel"]['fecha_inicio'];
+                //Saca la fecha fin del request
+                $fechaFin=$this->request->data["reporte_excel"]['fecha_fin'];
+                
+                //ejecuta consulta de boletos vendidos para aerolínea por Mes
+                $queryConsultaVentas="SELECT name, fecha_inicio, fecha_fin, boletos_periodo, total_periodo "
+                        . "FROM goal_airlines, airlines WHERE goal_airlines.airline_id = airlines.id AND fecha_inicio = '". $fechaInicio . "' AND fecha_fin = '". $fechaFin . "' ORDER BY airline_id;";
+                $consultaVentas=$this->GoalAirline->query($queryConsultaVentas);
+                
+                //Si la consulta retorna vacía
+                if(empty($consultaVentas)):
+                    $this->Session->setFlash(__('No encontrada boletos vendidos de aerolínea para este mes. '));
+                //Si encuentra la meta
+                else:
+                    $this->set('consultaVentas',$consultaVentas);
+                    $this->set('fechaAnio',$fechaAnio);
+                    $this->set('fechaMes',$fechaMes);
+                endif;                    
+            }
+        }
+
+        // Acumulado venta de boletos aéreos por líneas aéreas mensual
+        public function ventaBoletoAereosMensualReportePdf() {
+            //Lee la lista de aerolíneas
+            $airlines = $this->GoalAirline->Airline->find('list');
+            //manda lista a vista
+            $this->set(compact('airlines'));
+            
+            //Si el formulario se envió
+            if ($this->request->is(array('post', 'put'))) {                    
+                //Saca la fecha año del request
+                $fechaAnio=$this->request->data["reporte_pdf"]['fecha_anio'];
+                //Saca la fecha mes del request
+                $fechaMes=$this->request->data["reporte_pdf"]['fecha_mes'];
+                //Saca la fecha inicio del request
+                $fechaInicio=$this->request->data["reporte_pdf"]['fecha_inicio'];
+                //Saca la fecha fin del request
+                $fechaFin=$this->request->data["reporte_pdf"]['fecha_fin'];
+                
+                //ejecuta consulta de boletos vendidos para aerolínea por Mes
+                $queryConsultaVentas="SELECT name, fecha_inicio, fecha_fin, boletos_periodo, total_periodo "
+                        . "FROM goal_airlines, airlines WHERE goal_airlines.airline_id = airlines.id AND fecha_inicio = '". $fechaInicio . "' AND fecha_fin = '". $fechaFin . "' ORDER BY airline_id;";
+                $consultaVentas=$this->GoalAirline->query($queryConsultaVentas);
+                
+                //Si la consulta retorna vacía
+                if(empty($consultaVentas)):
+                    $this->Session->setFlash(__('No encontrada boletos vendidos de aerolínea para este mes. '));
+                //Si encuentra la meta
+                else:
+                    $this->set('consultaVentas',$consultaVentas);
+                    $this->set('fechaAnio',$fechaAnio);
+                    $this->set('fechaMes',$fechaMes);
+                endif;                    
+            }
+        }
 
 }
