@@ -202,8 +202,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                 array('controller'=>'GoalAirlines','action'=>'ventaBoletoAereosMensual'));
                         ?>
                 </li>
-                <li><a href="#">Acumulado venta de servicios terrestres por tipo de servicio mensual</a></li>
-                <li><a href="#">Acumulado venta de servicios terrestres por proveedor mensual</a></li>
+                 <li><?php 
+                        echo $this->Html->link("Acumulado venta de servicios terrestres por tipo de servicio mensual",
+                                array('controller'=>'Reports','action'=>'ventaServicioTerrestreTipoServicioMensual'));
+                        ?>
+                  </li>
+                   <li><?php 
+                        echo $this->Html->link("Acumulado venta de servicios terrestres por proveedor mensual",
+                                array('controller'=>'Reports','action'=>'ventaProveedorServicioTerrestreMensual'));
+                        ?>
+                  </li>
+               
               </ul>
             </li>
           </ul><!-- /.sidebar-menu -->
