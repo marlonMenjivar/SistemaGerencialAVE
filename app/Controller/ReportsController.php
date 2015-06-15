@@ -2,7 +2,7 @@
 App::uses('AppController', 'Controller');
 
 class ReportsController extends AppController {
-	public $helpers = array('Html', 'Form');
+	public $helpers = array('Html', 'Form', 'Time');
 	public $components = array('Session');
 	
 	public function show($opcion = null) {
@@ -21,8 +21,7 @@ class ReportsController extends AppController {
 					else {
 						$this->loadModel('InvoicedService');
 						$query = $this->InvoicedService->query("
-						SELECT tipo_servicio, count(id) as cantidad_por_tipo, sum(tarifa) as total_por_tipo, sum(iva) as iva_por_tipo
-						FROM invoiced_services
+						SELECT tipo_servicio, COUNT(id) cantidad_por_tipo, SUM(tarifa) total_por_tipo, SUM(iva) iva_por_tipo FROM invoiced_services
 						WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."' GROUP BY tipo_servicio ORDER BY tipo_servicio");
 						
 						if (empty($query)) {
@@ -50,7 +49,7 @@ class ReportsController extends AppController {
 					else {
 						$this->loadModel('InvoicedService');
 						$query = $this->InvoicedService->query("
-						SELECT proveedor_servicio, count(id) as cantidad_por_proveedor, sum(tarifa) as total_por_proveedor, sum(iva) as iva_por_proveedor
+						SELECT proveedor_servicio, COUNT(id) cantidad_por_proveedor, SUM(tarifa) total_por_proveedor, SUM(iva) iva_por_proveedor
 						FROM invoiced_services
 						WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."' GROUP BY proveedor_servicio ORDER BY proveedor_servicio;");
 						
@@ -62,6 +61,28 @@ class ReportsController extends AppController {
 							$this->set(array('query' => $query, 'tipo_mensaje' => 2));
 							$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Resultado.'), 'default', array('class' => 'success'));
 						}
+					}
+				}
+				break;
+			case 8:
+				$this->loadModel('Airline');
+				$this->set(array('aereolineas' => $this->Airline->find('list', array('fields' => 'Airline.id, Airline.name')), 'reporte_encontrado' => true, 'nombre_reporte' => 'Total de Venta de Boletos Aéreos por Línea Aérea por Periodo BSP', 'opcion' => 8));
+				
+				if ($this->request->is(array('post', 'put'))) {
+					$airline_id = $this->request->data['show_reporte_8']['airline_id'];
+					
+					$this->loadModel('GoalAirline');
+					$query = $this->GoalAirline->query("
+					SELECT periodo_bsp, fecha_inicio, fecha_fin, meta_bsp, boletos_periodo, total_periodo, faltante, porcentaje, comision, ingreso_comision
+					FROM goal_airlines WHERE airline_id = ".$airline_id." ORDER BY fecha_inicio");
+					
+					if (empty($query)) {
+						$this->set('tipo_mensaje', 2);
+						$this->Session->setFlash(__('<i class="fa fa-times-circle"></i> No se encontraron ventas.'), 'default', array('class' => 'error-message'));
+					}
+					else {
+						$this->set(array('query' => $query, 'tipo_mensaje' => 2));
+						$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Resultado.'), 'default', array('class' => 'success'));
 					}
 				}
 				break;
@@ -93,14 +114,14 @@ class ReportsController extends AppController {
 					$this->loadModel('Type');
 					$query = $this->Type->query("
 					INSERT INTO types(services_sales_type_id, tipo_servicio, cantidad_servicios_tipo, total_servicios_tipo)
-					SELECT ".$services_sales_type_id." as services_sales_type_id, tipo_servicio, count(id) as cantidad_por_tipo, sum(tarifa) as total_por_tipo
+					SELECT ".$services_sales_type_id." services_sales_type_id, tipo_servicio, COUNT(id) cantidad_por_tipo, SUM(tarifa) total_por_tipo
 					FROM invoiced_services
-					WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha1."' GROUP BY tipo_servicio ORDER BY tipo_servicio");
+					WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."' GROUP BY tipo_servicio ORDER BY tipo_servicio");
 					
 					// Actualiza el código de venta de servicios por tipo en la tabla de servicios facturados
 					$this->loadModel('InvoicedService');
 					$query = $this->InvoicedService->query("
-					SELECT tipo_servicio, count(id) as cantidad_por_tipo, sum(tarifa) as total_por_tipo, sum(iva) as iva_por_tipo
+					SELECT tipo_servicio, COUNT(id) cantidad_por_tipo, SUM(tarifa) total_por_tipo, SUM(iva) iva_por_tipo
 					FROM invoiced_services
 					WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."' GROUP BY tipo_servicio ORDER BY tipo_servicio");
 					
@@ -114,7 +135,7 @@ class ReportsController extends AppController {
 							$tipos_servicios_string .= ", ";
 						}
 					}
-					$this->loadModel('InvoicedService');
+					
 					$query = $this->InvoicedService->query("UPDATE invoiced_services SET services_sales_type_id = ".$services_sales_type_id." WHERE tipo_servicio IN(".$tipos_servicios_string.") AND fecha BETWEEN '".$fecha1."' AND '".$fecha2."'");
 					
 					$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Venta guardada.'), 'default', array('class' => 'success'));
@@ -143,7 +164,7 @@ class ReportsController extends AppController {
 					$this->loadModel('Provider');
 					$query = $this->Provider->query("
 					INSERT INTO providers(services_sales_provider_id, proveedor_servicio, cantidad_servicios_proveedor, total_servicios_proveedor)
-					SELECT ".$services_sales_provider_id." as services_sales_provider_id, proveedor_servicio, count(id) as cantidad_por_proveedor, sum(tarifa) as total_por_proveedor
+					SELECT ".$services_sales_provider_id." services_sales_provider_id, proveedor_servicio, COUNT(id) cantidad_por_proveedor, SUM(tarifa) total_por_proveedor
 					FROM invoiced_services
 					WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."' GROUP BY proveedor_servicio ORDER BY proveedor_servicio");
 					
