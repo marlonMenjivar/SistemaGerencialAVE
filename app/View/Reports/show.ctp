@@ -7,7 +7,7 @@ if ($reporte_encontrado):
 		case 6:
 			if (@$tipo_mensaje == '1') echo $this->Session->flash();
 			$sumatorias = array('cantidad_por_tipo' => 0, 'total_por_tipo' => 0, 'iva_por_tipo' => 0);
-			if (!empty(@$query)) {
+			if (!empty($query)) {
 				foreach ($query as $row) {
 					$sumatorias['cantidad_por_tipo'] += $row[0]['cantidad_por_tipo'];
 					$sumatorias['total_por_tipo'] += $row[0]['total_por_tipo'];
@@ -66,7 +66,7 @@ if ($reporte_encontrado):
 				</div>
 				<div class="col-md-3">
 					<?php
-					if (!empty(@$query)) {
+					if (!empty($query)) {
 						echo $this->Form->create('save_reporte_6', array('url' => array('controller' => 'reports', 'action' => 'save', 6)));
 						echo $this->Form->input('fecha1', array('value' => $this->request->data['show_reporte_6']['fecha1'], 'type' => 'hidden'));
 						echo $this->Form->input('fecha2', array('value' => $this->request->data['show_reporte_6']['fecha2'], 'type' => 'hidden'));
@@ -76,7 +76,7 @@ if ($reporte_encontrado):
 					?>
 				</div>
 			</div>
-			<?php if (!empty(@$query)) { ?>
+			<?php if (!empty($query)) { ?>
 			<div class="row">
 				<div class="col-md-12">
 					<?php if (@$tipo_mensaje == '2') echo $this->Session->flash(); ?>
@@ -132,7 +132,7 @@ if ($reporte_encontrado):
 		case 7:
 			if (@$tipo_mensaje == '1') echo $this->Session->flash();
 			$sumatorias = array('cantidad_por_proveedor' => 0, 'total_por_proveedor' => 0, 'iva_por_proveedor' => 0);
-			if (!empty(@$query)) {
+			if (!empty($query)) {
 				foreach ($query as $row) {
 					$sumatorias['cantidad_por_proveedor'] += $row[0]['cantidad_por_proveedor'];
 					$sumatorias['total_por_proveedor'] += $row[0]['total_por_proveedor'];
@@ -192,7 +192,7 @@ if ($reporte_encontrado):
 				</div>
 				<div class="col-md-3">
 					<?php
-					if (!empty(@$query)) {
+					if (!empty($query)) {
 						echo $this->Form->create('save_reporte_7', array('url' => array('controller' => 'reports', 'action' => 'save', 7)));
 						echo $this->Form->input('fecha1', array('value' => $this->request->data['show_reporte_7']['fecha1'], 'type' => 'hidden'));
 						echo $this->Form->input('fecha2', array('value' => $this->request->data['show_reporte_7']['fecha2'], 'type' => 'hidden'));
@@ -202,7 +202,7 @@ if ($reporte_encontrado):
 					?>
 				</div>
 			</div>
-			<?php if (!empty(@$query)) { ?>
+			<?php if (!empty($query)) { ?>
 			<div class="row">
 				<div class="col-md-12">
 					<?php if (@$tipo_mensaje == '2') echo $this->Session->flash(); ?>
@@ -258,7 +258,7 @@ if ($reporte_encontrado):
 		case 8:
 			if (@$tipo_mensaje == '1') echo $this->Session->flash();
 			$sumatorias = array('meta_bsp' => 0, 'boletos_periodo' => 0, 'total_periodo' => 0, 'faltante' => 0, 'porcentaje' => 0, 'comision' => 0, 'ingreso_comision' => 0);
-			if (!empty(@$query)) {
+			if (!empty($query)) {
 				foreach ($query as $row) {
 					$sumatorias['meta_bsp'] += $row['goal_airlines']['meta_bsp'];
 					$sumatorias['boletos_periodo'] += $row['goal_airlines']['boletos_periodo'];
@@ -341,7 +341,7 @@ if ($reporte_encontrado):
 					</div>
 				</div>
 			</div>
-			<?php if (!empty(@$query)) { ?>
+			<?php if (!empty($query)) { ?>
 			<div class="row">
 				<div class="col-md-12">
 					<?php if (@$tipo_mensaje == '2') echo $this->Session->flash(); ?>
