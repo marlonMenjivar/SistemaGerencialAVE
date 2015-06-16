@@ -8,7 +8,7 @@ class ReportsController extends AppController {
 	public function show($opcion = null) {
 		switch ($opcion) {
 			case 6:
-				$this->set(array('reporte_encontrado' => true, 'nombre_reporte' => 'Semi-Resumen Venta de Servicios Terrestres por Tipo de Servicio Semanal', 'opcion' => 6));
+				$this->set(array('reporte_encontrado' => true, 'nombre_reporte' => 'Semi-Resumen de Venta de Servicios Terrestres por Tipo de Servicio Semanal', 'opcion' => 6));
 				if ($this->request->is(array('post', 'put'))) {
 					$fecha1 = $this->request->data['show_reporte_6']['fecha1'];
 					$fecha2 = $this->request->data['show_reporte_6']['fecha2'];
@@ -36,7 +36,7 @@ class ReportsController extends AppController {
 				}
 				break;
 			case 7:
-				$this->set(array('reporte_encontrado' => true, 'nombre_reporte' => 'Semi-Resumen Venta de Servicios Terrestres por Proveedor Semanal', 'opcion' => 7));
+				$this->set(array('reporte_encontrado' => true, 'nombre_reporte' => 'Semi-Resumen de Venta de Servicios Terrestres por Proveedor Semanal', 'opcion' => 7));
 				if ($this->request->is(array('post', 'put'))) {
 					$fecha1 = $this->request->data['show_reporte_7']['fecha1'];
 					$fecha2 = $this->request->data['show_reporte_7']['fecha2'];
@@ -74,11 +74,11 @@ class ReportsController extends AppController {
 					$this->loadModel('GoalAirline');
 					$query = $this->GoalAirline->query("
 					SELECT periodo_bsp, fecha_inicio, fecha_fin, meta_bsp, boletos_periodo, total_periodo, faltante, porcentaje, comision, ingreso_comision
-					FROM goal_airlines WHERE airline_id = ".$airline_id." ORDER BY fecha_inicio");
+					FROM goal_airlines WHERE airline_id = ".$airline_id." AND boletos_periodo <> 0 ORDER BY fecha_inicio");
 					
 					if (empty($query)) {
 						$this->set('tipo_mensaje', 2);
-						$this->Session->setFlash(__('<i class="fa fa-times-circle"></i> No se encontraron ventas.'), 'default', array('class' => 'error-message'));
+						$this->Session->setFlash(__('<i class="fa fa-times-circle"></i> No se encontraron metas.'), 'default', array('class' => 'error-message'));
 					}
 					else {
 						$this->set(array('query' => $query, 'tipo_mensaje' => 2));
@@ -138,7 +138,7 @@ class ReportsController extends AppController {
 					
 					$query = $this->InvoicedService->query("UPDATE invoiced_services SET services_sales_type_id = ".$services_sales_type_id." WHERE tipo_servicio IN(".$tipos_servicios_string.") AND fecha BETWEEN '".$fecha1."' AND '".$fecha2."'");
 					
-					$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Venta guardada.'), 'default', array('class' => 'success'));
+					$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Reporte guardado.'), 'default', array('class' => 'success'));
 				}
 				else {
 					$this->Session->setFlash(__('<i class="fa fa-times-circle"></i> <strong>Error:</strong> No se pudo guardar la venta.'), 'default', array('class' => 'error-message'));
@@ -172,7 +172,7 @@ class ReportsController extends AppController {
 					$this->loadModel('InvoicedService');
 					$query = $this->InvoicedService->query("UPDATE invoiced_services SET services_sales_provider_id = ".$services_sales_provider_id." WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."'");
 					
-					$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Venta guardada.'), 'default', array('class' => 'success'));
+					$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Reporte guardado.'), 'default', array('class' => 'success'));
 				}
 				else {
 					$this->Session->setFlash(__('<i class="fa fa-times-circle"></i> <strong>Error:</strong> No se pudo guardar la venta.'), 'default', array('class' => 'error-message'));

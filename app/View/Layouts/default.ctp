@@ -186,10 +186,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                       ?>
                   </li>
                   <li>
-					<?= $this->Html->link(__('Semi-resumen venta de servicios terrestres por tipo de servicio semanal'), array('controller' => 'reports', 'action' => 'show', 6)); ?>
+					<?= $this->Html->link(__('Semi-resumen de venta de servicios terrestres por tipo de servicio semanal'), array('controller' => 'reports', 'action' => 'show', 6)); ?>
                   </li>
                   <li>
-					<?= $this->Html->link(__('Semi-resumen venta de servicios terrestres por proveedor semanal'), array('controller' => 'reports', 'action' => 'show', 7)); ?>
+					<?= $this->Html->link(__('Semi-resumen de venta de servicios terrestres por proveedor semanal'), array('controller' => 'reports', 'action' => 'show', 7)); ?>
                   </li>
               </ul>
             </li>
