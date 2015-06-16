@@ -24,10 +24,10 @@ if ($reporte_encontrado):
 						<div class="box-body">
 							<div class="row">
 								<div class="col-md-12">
-									<?= $this->Form->input('fecha1', array('label' => 'Desde', 'type' => 'week', 'class' => 'form-control', 'required' => true)); ?>
+									<?= $this->Form->input('fecha1', array('label' => 'Desde', 'type' => 'text', 'class' => 'fecha form-control', 'required' => true)); ?>
 								</div>
 								<div class="col-md-12">
-									<?= $this->Form->input('fecha2', array('label' => 'Hasta', 'type' => 'text', 'class' => 'fecha form-control', 'required' => true)); ?>
+									<?= $this->Form->input('fecha2', array('label' => 'Hasta', 'type' => 'text', 'class' => 'form-control', 'required' => true, 'readonly' => true)); ?>
 								</div>
 							</div>
 						</div>
@@ -63,6 +63,17 @@ if ($reporte_encontrado):
 							<i class="ion ion-stats-bars"></i>
 						</div>
 					</div>
+				</div>
+				<div class="col-md-3">
+					<?php
+					if (!empty(@$query)) {
+						echo $this->Form->create('save_reporte_6', array('url' => array('controller' => 'reports', 'action' => 'save', 6)));
+						echo $this->Form->input('fecha1', array('value' => $this->request->data['show_reporte_6']['fecha1'], 'type' => 'hidden'));
+						echo $this->Form->input('fecha2', array('value' => $this->request->data['show_reporte_6']['fecha2'], 'type' => 'hidden'));
+						echo $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => false));
+						echo $this->Form->end();
+					}
+					?>
 				</div>
 			</div>
 			<?php if (!empty(@$query)) { ?>
@@ -107,19 +118,6 @@ if ($reporte_encontrado):
 								</div>
 							</div>
 						</div>
-						<div class="box-footer">
-							<div class="row">
-								<div class="col-md-12">
-									<?php
-									echo $this->Form->create('save_reporte_6', array('url' => array('controller' => 'reports', 'action' => 'save', 6)));
-									echo $this->Form->input('fecha1', array('value' => $this->request->data['show_reporte_6']['fecha1'], 'type' => 'hidden'));
-									echo $this->Form->input('fecha2', array('value' => $this->request->data['show_reporte_6']['fecha2'], 'type' => 'hidden'));
-									echo $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => false));
-									echo $this->Form->end();
-									?>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -155,7 +153,7 @@ if ($reporte_encontrado):
 									<?= $this->Form->input('fecha1', array('label' => 'Desde', 'type' => 'text', 'class' => 'fecha form-control', 'required' => true)); ?>
 								</div>
 								<div class="col-md-12">
-									<?= $this->Form->input('fecha2', array('label' => 'Hasta', 'type' => 'text', 'class' => 'fecha form-control', 'required' => true)); ?>
+									<?= $this->Form->input('fecha2', array('label' => 'Hasta', 'type' => 'text', 'class' => 'form-control', 'required' => true, 'readonly' => true)); ?>
 								</div>
 							</div>
 						</div>
@@ -191,6 +189,17 @@ if ($reporte_encontrado):
 							<i class="ion ion-stats-bars"></i>
 						</div>
 					</div>
+				</div>
+				<div class="col-md-3">
+					<?php
+					if (!empty(@$query)) {
+						echo $this->Form->create('save_reporte_7', array('url' => array('controller' => 'reports', 'action' => 'save', 7)));
+						echo $this->Form->input('fecha1', array('value' => $this->request->data['show_reporte_7']['fecha1'], 'type' => 'hidden'));
+						echo $this->Form->input('fecha2', array('value' => $this->request->data['show_reporte_7']['fecha2'], 'type' => 'hidden'));
+						echo $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => false));
+						echo $this->Form->end();
+					}
+					?>
 				</div>
 			</div>
 			<?php if (!empty(@$query)) { ?>
@@ -232,19 +241,6 @@ if ($reporte_encontrado):
 											</tr>
 										</tfoot>
 									</table>
-								</div>
-							</div>
-						</div>
-						<div class="box-footer">
-							<div class="row">
-								<div class="col-md-12">
-									<?php
-									echo $this->Form->create('save_reporte_7', array('url' => array('controller' => 'reports', 'action' => 'save', 7)));
-									echo $this->Form->input('fecha1', array('value' => $this->request->data['show_reporte_7']['fecha1'], 'type' => 'hidden'));
-									echo $this->Form->input('fecha2', array('value' => $this->request->data['show_reporte_7']['fecha2'], 'type' => 'hidden'));
-									echo $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => false));
-									echo $this->Form->end();
-									?>
 								</div>
 							</div>
 						</div>

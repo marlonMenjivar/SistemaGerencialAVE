@@ -348,8 +348,28 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     language:"es"
                 }); 
                 <?php echo $this->fetch('scriptReady');?>
-            
+				
+				$("#show_reporte_<?= $opcion; ?>Fecha1").change(function() {
+					$("#show_reporte_<?= $opcion; ?>Fecha2").val(suma_fecha(7, $("#show_reporte_<?= $opcion; ?>Fecha1").val()));
+				});
             });
+			
+			function suma_fecha(p_dias, p_fecha) {
+				var fecha = new Date();
+				var fecha_string = p_fecha || (fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
+				var separador = fecha_string.toString().indexOf('/') != -1 ? '/' : '-'; 
+				var fecha_array = fecha_string.toString().split(separador);
+				var p_fecha = fecha_array[0] + '/' + fecha_array[1] + '/' + fecha_array[2];
+				p_fecha= new Date(p_fecha);
+				p_fecha.setDate(p_fecha.getDate() + parseInt(p_dias));
+				var anio = p_fecha.getFullYear();
+				var mes = p_fecha.getMonth() + 1;
+				var dia = p_fecha.getDate();
+				mes = (mes < 10) ? ("0" + mes) : mes;
+				dia = (dia < 10) ? ("0" + dia) : dia;
+				var fecha_final = anio + separador + mes + separador + dia;
+				return fecha_final;
+			}
         </script>
         <!-- page script -->
         <script type="text/javascript">
