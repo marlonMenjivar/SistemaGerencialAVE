@@ -1,30 +1,28 @@
 <?php
     $this->start('pageHeader');
-    echo '<h1>Semi-resumen venta de boletos por líneas aéreas por destino semanal</h1>';
+    echo '<h1>Semi-resumen venta de boletos por líneas aéreas por ruta semanal</h1>';
     $this->end();
     setlocale(LC_MONETARY, 'en_US');
-    //Se calculan recorriendo $consultaDestinos que manda el controlador.
+    //Se calculan recorriendo $consultaRutas que manda el controlador.
     $airline_id=0;
     $fecha_inicio='0000/00/00';
     $fecha_final='000/00/00';
-    //$arrayConsultaDestinos="";
-    $boletos_destino=0;
-    $total_destino=0;
+    $boletos_ruta=0;
+    $total_ruta=0;
 
 ?>
 <?php 
-    if(empty($consultaDestinos)):
-            
+    if(empty($consultaRutas)):
+            //Si esta vacio, nada
     else:
-        foreach ($consultaDestinos as $k=>$nivel0):
-            $boletos_destino=$boletos_destino+$nivel0['0']['boletos_destino'];
-            $total_destino=$total_destino+$nivel0['0']['total_destino'];  
+        foreach ($consultaRutas as $k=>$nivel0):
+            $boletos_ruta=$boletos_ruta+$nivel0['0']['boletos_ruta'];
+            $total_ruta=$total_ruta+$nivel0['0']['total_ruta'];  
         endforeach;
 
-        $airline_id=$this->request->data["TicketDestiny"]['airline_id'];
-            $fecha_inicio = $this->request->data["TicketDestiny"]['fecha_inicio'];
-            $fecha_final = $this->request->data["TicketDestiny"]['fecha_fin'];
-        $arrayConsultaDestinos = $consultaDestinos;
+        $airline_id=$this->request->data["TicketRoute"]['airline_id'];
+            $fecha_inicio = $this->request->data["TicketRoute"]['fecha_inicio'];
+            $fecha_final = $this->request->data["TicketRoute"]['fecha_fin'];
     endif;
 ?>
 
@@ -37,10 +35,10 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                               <h3 class="box-title">Seleccione Aerolínea y semana</h3>
                 </div><!-- /.box-header -->
 
-                    <?php  echo $this->Form->create('TicketDestiny',array('role'=>'form')); ?>
+                    <?php  echo $this->Form->create('TicketRoute',array('role'=>'form')); ?>
                         <div class="box-body">
                             <?php
-                                //Select de aerolíneas, lo llena el AirlinesController
+                                //Select de aerolíneas, lo llena el controlador
                                 echo $this->Form->input('airline_id',array('label'=>'Aerolínea',
                                                         'class'=>'form-control'));
                                 //El usuario lo tiene que seleccionar
@@ -68,7 +66,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
             <!-- small box -->
               <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3><?php echo $boletos_destino?></h3>
+                    <h3><?php echo $boletos_ruta?></h3>
                     <p><strong>Boletos vendidos en la semana</strong></p>
                 </div>
                 <div class="icon">
@@ -80,7 +78,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
             <!-- small box -->
             <div class="small-box bg-green">
                 <div class="inner">
-                  <h3><sup style="font-size: 20px">$</sup><?php echo number_format($total_destino, 2)?></h3>
+                  <h3><sup style="font-size: 20px">$</sup><?php echo number_format($total_ruta, 2)?></h3>
                   <p><strong>Ventas Totales de la semana</strong></p>
                 </div>
                 <div class="icon">
@@ -93,15 +91,15 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                 <!-- small box -->
                 <?php
                             
-                            if(empty($consultaDestinos)):
+                            if(empty($consultaRutas)):
                                 //No muestra el boton de guardar
                             else:
-                                echo $this->Form->create('guarda_destinos', array('url' => array('controller' => 'airlines', 'action' => 'guardarDestinos')));
-                                echo $this->Form->input('airline_id', array('value' => $this->request->data['TicketDestiny']['airline_id'], 'type' => 'hidden'));
-                                echo $this->Form->input('fecha_inicio', array('value' => $this->request->data['TicketDestiny']['fecha_inicio'], 'type' => 'hidden'));
-                                echo $this->Form->input('fecha_fin', array('value' => $this->request->data['TicketDestiny']['fecha_fin'], 'type' => 'hidden'));
-                                echo $this->Form->input('boletos_destino', array('value' => $boletos_destino, 'type' => 'hidden'));
-                                echo $this->Form->input('total_destino', array('value' => $total_destino, 'type' => 'hidden'));
+                                echo $this->Form->create('guarda_rutas', array('url' => array('controller' => 'airlines', 'action' => 'guardarRutas')));
+                                echo $this->Form->input('airline_id', array('value' => $this->request->data['TicketRoute']['airline_id'], 'type' => 'hidden'));
+                                echo $this->Form->input('fecha_inicio', array('value' => $this->request->data['TicketRoute']['fecha_inicio'], 'type' => 'hidden'));
+                                echo $this->Form->input('fecha_fin', array('value' => $this->request->data['TicketRoute']['fecha_fin'], 'type' => 'hidden'));
+                                echo $this->Form->input('boletos_ruta', array('value' => $boletos_ruta, 'type' => 'hidden'));
+                                echo $this->Form->input('total_ruta', array('value' => $total_ruta, 'type' => 'hidden'));
                                 echo $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => false));
                                 echo $this->Form->end();
                             endif;
@@ -111,28 +109,36 @@ los boletos vendidos en ese periodo por esa aerolínea-->
     </div>
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Boletos Facturados por destino</h3>
+        <h3 class="box-title">Boletos Facturados por ruta</h3>
     </div><!-- /.box-header -->
     <div class="box-body">
         <table class="tablitaBonita" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Destino</th>
+                    <th>Ruta</th>
+                    <th>Ciudad origen</th>
+                    <th>País origen</th>
                     <th>Ciudad destino</th>
                     <th>País destino</th>
-                    <th>Boletos destino</th>
-                    <th>Total destino ($)</th>
+                    <th>Boletos ruta</th>
+                    <th>Total ruta ($)</th>
                 </tr>
             </thead>
             <tbody>
             <?php 
-                if(empty($consultaDestinos)):
+                if(empty($consultaRutas)):
                     
                 else:
-                    foreach ($consultaDestinos as $k=>$nivel0):
+                    foreach ($consultaRutas as $k=>$nivel0):
                             echo '<tr>';
                             echo '<td>';
-                                echo $nivel0['it']['destino'];
+                                echo $nivel0['it']['ruta'];
+                            echo '</td>';
+                            echo '<td>';
+                                echo $nivel0['iit']['ciudad_origen'];
+                            echo '</td>';
+                            echo '<td>';
+                                echo $nivel0['iit']['pais_origen'];
                             echo '</td>';
                             echo '<td>';
                                 echo $nivel0['iit']['ciudad_destino'];
@@ -141,10 +147,10 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                                 echo $nivel0['iit']['pais_destino'];
                             echo '</td>';
                             echo '<td>';
-                                echo $nivel0['0']['boletos_destino'];
+                                echo $nivel0['0']['boletos_ruta'];
                             echo '</td>';
                             echo '<td>';
-                                echo $nivel0['0']['total_destino'];
+                                echo $nivel0['0']['total_ruta'];
                             echo '</td>';
                             echo '</tr>'; 
                     endforeach;
