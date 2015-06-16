@@ -5,15 +5,14 @@ App::import('Vendor', 'Classes/PHPExcel');
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objPHPExcel = $objReader->load("..\Template\Reporte10.xlsx");
 
-$objPHPExcel->getActiveSheet()->setCellValue('C2', $fechaMes);
-$objPHPExcel->getActiveSheet()->setCellValue('C4', $fechaAnio);
+$objPHPExcel->getActiveSheet()->setCellValue('B7', $fechaMes.', '.$fechaAnio);
 
 $cantidad_servicios=0;
 $total_servicios=0;
 $row = 0;
 
 if (!empty($consultaServiciosTipo)):
-    $baseRow = 16;
+    $baseRow = 17;
     foreach ($consultaServiciosTipo as $r => $ServicioTipo) {
       $row = $baseRow + $r;
       $objPHPExcel->getActiveSheet()->insertNewRowBefore($row,1);
@@ -30,10 +29,8 @@ if (!empty($consultaServiciosTipo)):
     $objPHPExcel->getActiveSheet()->removeRow($baseRow-1,1);
 endif;
 
-$row = $row + 6;
-$objPHPExcel->getActiveSheet()->setCellValue('C'.$row, $cantidad_servicios);
-$row = $row + 3;
-$objPHPExcel->getActiveSheet()->setCellValue('C'.$row, $total_servicios);
+$objPHPExcel->getActiveSheet()->setCellValue('F7', $cantidad_servicios);
+$objPHPExcel->getActiveSheet()->setCellValue('G7', '$ '.$total_servicios);
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename="ventaTipoDeServiciosMensualReporteExcel.xlsx"');

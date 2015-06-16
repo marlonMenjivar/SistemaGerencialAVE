@@ -8,15 +8,14 @@ $rendererLibraryPath = '..\Vendor\Classes\MPDF54' ;
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objPHPExcel = $objReader->load("..\Template\Reporte11.xlsx");
 
-$objPHPExcel->getActiveSheet()->setCellValue('C2', $fechaMes);
-$objPHPExcel->getActiveSheet()->setCellValue('C4', $fechaAnio);
+$objPHPExcel->getActiveSheet()->setCellValue('B7', $fechaMes.', '.$fechaAnio);
 
 $cantidad_servicios=0;
 $total_servicios=0;
 $row = 0;
 
 if (!empty($consultaServicios)):
-    $baseRow = 14;
+    $baseRow = 17;
     foreach ($consultaServicios as $r => $ServicioProveedor) {
       $row = $baseRow + $r;
       $objPHPExcel->getActiveSheet()->insertNewRowBefore($row,1);
@@ -33,16 +32,9 @@ if (!empty($consultaServicios)):
     $objPHPExcel->getActiveSheet()->removeRow($baseRow-1,1);
 endif;
 
-$row = $row + 7;
-$objPHPExcel->getActiveSheet()->setCellValue('C'.$row, $cantidad_servicios);
-$row = $row + 3;
-$objPHPExcel->getActiveSheet()->setCellValue('C'.$row, $total_servicios);
-    
-// Rename worksheet
-$objPHPExcel->getActiveSheet()->setTitle('Simple');
-$objPHPExcel->getActiveSheet()->setShowGridLines(false);
-// Set active sheet index to the first sheet, so Excel opens this as the first sheet
-$objPHPExcel->setActiveSheetIndex(0);
+$objPHPExcel->getActiveSheet()->setCellValue('F7', $cantidad_servicios);
+$objPHPExcel->getActiveSheet()->setCellValue('G7', '$ '.$total_servicios);
+
 if (!PHPExcel_Settings::setPdfRenderer($rendererName, $rendererLibraryPath)) {
         die(
                 'NOTICE: Please set the $rendererName and $rendererLibraryPath values' .

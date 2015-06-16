@@ -5,14 +5,13 @@ App::import('Vendor', 'Classes/PHPExcel');
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objPHPExcel = $objReader->load("..\Template\Reporte9.xlsx");
 
-$objPHPExcel->getActiveSheet()->setCellValue('C2', $fechaMes);
-$objPHPExcel->getActiveSheet()->setCellValue('C4', $fechaAnio);
+$objPHPExcel->getActiveSheet()->setCellValue('B7', $fechaMes.', '.$fechaAnio);
 
 $boletos_periodo=0;
 $total_periodo=0;
 $row = 0;
 if (!empty($consultaVentas)):
-    $baseRow = 13;
+    $baseRow = 17;
     foreach ($consultaVentas as $r => $aerolinea) {
       $row = $baseRow + $r;
       $objPHPExcel->getActiveSheet()->insertNewRowBefore($row,1);
@@ -28,17 +27,15 @@ if (!empty($consultaVentas)):
     $objPHPExcel->getActiveSheet()->removeRow($baseRow-1,1);
 endif;
 
-    $row = $row + 6;
-    $objPHPExcel->getActiveSheet()->setCellValue('C'.$row, $boletos_periodo);
+$objPHPExcel->getActiveSheet()->setCellValue('E7', $boletos_periodo);
 
-    $row = $row + 3;
-    $objPHPExcel->getActiveSheet()->setCellValue('C'.$row, $total_periodo);
+$objPHPExcel->getActiveSheet()->setCellValue('F7', '$ '.$total_periodo);
 
-    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    header('Content-Disposition: attachment;filename="ventaBoletoAereosMensualReporteExcel.xlsx"');
-    header('Cache-Control: max-age=0');
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header('Content-Disposition: attachment;filename="ventaBoletoAereosMensualReporteExcel.xlsx"');
+header('Cache-Control: max-age=0');
 
-    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-    $objWriter->save('php://output');
-    exit;
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+$objWriter->save('php://output');
+exit;
 ?>
