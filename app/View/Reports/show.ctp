@@ -24,7 +24,7 @@ if ($reporte_encontrado):
 						<div class="box-body">
 							<div class="row">
 								<div class="col-md-12">
-									<?= $this->Form->input('fecha1', array('label' => 'Desde', 'type' => 'text', 'class' => 'fecha form-control', 'required' => true)); ?>
+									<?= $this->Form->input('fecha1', array('label' => 'Desde', 'type' => 'text', 'class' => 'fecha form-control', 'required' => true, 'autocomplete' => 'off')); ?>
 								</div>
 								<div class="col-md-12">
 									<?= $this->Form->input('fecha2', array('label' => 'Hasta', 'type' => 'text', 'class' => 'form-control', 'required' => true, 'readonly' => true)); ?>
@@ -86,7 +86,7 @@ if ($reporte_encontrado):
 						</div>
 						<div class="box-body">
 							<div class="row">
-								<div class="col-md-12">
+								<div class="col-md-12 table-responsive">
 									<table class="tablitaBonita table table-bordered table-striped">
 										<thead>
 											<tr>
@@ -150,7 +150,7 @@ if ($reporte_encontrado):
 						<div class="box-body">
 							<div class="row">
 								<div class="col-md-12">
-									<?= $this->Form->input('fecha1', array('label' => 'Desde', 'type' => 'text', 'class' => 'fecha form-control', 'required' => true)); ?>
+									<?= $this->Form->input('fecha1', array('label' => 'Desde', 'type' => 'text', 'class' => 'fecha form-control', 'required' => true, 'autocomplete' => 'off')); ?>
 								</div>
 								<div class="col-md-12">
 									<?= $this->Form->input('fecha2', array('label' => 'Hasta', 'type' => 'text', 'class' => 'form-control', 'required' => true, 'readonly' => true)); ?>
@@ -212,7 +212,7 @@ if ($reporte_encontrado):
 						</div>
 						<div class="box-body">
 							<div class="row">
-								<div class="col-md-12">
+								<div class="col-md-12 table-responsive">
 									<table class="tablitaBonita table table-bordered table-striped">
 										<thead>
 											<tr>
@@ -299,7 +299,7 @@ if ($reporte_encontrado):
 				<div class="col-md-3">
 					<div class="small-box bg-aqua">
 						<div class="inner">
-							<h3><?= number_format($sumatorias['boletos_periodo'], 2, '.', ','); ?></h3>
+							<h3><?= number_format($sumatorias['boletos_periodo'], 0, '.', ','); ?></h3>
 							<p><strong>Boletos Vendidos</strong></p>
 						</div>
 						<div class="icon">
@@ -310,7 +310,7 @@ if ($reporte_encontrado):
 				<div class="col-md-3">
 					<div class="small-box bg-green">
 						<div class="inner">
-							<h3><sup style="font-size: 20px;">$</sup> <?= number_format($sumatorias['total_periodo'], 0, '.', ','); ?></h3>
+							<h3><sup style="font-size: 20px;">$</sup> <?= number_format($sumatorias['total_periodo'], 2, '.', ','); ?></h3>
 							<p><strong>Ventas Totales</strong></p>
 						</div>
 						<div class="icon">
@@ -321,7 +321,7 @@ if ($reporte_encontrado):
 				<div class="col-md-3">
 					<div class="small-box bg-yellow">
 						<div class="inner">
-							<h3><sup style="font-size: 20px;">$</sup> <?= number_format($sumatorias['meta_bsp'], 0, '.', ','); ?></h3>
+							<h3><sup style="font-size: 20px;">$</sup> <?= number_format($sumatorias['meta_bsp'], 2, '.', ','); ?></h3>
 							<p><strong>Meta BSP</strong></p>
 						</div>
 						<div class="icon">
@@ -332,7 +332,7 @@ if ($reporte_encontrado):
 				<div class="col-md-3">
 					<div class="small-box bg-red">
 						<div class="inner">
-							<h3><?= number_format($sumatorias['meta_bsp'], 0, '.', ','); ?> <sup style="font-size: 20px">%</sup></h3>
+							<h3><?= number_format($sumatorias['porcentaje'], 2, '.', ','); ?> <sup style="font-size: 20px">%</sup></h3>
 							<p><strong>Porcentaje de Incumplimiento</strong></p>
 						</div>
 						<div class="icon">
@@ -351,7 +351,7 @@ if ($reporte_encontrado):
 						</div>
 						<div class="box-body">
 							<div class="row">
-								<div class="col-md-12">
+								<div class="col-md-12 table-responsive">
 									<table class="tablitaBonita table table-bordered table-striped">
 										<thead>
 											<tr>
