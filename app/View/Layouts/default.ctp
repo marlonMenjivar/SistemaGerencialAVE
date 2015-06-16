@@ -154,7 +154,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
           <ul class="sidebar-menu">
             <li class="header">SALIDAS</li>
             <!-- Optionally, you can add icons to the links -->
-            <li><a href="#"><i class='fa fa-link'></i> <span>Carga de Datos</span></a></li>
+           <li>
+                <?php 
+                    echo $this->Html->link("Historial carga de datos", array('controller'=>'EtlUsers','action'=>'index'));
+                ?>
+            </li>
             <li class="treeview">
               <a href="#"><i class='fa fa-link'></i> <span>Salidas Tácticas</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
@@ -163,17 +167,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                 array('controller'=>'GoalAirlines','action'=>'comparativoMetasAerolinea'));
                         ?>
                   </li>
-                  <li><a href="#">
-                          <p>
-                              Semi-resumen venta de boletos por líneas aéreas por destino semanal
-                          </p>
-                      </a>
+                  <li><?php 
+                      echo $this->Html->link("Semi-resumen venta de boletos por líneas aéreas por destino semanal", 
+                                             array('controller'=>'Airlines','action'=>'boletosPorDestinoSemanal'));
+?>
                   </li>
-                  <li><a href="#">
-                          <p>
-                              Semi-resumen venta de boletos de líneas aéreas por rutas semanal
-                          </p>
-                      </a>
+                  <li><?php
+                        echo $this->Html->link("Semi-resumen venta de boletos de líneas aéreas por rutas semanal", array('controller'=>'Airlines','action'=>'boletosPorRutaSemanal'));
+                        ?>
                   </li>
                   <li>
                       <?php echo $this->Html->link("Comparativo de cumplimiento de venta de boletos aéreos por sucursal",
