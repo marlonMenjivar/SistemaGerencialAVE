@@ -1,0 +1,1 @@
+<?php echo AuthComponent::user('name').' '.AuthComponent::user('last_name');

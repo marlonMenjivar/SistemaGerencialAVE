@@ -113,7 +113,6 @@ class AirlinesController extends AppController {
             endif;
         }
     
-    
     public function boletosPorDestinoSemanal() {
         //Lee las lista de aerolíneas
         $airlines = $this->Airline->find('list');

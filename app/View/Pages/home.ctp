@@ -11,9 +11,10 @@ endif;
 
 App::uses('Debugger', 'Utility');
 ?>
-<h2><?php echo __d('cake_dev', 'Release Notes for CakePHP %s.', Configure::version()); ?></h2>
+<h2><?php echo __d('cake_dev', 'Release Notes for CakePHP %s.', Configure::version());
+?></h2>
 <p>
-	<?php echo $this->Html->link(__d('cake_dev', 'Read the changelog'), 'http://cakephp.org/changelogs/' . Configure::version()); ?>
+    echo $this->Html->link(__d('cake_dev', 'Read the changelog'), 'http://cakephp.org/changelogs/' . Configure::version()); ?>
 </p>
 <?php
 if (Configure::read('debug') > 0):
@@ -226,3 +227,4 @@ You can also add some CSS styles for your pages at: %s.',
 	<li><a href="http://cakefoundation.org"><?php echo __d('cake_dev', 'Cake Software Foundation'); ?> </a>
 	<ul><li><?php echo __d('cake_dev', 'Promoting development related to CakePHP'); ?></li></ul></li>
 </ul>
+<?php //$this->layout='default_1';
