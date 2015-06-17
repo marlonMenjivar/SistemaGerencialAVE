@@ -63,7 +63,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
   |---------------------------------------------------------|
   -->
   <body class="skin-blue sidebar-mini">
-	<?php $role = $this->element('userRole')?>
+    <?php $role = $this->element('userRole')?>
     <div class="wrapper">
 
       <!-- Main Header -->
@@ -277,7 +277,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <?php if ($role != 'tactic')  { ?>
                 <?php if ($role != 'strategic')  { ?>
                     <li><?php echo $this->Html->link('Sucursales',array('controller'=>'BranchOffices',
-                                                      'action'=>'index'))?>
+                                                      'action'=>'index'
+                        ))?>
                     </li>
                     <li><?php echo $this->Html->link('Metas por Sucursales',array('controller'=>'GoalBranchOffices',
                                                               'action'=>'index'
@@ -297,7 +298,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     </li>
                 <?php } ?>      
             <?php } ?>
-		  </ul><!-- /.sidebar-menu -->
+          </ul><!-- /.sidebar-menu -->
           </div><!-- /.tab-pane -->
         </div>
       </aside><!-- /.control-sidebar -->
