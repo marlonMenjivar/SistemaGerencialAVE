@@ -7,9 +7,15 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
   <head>
     <?php echo $this->Html->charset(); ?>
     <title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $this->fetch('title'); ?>
-    </title>
+		<?php echo $cakeDescription ?>:<!DOCTYPE html>
+<?php
+$cakeDescription = __d('cake_dev', 'Sistema Gerencial AVE');
+$cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
+?>
+<html>
+  <head>
+    <?php echo $this->Html->charset(); ?>
+    <title>
     <!--<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>-->
     <!-- Bootstrap 3.3.4 -->
     <!--<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />-->
@@ -57,6 +63,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
   |---------------------------------------------------------|
   -->
   <body class="skin-blue sidebar-mini">
+	<?php $role = $this->element('userRole')?>
     <div class="wrapper">
 
       <!-- Main Header -->
@@ -267,30 +274,36 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
           <ul class="sidebar-menu">
             <li class="header">CONFIGURACIONES GENERALES</li>
             <!-- Optionally, you can add icons to the links -->
-            <li><?php echo $this->Html->link('Sucursales',array('controller'=>'BranchOffices',
+            <?php if ($role != 'tactic')  { ?>
+                <?php if ($role != 'strategic')  { ?>
+                    <li><?php echo $this->Html->link('Sucursales',array('controller'=>'BranchOffices',
                                                       'action'=>'index'
-                ))?>
-            </li>
-            <li><?php echo $this->Html->link('Metas por Sucursales',array('controller'=>'GoalBranchOffices',
-                                                      'action'=>'index'
-                ))?>
-            </li>
-            <li><?php echo $this->Html->link('Aerolínea',array('controller'=>'Airlines',
-                                                      'action'=>'index'
-                ))?>
-            </li>
-            <li><?php echo $this->Html->link('Metas por Aerolínea',array('controller'=>'GoalAirlines',
-                                                      'action'=>'index'
-                ))?>
-            </li>
-            <li><?php echo $this->Html->link('Usuarios',array('controller'=>'Users',
-                                                      'action'=>'index'
-                ))?>
-            </li>
-          
-          
-          
-          </ul><!-- /.sidebar-menu -->
+
+
+
+
+
+                        ))?>
+                    </li>
+                    <li><?php echo $this->Html->link('Metas por Sucursales',array('controller'=>'GoalBranchOffices',
+                                                              'action'=>'index'
+                        ))?>
+                    </li>
+                    <li><?php echo $this->Html->link('Aerolínea',array('controller'=>'Airlines',
+                                                              'action'=>'index'
+                        ))?>
+                    </li>
+                    <li><?php echo $this->Html->link('Metas por Aerolínea',array('controller'=>'GoalAirlines',
+                                                              'action'=>'index'
+                        ))?>
+                    </li>
+                    <li><?php echo $this->Html->link('Usuarios',array('controller'=>'Users',
+                                                              'action'=>'index'
+                        ))?>
+                    </li>
+                <?php } ?>      
+            <?php } ?>
+		  </ul><!-- /.sidebar-menu -->
           </div><!-- /.tab-pane -->
         </div>
       </aside><!-- /.control-sidebar -->
