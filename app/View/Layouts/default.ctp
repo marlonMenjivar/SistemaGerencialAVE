@@ -277,13 +277,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <?php if ($role != 'tactic')  { ?>
                 <?php if ($role != 'strategic')  { ?>
                     <li><?php echo $this->Html->link('Sucursales',array('controller'=>'BranchOffices',
-                                                      'action'=>'index'
-
-
-
-
-
-                        ))?>
+                                                      'action'=>'index'))?>
                     </li>
                     <li><?php echo $this->Html->link('Metas por Sucursales',array('controller'=>'GoalBranchOffices',
                                                               'action'=>'index'
@@ -359,7 +353,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     minViewMode: "months",
                     autoclose:true,
                     language:"es"
-                }); 
+                });
+				
                 <?php echo $this->fetch('scriptReady');?>
 				
 				$("#show_reporte_<?= $opcion; ?>Fecha1").change(function() {
