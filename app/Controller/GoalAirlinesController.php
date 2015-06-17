@@ -194,4 +194,41 @@ class GoalAirlinesController extends AppController {
                 }
 	}
 
+        // Acumulado venta de boletos aéreos por líneas aéreas mensual
+        public function ventaBoletoAereosMensual() {
+            
+            //Si el formulario se envió
+            if ($this->request->is(array('post', 'put'))) {
+                //Saca la fecha año del request
+                $fechaAnio=$this->request->data["GoalAirline"]['fecha_anio'];
+                //Saca la fecha mes del request
+                $fechaMes=$this->request->data["GoalAirline"]['fecha_mes'];
+                //Saca la fecha del request
+                $fechaInicio=$this->request->data["GoalAirline"]['fecha_inicio'];
+                //Saca la fecha del request
+                $fechaFin=$this->request->data["GoalAirline"]['fecha_fin'];
+                
+                //ejecuta consulta de boletos vendidos para aerolínea por Mes
+                $queryConsultaVentas="SELECT airline_id, name, fecha_inicio, fecha_fin, boletos_periodo, total_periodo "
+                        . "FROM goal_airlines, airlines WHERE goal_airlines.airline_id = airlines.id AND fecha_inicio = '". $fechaInicio . "' AND fecha_fin = '". $fechaFin . "' ORDER BY goal_airlines.airline_id;";
+                $consultaVentas=$this->GoalAirline->query($queryConsultaVentas);
+                
+                //Si la consulta retorna vacía
+                if(empty($consultaVentas)):
+                    $this->Session->setFlash(__('No se encontro registros de boletos vendidos de aerolínea para este mes. '));
+                //Si encuentra la meta
+                else:
+                    $this->set('consultaVentas',$consultaVentas);
+                    $this->set('fechaInicio',$fechaInicio);
+                    $this->set('fechaFin',$fechaFin);
+                    $this->set('fechaAnio',$fechaAnio);
+                    $this->set('fechaMes',$fechaMes);
+                endif;                    
+            }
+        }
+
+
+
+
+
 }

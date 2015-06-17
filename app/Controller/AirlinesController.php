@@ -112,4 +112,170 @@ class AirlinesController extends AppController {
                 return $airlines;
             endif;
         }
+		
+public function boletosPorDestinoSemanal() {
+        //Lee las lista de aerolíneas
+        $airlines = $this->Airline->find('list');
+        //Manda lista de airlines a la vista
+        $this->set(compact('airlines'));
+        
+        
+        //Al darle click al botón generar (envio de formulario)
+        if ($this->request->is(array('post', 'put'))) {
+            
+            //Lee el id de la aerolinea enviado en el request
+            $id=$this->request->data["TicketDestiny"]['airline_id'];
+            
+            //Lee la fecha de inicio enviada en el request
+            $fechainicio = $this->request->data["TicketDestiny"]['fecha_inicio'];
+            
+            //Lee la fecha final enviada en el request
+            $fechafin = $this->request->data["TicketDestiny"]['fecha_fin'];
+            
+            //Ejecuta la consulta de boletos por destino por aerolinea
+            $consultaDestino = "SELECT it.destino, count(it.boleto) as boletos_destino, sum(it.tarifa) as total_destino, " 
+                . "iit.nombre_ciudad2 as ciudad_destino, iit.pais2 as pais_destino " 
+                . "FROM invoiced_tickets it INNER JOIN itinerary_invoiced_tickets iit ON it.itinerary_invoiced_ticket_id = iit.id "
+                . "WHERE it.airline_id = ".$id." AND it.fecha BETWEEN '".$fechainicio."' AND '".$fechafin."' GROUP BY destino ORDER BY destino;";
+            
+            //Carga el modelo de boletos facturados
+            $this->loadModel('InvoicedTicket');
+            
+            $consultaDestinos=$this->InvoicedTicket->query($consultaDestino);
+            
+            $this->set('consultaDestinos',$consultaDestinos);
+        }
+	}
+    
+    //Funcion que guarda el registro del reporte por destino
+    public function guardarDestinos() {
+        //Carga los datos del formulario oculto 'guarda_destinos'
+		if ($this->request->is(array('post'))):
+            $airline_id = $this->request->data['guarda_destinos']['airline_id'];
+            $fecha_inicio = $this->request->data['guarda_destinos']['fecha_inicio'];
+            $fecha_fin = $this->request->data['guarda_destinos']['fecha_fin'];
+            $boletos_destinos = $this->request->data['guarda_destinos']['boletos_destino'];
+
+
+            $total_destino = $this->request->data['guarda_destinos']['total_destino'];
+        
+            //Carga el modelo de las ventas por destinos
+            $this->loadModel('TicketsSalesDestiny');
+        
+			//Guarda en la tabla venta de boletos por destinos
+            $query="INSERT INTO tickets_sales_destinies( linea_aerea_destino, fecha_inicio_destino, fecha_final_destino)"
+                . " VALUES (".$airline_id.", '".$fecha_inicio."', '".$fecha_fin."');";
+            $this->TicketsSalesDestiny->query($query);
+        
+            //Obtiene el correlativo de los datos guardados en la tabla venta de boletos por destinos
+            $query = $this->TicketsSalesDestiny->find('all', 
+            array('fields' => 'MAX(TicketsSalesDestiny.id) id'));
+            $tickets_sales_destiny_id = $query[0][0]['id'];
+            
+            //Guarda los datos totales de los boletos por destinos en la tabla destinies
+            $this->loadModel('Destiny');
+            $query = $this->Destiny->query("
+            INSERT INTO destinies (tickets_sales_destiny_id, destino, boletos_destino, total_destino)
+            SELECT ".$tickets_sales_destiny_id.", destino, count(boleto) boletos_destino, sum(tarifa) total_destino " 
+                . "FROM invoiced_tickets "
+                . "WHERE airline_id = ".$airline_id." AND fecha BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' group by destino;");
+            
+            //Actualiza el código de ventas de boletos por destino en la tabla de boeltos facturados
+            $this->loadModel('InvoicedTicket');
+            $query = $this->InvoicedTicket->query("UPDATE 
+            invoiced_tickets set tickets_sales_destiny_id = 
+            ".$tickets_sales_destiny_id." WHERE airline_id = ".$airline_id." AND 
+            fecha BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."'");
+
+            $this->Session->setFlash('Reporte de boletos por destino registrado');
+            return $this->redirect(array('action' => 'boletosPorDestinoSemanal'));
+
+
+        else:
+            $this->Session->setFlash('Método no soportado.');
+
+        endif;
+	}
+
+
+    public function boletosPorRutaSemanal() {
+        //Lee las lista de aerolíneas
+        $airlines = $this->Airline->find('list');
+        //Manda lista de airlines a la vista
+        $this->set(compact('airlines'));
+        
+        
+        //Al darle click al botón generar (envio de formulario)
+        if ($this->request->is(array('post', 'put'))) {
+            
+            //Lee el id de la aerolinea enviado en el request
+            $id=$this->request->data["TicketRoute"]['airline_id'];
+            
+            //Lee la fecha de inicio enviada en el request
+            $fechainicio = $this->request->data["TicketRoute"]['fecha_inicio'];
+            
+            //Lee la fecha final enviada en el request
+            $fechafin = $this->request->data["TicketRoute"]['fecha_fin'];
+            
+            //Ejecuta la consulta de boletos por ruta por aerolinea
+            $consultaRuta = "SELECT it.ruta, count(it.boleto) as boletos_ruta, sum(it.tarifa) as total_ruta, " 
+                . "iit.nombre_ciudad1 as ciudad_origen, iit.pais1 as pais_origen, "
+                . "iit.nombre_ciudad2 as ciudad_destino, iit.pais2 as pais_destino " 
+                . "FROM invoiced_tickets it INNER JOIN itinerary_invoiced_tickets iit ON it.itinerary_invoiced_ticket_id = iit.id "
+                . "WHERE it.airline_id = ".$id." AND it.fecha BETWEEN '".$fechainicio."' AND '".$fechafin."' GROUP BY ruta ORDER BY ruta;";
+            
+            //Carga el modelo de boletos facturados
+            $this->loadModel('InvoicedTicket');
+            
+            $consultaRutas=$this->InvoicedTicket->query($consultaRuta);
+            
+            $this->set('consultaRutas',$consultaRutas);
+        }
+	}
+    
+    //Funcion que guarda el registro del reporte por ruta
+    public function guardarRutas() {
+        //Carga los datos del formulario oculto 'guarda_rutas'
+		if ($this->request->is(array('post'))):
+            $airline_id = $this->request->data['guarda_rutas']['airline_id'];
+            $fecha_inicio = $this->request->data['guarda_rutas']['fecha_inicio'];
+            $fecha_fin = $this->request->data['guarda_rutas']['fecha_fin'];
+            $boletos_rutas = $this->request->data['guarda_rutas']['boletos_ruta'];
+            $total_ruta = $this->request->data['guarda_rutas']['total_ruta'];
+        
+            //Carga el modelo de las ventas por rutas
+            $this->loadModel('TicketsSalesRoute');
+        
+			//Guarda en la tabla venta de boletos por rutas
+            $query="INSERT INTO tickets_sales_routes(linea_aerea_ruta, fecha_inicio_ruta, fecha_final_ruta)"
+                . " VALUES (".$airline_id.", '".$fecha_inicio."', '".$fecha_fin."');";
+            $this->TicketsSalesRoute->query($query);
+        
+            //Obtiene el correlativo de los datos guardados en la tabla venta de boletos por ruta
+            $query = $this->TicketsSalesRoute->find('all', 
+            array('fields' => 'MAX(TicketsSalesRoute.id) id'));
+            $tickets_sales_route_id = $query[0][0]['id'];
+            
+            //Guarda los datos totales de los boletos por ruta en la tabla routes
+            $this->loadModel('Route');
+            $query = $this->Route->query("
+            INSERT INTO routes (tickets_sales_route_id, ruta, boletos_ruta, total_ruta)
+            SELECT ".$tickets_sales_route_id.", ruta, count(boleto) boletos_ruta, sum(tarifa) total_ruta " 
+                . "FROM invoiced_tickets "
+                . "WHERE airline_id = ".$airline_id." AND fecha BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' group by ruta;");
+            
+            //Actualiza el código de ventas de boletos por ruta en la tabla de boletos facturados
+            $this->loadModel('InvoicedTicket');
+            $query = $this->InvoicedTicket->query("UPDATE 
+            invoiced_tickets set tickets_sales_route_id = 
+            ".$tickets_sales_route_id." WHERE airline_id = ".$airline_id." AND 
+            fecha BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."'");
+
+            $this->Session->setFlash('Reporte de boletos por ruta registrado');
+            return $this->redirect(array('action' => 'boletosPorRutaSemanal'));
+        else:
+            $this->Session->setFlash('Método no soportado.');
+        endif;
+	}
+    
 }
