@@ -1,6 +1,6 @@
 <?php
 $this->start('pageHeader');
-echo '<h1>Acumulado de Venta de Boletos Aéreos por Líneas Aéreas Mensual</h1>';
+echo '<h1>Acumulado de Venta de Boletos Aéreos por Aerolínea Mensual</h1>';
 $this->end();
 
 setlocale(LC_MONETARY, 'en_US');
@@ -80,33 +80,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                 <i class="ion ion-stats-bars"></i>
             </div>
         </div>
-    </div><!-- ./col -->
-    <!-- Generear Reportes -->
-    <div class="col-lg-3 col-xs-6">
-        <?php
-        if (!empty($consultaVentas)):
-            echo $this->Form->create('reporte_excel', array('url' => array('controller' => 'GoalAirlines', 'action' => 'ventaBoletoAereosMensualReporteExcel')));
-            echo $this->Form->input('fecha_anio', array('value' => $fechaAnio, 'type' => 'hidden'));
-            echo $this->Form->input('fecha_mes', array('value' => $fechaMes, 'type' => 'hidden'));
-            echo $this->Form->input('fecha_inicio', array('value' => $fechaInicio, 'type' => 'hidden'));
-            echo $this->Form->input('fecha_fin', array('value' => $fechaFin, 'type' => 'hidden'));
-            echo $this->Form->end(array('label' => 'Generar Reporte Excel', 'class' => 'btn btn-primary'));
-        endif;
-        ?>
-    </div><!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-    
-        <?php
-        if (!empty($consultaVentas)):
-            echo $this->Form->create('reporte_pdf', array('url' => array('controller' => 'GoalAirlines', 'action' => 'ventaBoletoAereosMensualReportePdf')));
-            echo $this->Form->input('fecha_anio', array('value' => $fechaAnio, 'type' => 'hidden'));
-            echo $this->Form->input('fecha_mes', array('value' => $fechaMes, 'type' => 'hidden'));
-            echo $this->Form->input('fecha_inicio', array('value' => $fechaInicio, 'type' => 'hidden'));
-            echo $this->Form->input('fecha_fin', array('value' => $fechaFin, 'type' => 'hidden'));
-            echo $this->Form->end(array('label' => 'Generar Reporte PDF', 'class' => 'btn btn-primary'));
-        endif;
-        ?>
-    </div><!-- ./col -->
+    </div><!-- ./col -->  
 </div>
 <div class="box">
     <div class="box-header">
