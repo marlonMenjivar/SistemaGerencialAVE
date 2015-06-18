@@ -89,11 +89,34 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                 <i class="ion ion-stats-bars"></i>
             </div>
         </div>
-    </div><!-- ./col -->      
+    </div><!-- ./col -->  <!-- Generear Reportes -->
+    <div class="col-lg-3 col-xs-6">
+        <?php
+        if (!empty($consultaServiciosTipo)):
+            echo $this->Form->create('reporte_excel', array('url' => array('controller' => 'Reports', 'action' => 'ventaServicioTerrestreTipoServicioMensualReporteExcel')));
+            echo $this->Form->input('fecha_anio', array('value' => $fechaAnio, 'type' => 'hidden'));
+            echo $this->Form->input('fecha_mes', array('value' => $fechaMes, 'type' => 'hidden'));
+            echo $this->Form->input('fecha_inicio', array('value' => $fechaInicio, 'type' => 'hidden'));
+            echo $this->Form->input('fecha_fin', array('value' => $fechaFin, 'type' => 'hidden'));
+            echo $this->Form->end(array('label' => 'Generar Reporte Excel', 'class' => 'btn btn-primary'));
+        endif;
+        ?>
+    </div><!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+    
+        <?php
+        if (!empty($consultaServiciosTipo)):
+            echo $this->Form->create('reporte_pdf', array('url' => array('controller' => 'Reports', 'action' => 'ventaServicioTerrestreTipoServicioMensualReportePdf')));
+            echo $this->Form->input('fecha_anio', array('value' => $fechaAnio, 'type' => 'hidden'));
+            echo $this->Form->input('fecha_mes', array('value' => $fechaMes, 'type' => 'hidden'));
+            echo $this->Form->input('fecha_inicio', array('value' => $fechaInicio, 'type' => 'hidden'));
+            echo $this->Form->input('fecha_fin', array('value' => $fechaFin, 'type' => 'hidden'));
+            echo $this->Form->end(array('label' => 'Generar Reporte PDF', 'class' => 'btn btn-primary'));
+        endif;
+        ?>
+    </div><!-- ./col --> 
+        
 </div>
-
-
-
 
 <div class="box">
     <div class="box-header">

@@ -30,6 +30,8 @@ class ReportsController extends AppController {
 						}
 						else {
 							$this->set(array('query' => $query, 'tipo_mensaje' => 2));
+              $this->set('fecha1', $fecha1);
+              $this->set('fecha2', $fecha2);
 							$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Resultado.'), 'default', array('class' => 'success'));
 						}
 					}
@@ -59,6 +61,8 @@ class ReportsController extends AppController {
 						}
 						else {
 							$this->set(array('query' => $query, 'tipo_mensaje' => 2));
+              $this->set('fecha1',$fecha1);
+              $this->set('fecha2',$fecha2);
 							$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Resultado.'), 'default', array('class' => 'success'));
 						}
 					}
@@ -82,6 +86,7 @@ class ReportsController extends AppController {
 					}
 					else {
 						$this->set(array('query' => $query, 'tipo_mensaje' => 2));
+            $this->set('airline_id', $airline_id);
 						$this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Resultado.'), 'default', array('class' => 'success'));
 					}
 				}
@@ -92,7 +97,193 @@ class ReportsController extends AppController {
 				break;
 		}
 	}
-	
+	//Reportes excel
+  public function showReporteExcel($opcion = null) {
+    switch ($opcion) {
+      case 6:
+        $this->set(array('reporte_encontrado' => true, 'nombre_reporte' => 'Semi-Resumen de Venta de Servicios Terrestres por Tipo de Servicio Semanal', 'opcion' => 6));
+        if ($this->request->is(array('post', 'put'))) {
+          $fecha1 = $this->request->data['show_reporte_6']['fecha1'];
+          $fecha2 = $this->request->data['show_reporte_6']['fecha2'];
+          
+          $validacion_fechas = $this->_validar_fechas($fecha1, $fecha2);
+          if ($validacion_fechas != '') {
+            $this->set('tipo_mensaje', 1);
+            $this->Session->setFlash(__('<i class="fa fa-times-circle"></i> %s', $validacion_fechas), 'default', array('class' => 'error-message'));
+          }
+          else {
+            $this->loadModel('InvoicedService');
+            $query = $this->InvoicedService->query("
+            SELECT tipo_servicio, COUNT(id) cantidad_por_tipo, SUM(tarifa) total_por_tipo, SUM(iva) iva_por_tipo FROM invoiced_services
+            WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."' GROUP BY tipo_servicio ORDER BY tipo_servicio");
+            
+            if (empty($query)) {
+              $this->set('tipo_mensaje', 2);
+              $this->Session->setFlash(__('<i class="fa fa-times-circle"></i> No se encontraron ventas.'), 'default', array('class' => 'error-message'));
+            }
+            else {
+              $this->set(array('query' => $query, 'tipo_mensaje' => 2));
+              $this->set('fecha1', $fecha1);
+              $this->set('fecha2', $fecha2);
+              $this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Resultado.'), 'default', array('class' => 'success'));
+            }
+          }
+        }
+        break;
+      case 7:
+        $this->set(array('reporte_encontrado' => true, 'nombre_reporte' => 'Semi-Resumen de Venta de Servicios Terrestres por Proveedor Semanal', 'opcion' => 7));
+        if ($this->request->is(array('post', 'put'))) {
+          $fecha1 = $this->request->data['show_reporte_7']['fecha1'];
+          $fecha2 = $this->request->data['show_reporte_7']['fecha2'];
+          
+          $validacion_fechas = $this->_validar_fechas($fecha1, $fecha2);
+          if ($validacion_fechas != '') {
+            $this->set('tipo_mensaje', 1);
+            $this->Session->setFlash(__('<i class="fa fa-times-circle"></i> %s', $validacion_fechas), 'default', array('class' => 'error-message'));
+          }
+          else {
+            $this->loadModel('InvoicedService');
+            $query = $this->InvoicedService->query("
+            SELECT proveedor_servicio, COUNT(id) cantidad_por_proveedor, SUM(tarifa) total_por_proveedor, SUM(iva) iva_por_proveedor
+            FROM invoiced_services
+            WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."' GROUP BY proveedor_servicio ORDER BY proveedor_servicio;");
+            
+            if (empty($query)) {
+              $this->set('tipo_mensaje', 2);
+              $this->Session->setFlash(__('<i class="fa fa-times-circle"></i> No se encontraron ventas.'), 'default', array('class' => 'error-message'));
+            }
+            else {
+              $this->set(array('query' => $query, 'tipo_mensaje' => 2));
+              $this->set('fecha1', $fecha1);
+              $this->set('fecha2', $fecha2);
+              $this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Resultado.'), 'default', array('class' => 'success'));
+            }
+          }
+        }
+        break;
+      case 8:
+        $this->loadModel('Airline');
+        $this->set(array('aereolineas' => $this->Airline->find('list', array('fields' => 'Airline.id, Airline.name')), 'reporte_encontrado' => true, 'nombre_reporte' => 'Total de Venta de Boletos Aéreos por Línea Aérea por Periodo BSP', 'opcion' => 8));
+        
+        if ($this->request->is(array('post', 'put'))) {
+          $airline_id = $this->request->data['show_reporte_8']['airline_id'];
+          
+          $this->loadModel('GoalAirline');
+          $query = $this->GoalAirline->query("
+          SELECT periodo_bsp, fecha_inicio, fecha_fin, meta_bsp, boletos_periodo, total_periodo, faltante, porcentaje, comision, ingreso_comision
+          FROM goal_airlines WHERE airline_id = ".$airline_id." AND boletos_periodo <> 0 ORDER BY fecha_inicio");
+          
+          if (empty($query)) {
+            $this->set('tipo_mensaje', 2);
+            $this->Session->setFlash(__('<i class="fa fa-times-circle"></i> No se encontraron metas.'), 'default', array('class' => 'error-message'));
+          }
+          else {
+            $this->set(array('query' => $query, 'tipo_mensaje' => 2));
+            $this->set('airline_id', $airline_id);
+            $this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Resultado.'), 'default', array('class' => 'success'));
+          }
+        }
+        break;
+      default:
+        $this->set('reporte_encontrado', false);
+        $this->Session->setFlash(__('<i class="fa fa-times-circle"></i> Reporte no encontrado.'), 'default', array('class' => 'error-message'));
+        break;
+    }
+  }
+//Reportes PDF
+  public function showReportePdf($opcion = null) {
+    switch ($opcion) {
+      case 6:
+        $this->set(array('reporte_encontrado' => true, 'nombre_reporte' => 'Semi-Resumen de Venta de Servicios Terrestres por Tipo de Servicio Semanal', 'opcion' => 6));
+        if ($this->request->is(array('post', 'put'))) {
+          $fecha1 = $this->request->data['show_reporte_6']['fecha1'];
+          $fecha2 = $this->request->data['show_reporte_6']['fecha2'];
+          
+          $validacion_fechas = $this->_validar_fechas($fecha1, $fecha2);
+          if ($validacion_fechas != '') {
+            $this->set('tipo_mensaje', 1);
+            $this->Session->setFlash(__('<i class="fa fa-times-circle"></i> %s', $validacion_fechas), 'default', array('class' => 'error-message'));
+          }
+          else {
+            $this->loadModel('InvoicedService');
+            $query = $this->InvoicedService->query("
+            SELECT tipo_servicio, COUNT(id) cantidad_por_tipo, SUM(tarifa) total_por_tipo, SUM(iva) iva_por_tipo FROM invoiced_services
+            WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."' GROUP BY tipo_servicio ORDER BY tipo_servicio");
+            
+            if (empty($query)) {
+              $this->set('tipo_mensaje', 2);
+              $this->Session->setFlash(__('<i class="fa fa-times-circle"></i> No se encontraron ventas.'), 'default', array('class' => 'error-message'));
+            }
+            else {
+              $this->set(array('query' => $query, 'tipo_mensaje' => 2));
+              $this->set('fecha1', $fecha1);
+              $this->set('fecha2', $fecha2);
+              $this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Resultado.'), 'default', array('class' => 'success'));
+            }
+          }
+        }
+        break;
+      case 7:
+        $this->set(array('reporte_encontrado' => true, 'nombre_reporte' => 'Semi-Resumen de Venta de Servicios Terrestres por Proveedor Semanal', 'opcion' => 7));
+        if ($this->request->is(array('post', 'put'))) {
+          $fecha1 = $this->request->data['show_reporte_7']['fecha1'];
+          $fecha2 = $this->request->data['show_reporte_7']['fecha2'];
+          
+          $validacion_fechas = $this->_validar_fechas($fecha1, $fecha2);
+          if ($validacion_fechas != '') {
+            $this->set('tipo_mensaje', 1);
+            $this->Session->setFlash(__('<i class="fa fa-times-circle"></i> %s', $validacion_fechas), 'default', array('class' => 'error-message'));
+          }
+          else {
+            $this->loadModel('InvoicedService');
+            $query = $this->InvoicedService->query("
+            SELECT proveedor_servicio, COUNT(id) cantidad_por_proveedor, SUM(tarifa) total_por_proveedor, SUM(iva) iva_por_proveedor
+            FROM invoiced_services
+            WHERE fecha BETWEEN '".$fecha1."' AND '".$fecha2."' GROUP BY proveedor_servicio ORDER BY proveedor_servicio;");
+            
+            if (empty($query)) {
+              $this->set('tipo_mensaje', 2);
+              $this->Session->setFlash(__('<i class="fa fa-times-circle"></i> No se encontraron ventas.'), 'default', array('class' => 'error-message'));
+            }
+            else {
+              $this->set(array('query' => $query, 'tipo_mensaje' => 2));
+              $this->set('fecha1', $fecha1);
+              $this->set('fecha2', $fecha2);
+              $this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Resultado.'), 'default', array('class' => 'success'));
+            }
+          }
+        }
+        break;
+      case 8:
+        $this->loadModel('Airline');
+        $this->set(array('aereolineas' => $this->Airline->find('list', array('fields' => 'Airline.id, Airline.name')), 'reporte_encontrado' => true, 'nombre_reporte' => 'Total de Venta de Boletos Aéreos por Línea Aérea por Periodo BSP', 'opcion' => 8));
+        
+        if ($this->request->is(array('post', 'put'))) {
+          $airline_id = $this->request->data['show_reporte_8']['airline_id'];
+          
+          $this->loadModel('GoalAirline');
+          $query = $this->GoalAirline->query("
+          SELECT periodo_bsp, fecha_inicio, fecha_fin, meta_bsp, boletos_periodo, total_periodo, faltante, porcentaje, comision, ingreso_comision
+          FROM goal_airlines WHERE airline_id = ".$airline_id." AND boletos_periodo <> 0 ORDER BY fecha_inicio");
+          
+          if (empty($query)) {
+            $this->set('tipo_mensaje', 2);
+            $this->Session->setFlash(__('<i class="fa fa-times-circle"></i> No se encontraron metas.'), 'default', array('class' => 'error-message'));
+          }
+          else {
+            $this->set(array('query' => $query, 'tipo_mensaje' => 2));
+            $this->set('airline_id', $airline_id);
+            $this->Session->setFlash(__('<i class="fa fa-info-circle"></i> Resultado.'), 'default', array('class' => 'success'));
+          }
+        }
+        break;
+      default:
+        $this->set('reporte_encontrado', false);
+        $this->Session->setFlash(__('<i class="fa fa-times-circle"></i> Reporte no encontrado.'), 'default', array('class' => 'error-message'));
+        break;
+    }
+  }
+
 	public function save($opcion) {
 		switch ($opcion) {
 			case 6:
@@ -245,6 +436,70 @@ class ReportsController extends AppController {
 		}
         }
 
+         // Salida 10 para reporte en excel
+        public function ventaServicioTerrestreTipoServicioMensualReporteExcel() { //Acumulado venta de servicios terrestres por tipo de servicio mensual
+                
+                //Si el formulario se envió
+                if ($this->request->is(array('post', 'put'))) {                    
+                    //Saca la fecha año del request
+                    $fechaAnio=$this->request->data["reporte_excel"]['fecha_anio'];
+                    //Saca la fecha mes del request
+                    $fechaMes=$this->request->data["reporte_excel"]['fecha_mes'];
+                    //Saca la fecha del request
+                    $fechaInicio=$this->request->data["reporte_excel"]['fecha_inicio'];
+                    //Saca la fecha del request
+                    $fechaFin=$this->request->data["reporte_excel"]['fecha_fin'];
+                    
+                    $this->loadModel('ServicesSalesType');
+                    //ejecuta consulta la venta de servicios terrestres por proveedor por Mes
+                    $queryConsultaServiciosTipo="SELECT  services_sales_types.id, types.tipo_servicio, types.cantidad_servicios_tipo, types.total_servicios_tipo, services_sales_types.fecha_inicio_tipo, services_sales_types.fecha_fin_tipo "
+                            . "FROM services_sales_types inner join types ON services_sales_types.id = types.services_sales_type_id  "
+                            . "WHERE  fecha_inicio_tipo >= '". $fechaInicio . "' AND fecha_inicio_tipo <= '". $fechaFin . "' ORDER BY tipo_servicio;";
+                    $consultaServiciosTipo=$this->ServicesSalesType->query($queryConsultaServiciosTipo);
+                    
+                    //Si la consulta retorna vacía
+                    if(empty($consultaServiciosTipo)):
+                        $this->Session->setFlash(__('No encontro registros servicios terrestres vendidos por tipo de servicio para este mes. '));
+                    
+                    else:
+                        $this->set('consultaServiciosTipo',$consultaServiciosTipo);
+                        $this->set('fechaAnio',$fechaAnio);
+                        $this->set('fechaMes',$fechaMes);
+                    endif;                    
+    }
+        }      // Salida 10 para reporte en pdf
+        public function ventaServicioTerrestreTipoServicioMensualReportePdf() { //Acumulado venta de servicios terrestres por tipo de servicio mensual
+                
+                //Si el formulario se envió
+                if ($this->request->is(array('post', 'put'))) {                    
+                    //Saca la fecha año del request
+                    $fechaAnio=$this->request->data["reporte_pdf"]['fecha_anio'];
+                    //Saca la fecha mes del request
+                    $fechaMes=$this->request->data["reporte_pdf"]['fecha_mes'];
+                    //Saca la fecha del request
+                    $fechaInicio=$this->request->data["reporte_pdf"]['fecha_inicio'];
+                    //Saca la fecha del request
+                    $fechaFin=$this->request->data["reporte_pdf"]['fecha_fin'];
+                    
+                    $this->loadModel('ServicesSalesType');
+                    //ejecuta consulta la venta de servicios terrestres por proveedor por Mes
+                    $queryConsultaServiciosTipo="SELECT  services_sales_types.id, types.tipo_servicio, types.cantidad_servicios_tipo, types.total_servicios_tipo, services_sales_types.fecha_inicio_tipo, services_sales_types.fecha_fin_tipo "
+                            . "FROM services_sales_types inner join types ON services_sales_types.id = types.services_sales_type_id  "
+                            . "WHERE  fecha_inicio_tipo >= '". $fechaInicio . "' AND fecha_inicio_tipo <= '". $fechaFin . "' ORDER BY tipo_servicio;";
+                    $consultaServiciosTipo=$this->ServicesSalesType->query($queryConsultaServiciosTipo);
+                    
+                    //Si la consulta retorna vacía
+                    if(empty($consultaServiciosTipo)):
+                        $this->Session->setFlash(__('No encontro registros servicios terrestres vendidos por tipo de servicio para este mes. '));
+                    
+                    else:
+                        $this->set('consultaServiciosTipo',$consultaServiciosTipo);
+                        $this->set('fechaAnio',$fechaAnio);
+                        $this->set('fechaMes',$fechaMes);
+                    endif;                    
+    }
+        }
+
         // Salida 11 
         public function ventaProveedorServicioTerrestreMensual() { //Acumulado de venta por proveedor de servicios terrestres mensual
                 
@@ -280,5 +535,69 @@ class ReportsController extends AppController {
 		}
        
         }   
+
+        // Salida 11 para reporte excel
+        public function ventaProveedorServicioTerrestreMensualReporteExcel() { //Acumulado de venta por proveedor de servicios terrestres mensual
+                
+                //Si el formulario se envió
+                if ($this->request->is(array('post', 'put'))) {                    
+                    //Saca la fecha año del request
+                    $fechaAnio=$this->request->data["reporte_excel"]['fecha_anio'];
+                    //Saca la fecha mes del request
+                    $fechaMes=$this->request->data["reporte_excel"]['fecha_mes'];
+                    //Saca la fecha del request
+                    $fechaInicio=$this->request->data["reporte_excel"]['fecha_inicio'];
+                    //Saca la fecha del request
+                    $fechaFin=$this->request->data["reporte_excel"]['fecha_fin'];
+                    
+                    $this->loadModel('Providers');
+                    //ejecuta consulta la venta de servicios terrestres por proveedor por Mes
+                    $queryConsultaServicios="SELECT services_sales_providers.id, proveedor_servicio, cantidad_servicios_proveedor, total_servicios_proveedor, fecha_inicio_proveedor, fecha_fin_proveedor "
+                            . "FROM services_sales_providers inner join providers ON providers.services_sales_provider_id = services_sales_providers.id "
+                            . "WHERE fecha_inicio_proveedor >= '". $fechaInicio . "' AND fecha_inicio_proveedor <= '". $fechaFin . "' ORDER BY proveedor_servicio;";
+                    $consultaServicios=$this->Providers->query($queryConsultaServicios);
+                    
+                    //Si la consulta retorna vacía
+                    if(empty($consultaServicios)):
+                        $this->Session->setFlash(__('No encontro registros servicios terrestres vendidos de proveerdor para este mes. '));
+                    
+                    else:
+                        $this->set('consultaServicios',$consultaServicios);
+                        $this->set('fechaAnio',$fechaAnio);
+                        $this->set('fechaMes',$fechaMes);
+                    endif;                    
+    }
+        }// Salida 11 para reporte pdf
+        public function ventaProveedorServicioTerrestreMensualReportePdf() { //Acumulado de venta por proveedor de servicios terrestres mensual
+                
+                //Si el formulario se envió
+                if ($this->request->is(array('post', 'put'))) {                    
+                    //Saca la fecha año del request
+                    $fechaAnio=$this->request->data["reporte_pdf"]['fecha_anio'];
+                    //Saca la fecha mes del request
+                    $fechaMes=$this->request->data["reporte_pdf"]['fecha_mes'];
+                    //Saca la fecha del request
+                    $fechaInicio=$this->request->data["reporte_pdf"]['fecha_inicio'];
+                    //Saca la fecha del request
+                    $fechaFin=$this->request->data["reporte_pdf"]['fecha_fin'];
+                    
+                    $this->loadModel('Providers');
+                    //ejecuta consulta la venta de servicios terrestres por proveedor por Mes
+                    $queryConsultaServicios="SELECT services_sales_providers.id, proveedor_servicio, cantidad_servicios_proveedor, total_servicios_proveedor, fecha_inicio_proveedor, fecha_fin_proveedor "
+                            . "FROM services_sales_providers inner join providers ON providers.services_sales_provider_id = services_sales_providers.id "
+                            . "WHERE fecha_inicio_proveedor >= '". $fechaInicio . "' AND fecha_inicio_proveedor <= '". $fechaFin . "' ORDER BY proveedor_servicio;";
+                    $consultaServicios=$this->Providers->query($queryConsultaServicios);
+                    
+                    //Si la consulta retorna vacía
+                    if(empty($consultaServicios)):
+                        $this->Session->setFlash(__('No encontro registros de servicios terrestres vendidos de proveerdor para este mes. '));
+                    
+                    else:
+                        $this->set('consultaServicios',$consultaServicios);
+                        $this->set('fechaAnio',$fechaAnio);
+                        $this->set('fechaMes',$fechaMes);
+                    endif;                    
+    }
+        }
      
 }

@@ -98,7 +98,30 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                 </div>
             </div>
             </div><!-- ./col -->
+        <!-- Generear Reportes -->
+        <div class="col-lg-3 col-xs-6" style="margin-bottom: 20px">
+            <?php
+            if (!empty($consultaRutas)):
+                echo $this->Form->create('TicketRoute', array('url' => array('controller' => 'airlines', 'action' => 'boletosPorRutaSemanalReporteExcel')));
+                echo $this->Form->input('airline_id', array('value' => $airline_id, 'type' => 'hidden'));
+                echo $this->Form->input('fecha_inicio', array('value' => $fechainicio, 'type' => 'hidden'));
+                echo $this->Form->input('fecha_fin', array('value' => $fechafin, 'type' => 'hidden'));
+                echo $this->Form->end(array('label' => 'Generar Reporte Excel', 'class' => 'btn btn-primary'));
+            endif;
+            ?>
+        </div><!-- ./col -->
+        <div class="col-lg-3 col-xs-6" style="margin-bottom: 20px">
         
+            <?php
+            if (!empty($consultaRutas)):
+                echo $this->Form->create('TicketRoute', array('url' => array('controller' => 'airlines', 'action' => 'boletosPorRutaSemanalReportePdf')));
+                echo $this->Form->input('airline_id', array('value' => $airline_id, 'type' => 'hidden'));
+                echo $this->Form->input('fecha_inicio', array('value' => $fechainicio, 'type' => 'hidden'));
+                echo $this->Form->input('fecha_fin', array('value' => $fechafin, 'type' => 'hidden'));
+                echo $this->Form->end(array('label' => 'Generar Reporte PDF', 'class' => 'btn btn-primary'));
+            endif;
+            ?>
+        </div><!-- ./col --> 
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
                 <?php

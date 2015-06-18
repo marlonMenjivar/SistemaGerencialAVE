@@ -117,57 +117,170 @@ class GoalAirlinesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-        public function comparativoMetasAerolinea() {
-                //Lee la lista de aerolíneas
-                $airlines = $this->GoalAirline->Airline->find('list');
-		//manda lista a vista
-                $this->set(compact('airlines'));
+    public function comparativoMetasAerolinea() {
+            //Lee la lista de aerolíneas
+            $airlines = $this->GoalAirline->Airline->find('list');
+    //manda lista a vista
+            $this->set(compact('airlines'));
+            
+            //Si el formulario se envió
+            if ($this->request->is(array('post', 'put'))) {
                 
-                //Si el formulario se envió
-                if ($this->request->is(array('post', 'put'))) {
+                //Saca el id del request
+                $id=$this->request->data["GoalAirline"]['airline_id'];
+                
+                //Saca la fecha del request
+                $fecha=$this->request->data["GoalAirline"]['fecha_inicio'];
+              
+                //ejecuta consulta de metas para aerolínea y por fecha
+                $queryConsultaMetas="SELECT * FROM `goal_airlines` as GoalAirline "
+                        . "WHERE `fecha_inicio`<='".$fecha."' and `fecha_fin`>='".$fecha."' and airline_id=".$id;
+                $consultaMetas=$this->GoalAirline->query($queryConsultaMetas);
+                
+                
+                //Si la consulta retorna vacía
+                if(empty($consultaMetas)):
+                    $this->Session->setFlash(__('Meta no encontrada para este mes.'));
+                //Si encuentra la meta
+                else:
+                    //Esta línea hace que el resultado de la consulta se ponga en el form
+                    $this->request->data=$consultaMetas[0];
+                
+                    //Manda el array consultaMetas a la vista
+                    $this->set('consultaMetas',$consultaMetas[0]);
+                    $this->Session->setFlash(__('Datos leídos'));
                     
-                    //Saca el id del request
-                    $id=$this->request->data["GoalAirline"]['airline_id'];
+                    //Sacando fechas de inicio y fin de resultado de query de metas para consulta
+                    $fecha_inicio=$consultaMetas[0]['GoalAirline']['fecha_inicio'];
+                    $fecha_fin=$consultaMetas[0]['GoalAirline']['fecha_fin'];
                     
-                    //Saca la fecha del request
-                    $fecha=$this->request->data["GoalAirline"]['fecha_inicio'];
-                  
-                    //ejecuta consulta de metas para aerolínea y por fecha
-                    $queryConsultaMetas="SELECT * FROM `goal_airlines` as GoalAirline "
-                            . "WHERE `fecha_inicio`<='".$fecha."' and `fecha_fin`>='".$fecha."' and airline_id=".$id;
-                    $consultaMetas=$this->GoalAirline->query($queryConsultaMetas);
+                    //Si encuentra meta ejecuta consulta de boletos por aerolínea y por fecha
+                    $consultaBoletos=""
+                        . " SELECT * from invoiced_tickets"
+                        . " WHERE airline_id=".$id." and "
+                            . "fecha between '".$fecha_inicio."' and '".$fecha_fin."'";
+                    //Carga modelo
+                    $this->loadModel('InvoicedTicket');
                     
-                    
-                    //Si la consulta retorna vacía
-                    if(empty($consultaMetas)):
-                        $this->Session->setFlash(__('Meta no encontrada para este mes.'));
-                    //Si encuentra la meta
-                    else:
-                        //Esta línea hace que el resultado de la consulta se ponga en el form
-                        $this->request->data=$consultaMetas[0];
-                    
-                        //Manda el array consultaMetas a la vista
-                        $this->set('consultaMetas',$consultaMetas[0]);
-                        $this->Session->setFlash(__('Datos leídos'));
-                        
-                        //Sacando fechas de inicio y fin de resultado de query de metas para consulta
-                        $fecha_inicio=$consultaMetas[0]['GoalAirline']['fecha_inicio'];
-                        $fecha_fin=$consultaMetas[0]['GoalAirline']['fecha_fin'];
-                        
-                        //Si encuentra meta ejecuta consulta de boletos por aerolínea y por fecha
-                        $consultaBoletos=""
-                            . " SELECT * from invoiced_tickets"
-                            . " WHERE airline_id=".$id." and "
-                                . "fecha between '".$fecha_inicio."' and '".$fecha_fin."'";
-                        //Carga modelo
-                        $this->loadModel('InvoicedTicket');
-                        
-                        $consultaBoletos=$this->InvoicedTicket->query($consultaBoletos);
+                    $consultaBoletos=$this->InvoicedTicket->query($consultaBoletos);
 
-                        $this->set('consultaBoletos',$consultaBoletos);
-                    endif;                    
+                    $this->set('consultaBoletos',$consultaBoletos);
+                    $this->set('airline_id',$id);
+                    $this->set('fecha',$fecha);
+                    $this->set('airlineaNombre',$airlines[$id]);
+                endif;                    
 		}
 	}
+
+    public function comparativoMetasAerolineaReporteExcel() {
+            //Lee la lista de aerolíneas
+            $airlines = $this->GoalAirline->Airline->find('list');
+    //manda lista a vista
+            $this->set(compact('airlines'));
+            
+            //Si el formulario se envió
+            if ($this->request->is(array('post', 'put'))) {
+                
+                //Saca el id del request
+                $id=$this->request->data["GoalAirline"]['airline_id'];
+                
+                //Saca la fecha del request
+                $fecha=$this->request->data["GoalAirline"]['fecha_inicio'];
+              
+                //ejecuta consulta de metas para aerolínea y por fecha
+                $queryConsultaMetas="SELECT * FROM `goal_airlines` as GoalAirline "
+                        . "WHERE `fecha_inicio`<='".$fecha."' and `fecha_fin`>='".$fecha."' and airline_id=".$id;
+                $consultaMetas=$this->GoalAirline->query($queryConsultaMetas);
+                
+                
+                //Si la consulta retorna vacía
+                if(empty($consultaMetas)):
+                    $this->Session->setFlash(__('Meta no encontrada para este mes.'));
+                //Si encuentra la meta
+                else:
+                    //Esta línea hace que el resultado de la consulta se ponga en el form
+                    $this->request->data=$consultaMetas[0];
+                
+                    //Manda el array consultaMetas a la vista
+                    $this->set('consultaMetas',$consultaMetas[0]);
+                    $this->Session->setFlash(__('Datos leídos'));
+                    
+                    //Sacando fechas de inicio y fin de resultado de query de metas para consulta
+                    $fecha_inicio=$consultaMetas[0]['GoalAirline']['fecha_inicio'];
+                    $fecha_fin=$consultaMetas[0]['GoalAirline']['fecha_fin'];
+                    
+                    //Si encuentra meta ejecuta consulta de boletos por aerolínea y por fecha
+                    $consultaBoletos=""
+                        . " SELECT * from invoiced_tickets"
+                        . " WHERE airline_id=".$id." and "
+                            . "fecha between '".$fecha_inicio."' and '".$fecha_fin."'";
+                    //Carga modelo
+                    $this->loadModel('InvoicedTicket');
+                    
+                    $consultaBoletos=$this->InvoicedTicket->query($consultaBoletos);
+
+                    $this->set('consultaBoletos',$consultaBoletos);
+                    $this->set('airline_id',$id);
+                    $this->set('fecha',$fecha);
+                    $this->set('airlineaNombre',$airlines[$id]);
+                endif;                    
+        }
+    }
+
+    public function comparativoMetasAerolineaReportePdf() {
+            //Lee la lista de aerolíneas
+            $airlines = $this->GoalAirline->Airline->find('list');
+    //manda lista a vista
+            $this->set(compact('airlines'));
+            
+            //Si el formulario se envió
+            if ($this->request->is(array('post', 'put'))) {
+                
+                //Saca el id del request
+                $id=$this->request->data["GoalAirline"]['airline_id'];
+                
+                //Saca la fecha del request
+                $fecha=$this->request->data["GoalAirline"]['fecha_inicio'];
+              
+                //ejecuta consulta de metas para aerolínea y por fecha
+                $queryConsultaMetas="SELECT * FROM `goal_airlines` as GoalAirline "
+                        . "WHERE `fecha_inicio`<='".$fecha."' and `fecha_fin`>='".$fecha."' and airline_id=".$id;
+                $consultaMetas=$this->GoalAirline->query($queryConsultaMetas);
+                
+                
+                //Si la consulta retorna vacía
+                if(empty($consultaMetas)):
+                    $this->Session->setFlash(__('Meta no encontrada para este mes.'));
+                //Si encuentra la meta
+                else:
+                    //Esta línea hace que el resultado de la consulta se ponga en el form
+                    $this->request->data=$consultaMetas[0];
+                
+                    //Manda el array consultaMetas a la vista
+                    $this->set('consultaMetas',$consultaMetas[0]);
+                    $this->Session->setFlash(__('Datos leídos'));
+                    
+                    //Sacando fechas de inicio y fin de resultado de query de metas para consulta
+                    $fecha_inicio=$consultaMetas[0]['GoalAirline']['fecha_inicio'];
+                    $fecha_fin=$consultaMetas[0]['GoalAirline']['fecha_fin'];
+                    
+                    //Si encuentra meta ejecuta consulta de boletos por aerolínea y por fecha
+                    $consultaBoletos=""
+                        . " SELECT * from invoiced_tickets"
+                        . " WHERE airline_id=".$id." and "
+                            . "fecha between '".$fecha_inicio."' and '".$fecha_fin."'";
+                    //Carga modelo
+                    $this->loadModel('InvoicedTicket');
+                    
+                    $consultaBoletos=$this->InvoicedTicket->query($consultaBoletos);
+
+                    $this->set('consultaBoletos',$consultaBoletos);
+                    $this->set('fecha',$fecha);
+                    $this->set('airlineaNombre',$airlines[$id]);
+                endif;                    
+        }
+    }
+
         public function editar($id=null,
                         $boletos_periodo=null,
                         $total_periodo=null,
@@ -210,7 +323,7 @@ class GoalAirlinesController extends AppController {
                 
                 //ejecuta consulta de boletos vendidos para aerolínea por Mes
                 $queryConsultaVentas="SELECT airline_id, name, fecha_inicio, fecha_fin, boletos_periodo, total_periodo "
-                        . "FROM goal_airlines, airlines WHERE goal_airlines.airline_id = airlines.id AND fecha_inicio = '". $fechaInicio . "' AND fecha_fin = '". $fechaFin . "' ORDER BY goal_airlines.airline_id;";
+                        . "FROM goal_airlines, airlines WHERE goal_airlines.airline_id = airlines.id AND  fecha_inicio = '". $fechaInicio . "' AND fecha_fin = '". $fechaFin . "'AND goal_airlines.boletos_periodo <> 0 ORDER BY goal_airlines.airline_id;";
                 $consultaVentas=$this->GoalAirline->query($queryConsultaVentas);
                 
                 //Si la consulta retorna vacía
@@ -218,7 +331,7 @@ class GoalAirlinesController extends AppController {
                     $this->Session->setFlash(__('No se encontro registros de boletos vendidos de aerolínea para este mes. '));
                 //Si encuentra la meta
                 else:
-                    $this->set('consultaVentas',$consultaVentas);
+                    $this->set('consultaVentas',$consultaVentas);   
                     $this->set('fechaInicio',$fechaInicio);
                     $this->set('fechaFin',$fechaFin);
                     $this->set('fechaAnio',$fechaAnio);
@@ -228,6 +341,75 @@ class GoalAirlinesController extends AppController {
         }
 
 
+        // Acumulado venta de boletos aéreos por líneas aéreas mensual
+        public function ventaBoletoAereosMensualReporteExcel() {
+            //Lee la lista de aerolíneas
+            $airlines = $this->GoalAirline->Airline->find('list');
+            //manda lista a vista
+            $this->set(compact('airlines'));
+            
+            //Si el formulario se envió
+            if ($this->request->is(array('post', 'put'))) {                    
+                //Saca la fecha año del request
+                $fechaAnio=$this->request->data["reporte_excel"]['fecha_anio'];
+                //Saca la fecha mes del request
+                $fechaMes=$this->request->data["reporte_excel"]['fecha_mes'];
+                //Saca la fecha inicio del request
+                $fechaInicio=$this->request->data["reporte_excel"]['fecha_inicio'];
+                //Saca la fecha fin del request
+                $fechaFin=$this->request->data["reporte_excel"]['fecha_fin'];
+                
+                //ejecuta consulta de boletos vendidos para aerolínea por Mes
+                $queryConsultaVentas="SELECT name, fecha_inicio, fecha_fin, boletos_periodo, total_periodo "
+                        . "FROM goal_airlines, airlines WHERE goal_airlines.airline_id = airlines.id AND fecha_inicio = '". $fechaInicio . "' AND fecha_fin = '". $fechaFin . "' ORDER BY airline_id;";
+                $consultaVentas=$this->GoalAirline->query($queryConsultaVentas);
+                
+                //Si la consulta retorna vacía
+                if(empty($consultaVentas)):
+                    $this->Session->setFlash(__('No encontrada boletos vendidos de aerolínea para este mes. '));
+                //Si encuentra la meta
+                else:
+                    $this->set('consultaVentas',$consultaVentas);
+                    $this->set('fechaAnio',$fechaAnio);
+                    $this->set('fechaMes',$fechaMes);
+                endif;                    
+            }
+        }
+
+        // Acumulado venta de boletos aéreos por líneas aéreas mensual
+        public function ventaBoletoAereosMensualReportePdf() {
+            //Lee la lista de aerolíneas
+            $airlines = $this->GoalAirline->Airline->find('list');
+            //manda lista a vista
+            $this->set(compact('airlines'));
+            
+            //Si el formulario se envió
+            if ($this->request->is(array('post', 'put'))) {                    
+                //Saca la fecha año del request
+                $fechaAnio=$this->request->data["reporte_pdf"]['fecha_anio'];
+                //Saca la fecha mes del request
+                $fechaMes=$this->request->data["reporte_pdf"]['fecha_mes'];
+                //Saca la fecha inicio del request
+                $fechaInicio=$this->request->data["reporte_pdf"]['fecha_inicio'];
+                //Saca la fecha fin del request
+                $fechaFin=$this->request->data["reporte_pdf"]['fecha_fin'];
+                
+                //ejecuta consulta de boletos vendidos para aerolínea por Mes
+                $queryConsultaVentas="SELECT name, fecha_inicio, fecha_fin, boletos_periodo, total_periodo "
+                        . "FROM goal_airlines, airlines WHERE goal_airlines.airline_id = airlines.id AND fecha_inicio = '". $fechaInicio . "' AND fecha_fin = '". $fechaFin . "' ORDER BY airline_id;";
+                $consultaVentas=$this->GoalAirline->query($queryConsultaVentas);
+                
+                //Si la consulta retorna vacía
+                if(empty($consultaVentas)):
+                    $this->Session->setFlash(__('No encontrada boletos vendidos de aerolínea para este mes. '));
+                //Si encuentra la meta
+                else:
+                    $this->set('consultaVentas',$consultaVentas);
+                    $this->set('fechaAnio',$fechaAnio);
+                    $this->set('fechaMes',$fechaMes);
+                endif;                    
+            }
+        }
 
 
 

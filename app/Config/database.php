@@ -6,8 +6,8 @@ class DATABASE_CONFIG {
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'root',
-		'password' => '',
-		'database' => 'sigave',
+		'password' => 'root',
+		'database' => 'bd_gerencial_escamilla_final',
 		'prefix' => '',
 		'encoding' => 'utf8'
 	);

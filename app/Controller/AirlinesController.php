@@ -144,9 +144,91 @@ class AirlinesController extends AppController {
             $consultaDestinos=$this->InvoicedTicket->query($consultaDestino);
             
             $this->set('consultaDestinos',$consultaDestinos);
+            $this->set('airlineaNombre',$airlines[$id]);
+            $this->set('airline_id',$id);
+            $this->set('fechainicio',$fechainicio);
+            $this->set('fechafin',$fechafin);
             $this->Session->setFlash('Datos leidos');
         }
 	}
+    //Reporte Excel
+    public function boletosPorDestinoSemanalReporteExcel() {
+        //Lee las lista de aerolíneas
+        $airlines = $this->Airline->find('list');
+        //Manda lista de airlines a la vista
+        $this->set(compact('airlines'));
+        
+        
+        //Al darle click al botón generar (envio de formulario)
+        if ($this->request->is(array('post', 'put'))) {
+            
+            //Lee el id de la aerolinea enviado en el request
+            $id=$this->request->data["TicketDestiny"]['airline_id'];
+            
+            //Lee la fecha de inicio enviada en el request
+            $fechainicio = $this->request->data["TicketDestiny"]['fecha_inicio'];
+            
+            //Lee la fecha final enviada en el request
+            $fechafin = $this->request->data["TicketDestiny"]['fecha_fin'];
+            
+            //Ejecuta la consulta de boletos por destino por aerolinea
+            $consultaDestino = "SELECT it.destino, count(it.boleto) as boletos_destino, sum(it.tarifa) as total_destino, " 
+                . "iit.nombre_ciudad2 as ciudad_destino, iit.pais2 as pais_destino " 
+                . "FROM invoiced_tickets it INNER JOIN itinerary_invoiced_tickets iit ON it.itinerary_invoiced_ticket_id = iit.id "
+                . "WHERE it.airline_id = ".$id." AND it.fecha BETWEEN '".$fechainicio."' AND '".$fechafin."' GROUP BY destino ORDER BY destino;";
+            
+            //Carga el modelo de boletos facturados
+            $this->loadModel('InvoicedTicket');
+            
+            $consultaDestinos=$this->InvoicedTicket->query($consultaDestino);
+            
+            $this->set('consultaDestinos',$consultaDestinos);
+            $this->set('airlineaNombre',$airlines[$id]);
+            $this->set('airline_id',$id);
+            $this->set('fechainicio',$fechainicio);
+            $this->set('fechafin',$fechafin);
+            $this->Session->setFlash('Datos leidos');
+        }
+    }
+    //Reporte pdf
+    public function boletosPorDestinoSemanalReportePdf() {
+        //Lee las lista de aerolíneas
+        $airlines = $this->Airline->find('list');
+        //Manda lista de airlines a la vista
+        $this->set(compact('airlines'));
+        
+        
+        //Al darle click al botón generar (envio de formulario)
+        if ($this->request->is(array('post', 'put'))) {
+            
+            //Lee el id de la aerolinea enviado en el request
+            $id=$this->request->data["TicketDestiny"]['airline_id'];
+            
+            //Lee la fecha de inicio enviada en el request
+            $fechainicio = $this->request->data["TicketDestiny"]['fecha_inicio'];
+            
+            //Lee la fecha final enviada en el request
+            $fechafin = $this->request->data["TicketDestiny"]['fecha_fin'];
+            
+            //Ejecuta la consulta de boletos por destino por aerolinea
+            $consultaDestino = "SELECT it.destino, count(it.boleto) as boletos_destino, sum(it.tarifa) as total_destino, " 
+                . "iit.nombre_ciudad2 as ciudad_destino, iit.pais2 as pais_destino " 
+                . "FROM invoiced_tickets it INNER JOIN itinerary_invoiced_tickets iit ON it.itinerary_invoiced_ticket_id = iit.id "
+                . "WHERE it.airline_id = ".$id." AND it.fecha BETWEEN '".$fechainicio."' AND '".$fechafin."' GROUP BY destino ORDER BY destino;";
+            
+            //Carga el modelo de boletos facturados
+            $this->loadModel('InvoicedTicket');
+            
+            $consultaDestinos=$this->InvoicedTicket->query($consultaDestino);
+            
+            $this->set('consultaDestinos',$consultaDestinos);
+            $this->set('airlineaNombre',$airlines[$id]);
+            $this->set('airline_id',$id);
+            $this->set('fechainicio',$fechainicio);
+            $this->set('fechafin',$fechafin);
+            $this->Session->setFlash('Datos leidos');
+        }
+    }
     
     //Funcion que guarda el registro del reporte por destino
     public function guardarDestinos() {
@@ -225,9 +307,92 @@ class AirlinesController extends AppController {
             $consultaRutas=$this->InvoicedTicket->query($consultaRuta);
             
             $this->set('consultaRutas',$consultaRutas);
+            $this->set('airlineaNombre',$airlines[$id]);
+            $this->set('airline_id',$id);
+            $this->set('fechainicio',$fechainicio);
+            $this->set('fechafin',$fechafin);
             $this->Session->setFlash('Datos leidos');
         }
 	}
+        //Reporte excel
+      public function boletosPorRutaSemanalReporteExcel() {
+        //Lee las lista de aerolíneas
+        $airlines = $this->Airline->find('list');
+        //Manda lista de airlines a la vista
+        $this->set(compact('airlines'));
+        
+        
+        //Al darle click al botón generar (envio de formulario)
+        if ($this->request->is(array('post', 'put'))) {
+            
+            //Lee el id de la aerolinea enviado en el request
+            $id=$this->request->data["TicketRoute"]['airline_id'];
+            
+            //Lee la fecha de inicio enviada en el request
+            $fechainicio = $this->request->data["TicketRoute"]['fecha_inicio'];
+            
+            //Lee la fecha final enviada en el request
+            $fechafin = $this->request->data["TicketRoute"]['fecha_fin'];
+            
+            //Ejecuta la consulta de boletos por ruta por aerolinea
+            $consultaRuta = "SELECT it.ruta, count(it.boleto) as boletos_ruta, sum(it.tarifa) as total_ruta, " 
+                . "iit.nombre_ciudad1 as ciudad_origen, iit.pais1 as pais_origen, "
+                . "iit.nombre_ciudad2 as ciudad_destino, iit.pais2 as pais_destino " 
+                . "FROM invoiced_tickets it INNER JOIN itinerary_invoiced_tickets iit ON it.itinerary_invoiced_ticket_id = iit.id "
+                . "WHERE it.airline_id = ".$id." AND it.fecha BETWEEN '".$fechainicio."' AND '".$fechafin."' GROUP BY ruta ORDER BY ruta;";
+            
+            //Carga el modelo de boletos facturados
+            $this->loadModel('InvoicedTicket');
+            
+            $consultaRutas=$this->InvoicedTicket->query($consultaRuta);
+            
+            $this->set('consultaRutas',$consultaRutas);
+            $this->set('airlineaNombre',$airlines[$id]);
+            $this->set('airline_id',$id);
+            $this->set('fechainicio',$fechainicio);
+            $this->set('fechafin',$fechafin);
+            $this->Session->setFlash('Datos leidos');
+        }
+    }
+        //Reporte Pdf
+      public function boletosPorRutaSemanalReportePdf() {
+        //Lee las lista de aerolíneas
+        $airlines = $this->Airline->find('list');
+        //Manda lista de airlines a la vista
+        $this->set(compact('airlines'));
+        
+        
+        //Al darle click al botón generar (envio de formulario)
+        if ($this->request->is(array('post', 'put'))) {
+            
+            //Lee el id de la aerolinea enviado en el request
+            $id=$this->request->data["TicketRoute"]['airline_id'];
+            
+            //Lee la fecha de inicio enviada en el request
+            $fechainicio = $this->request->data["TicketRoute"]['fecha_inicio'];
+            
+            //Lee la fecha final enviada en el request
+            $fechafin = $this->request->data["TicketRoute"]['fecha_fin'];
+            
+            //Ejecuta la consulta de boletos por ruta por aerolinea
+            $consultaRuta = "SELECT it.ruta, count(it.boleto) as boletos_ruta, sum(it.tarifa) as total_ruta, " 
+                . "iit.nombre_ciudad1 as ciudad_origen, iit.pais1 as pais_origen, "
+                . "iit.nombre_ciudad2 as ciudad_destino, iit.pais2 as pais_destino " 
+                . "FROM invoiced_tickets it INNER JOIN itinerary_invoiced_tickets iit ON it.itinerary_invoiced_ticket_id = iit.id "
+                . "WHERE it.airline_id = ".$id." AND it.fecha BETWEEN '".$fechainicio."' AND '".$fechafin."' GROUP BY ruta ORDER BY ruta;";
+            
+            //Carga el modelo de boletos facturados
+            $this->loadModel('InvoicedTicket');
+            
+            $consultaRutas=$this->InvoicedTicket->query($consultaRuta);
+            
+            $this->set('consultaRutas',$consultaRutas);
+            $this->set('airlineaNombre',$airlines[$id]);
+            $this->set('fechainicio',$fechainicio);
+            $this->set('fechafin',$fechafin);
+            $this->Session->setFlash('Datos leidos');
+        }
+    }
     
     //Funcion que guarda el registro del reporte por ruta
     public function guardarRutas() {

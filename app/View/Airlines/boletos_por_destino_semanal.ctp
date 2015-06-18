@@ -97,26 +97,49 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                     <i class="ion ion-stats-bars"></i>
                 </div>
             </div>
-            </div><!-- ./col -->
+        </div><!-- ./col -->
+        <!-- Generear Reportes -->
+        <div class="col-lg-3 col-xs-6" style="margin-bottom: 20px">
+            <?php
+            if (!empty($consultaDestinos)):
+                echo $this->Form->create('TicketDestiny', array('url' => array('controller' => 'airlines', 'action' => 'boletosPorDestinoSemanalReporteExcel')));
+                echo $this->Form->input('airline_id', array('value' => $airline_id, 'type' => 'hidden'));
+                echo $this->Form->input('fecha_inicio', array('value' => $fechainicio, 'type' => 'hidden'));
+                echo $this->Form->input('fecha_fin', array('value' => $fechafin, 'type' => 'hidden'));
+                echo $this->Form->end(array('label' => 'Generar Reporte Excel', 'class' => 'btn btn-primary'));
+            endif;
+            ?>
+        </div><!-- ./col -->
+        <div class="col-lg-3 col-xs-6" style="margin-bottom: 20px">
         
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <?php
-                            
-                            if(empty($consultaDestinos)):
-                                //No muestra el boton de guardar
-                            else:
-                                echo $this->Form->create('guarda_destinos', array('url' => array('controller' => 'airlines', 'action' => 'guardarDestinos')));
-                                echo $this->Form->input('airline_id', array('value' => $this->request->data['TicketDestiny']['airline_id'], 'type' => 'hidden'));
-                                echo $this->Form->input('fecha_inicio', array('value' => $this->request->data['TicketDestiny']['fecha_inicio'], 'type' => 'hidden'));
-                                echo $this->Form->input('fecha_fin', array('value' => $this->request->data['TicketDestiny']['fecha_fin'], 'type' => 'hidden'));
-                                echo $this->Form->input('boletos_destino', array('value' => $boletos_destino, 'type' => 'hidden'));
-                                echo $this->Form->input('total_destino', array('value' => $total_destino, 'type' => 'hidden'));
-                                echo $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => false));
-                                echo $this->Form->end();
-                            endif;
-                    ?>
-            </div><!-- ./col -->
+            <?php
+            if (!empty($consultaDestinos)):
+                echo $this->Form->create('TicketDestiny', array('url' => array('controller' => 'airlines', 'action' => 'boletosPorDestinoSemanalReportePdf')));
+                echo $this->Form->input('airline_id', array('value' => $airline_id, 'type' => 'hidden'));
+                echo $this->Form->input('fecha_inicio', array('value' => $fechainicio, 'type' => 'hidden'));
+                echo $this->Form->input('fecha_fin', array('value' => $fechafin, 'type' => 'hidden'));
+                echo $this->Form->end(array('label' => 'Generar Reporte PDF', 'class' => 'btn btn-primary'));
+            endif;
+            ?>
+        </div><!-- ./col --> 
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <?php
+                        
+                        if(empty($consultaDestinos)):
+                            //No muestra el boton de guardar
+                        else:
+                            echo $this->Form->create('guarda_destinos', array('url' => array('controller' => 'airlines', 'action' => 'guardarDestinos')));
+                            echo $this->Form->input('airline_id', array('value' => $this->request->data['TicketDestiny']['airline_id'], 'type' => 'hidden'));
+                            echo $this->Form->input('fecha_inicio', array('value' => $this->request->data['TicketDestiny']['fecha_inicio'], 'type' => 'hidden'));
+                            echo $this->Form->input('fecha_fin', array('value' => $this->request->data['TicketDestiny']['fecha_fin'], 'type' => 'hidden'));
+                            echo $this->Form->input('boletos_destino', array('value' => $boletos_destino, 'type' => 'hidden'));
+                            echo $this->Form->input('total_destino', array('value' => $total_destino, 'type' => 'hidden'));
+                            echo $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => false));
+                            echo $this->Form->end();
+                        endif;
+                ?>
+        </div><!-- ./col -->
         
     </div>
 <div class="box">

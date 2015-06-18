@@ -46,7 +46,7 @@ if ($reporte_encontrado):
 					<div class="small-box bg-aqua">
 						<div class="inner">
 							<h3><?= number_format($sumatorias['cantidad_por_tipo'], 0, '.', ','); ?></h3>
-							<p><strong>Boletos Vendidos</strong></p>
+							<p><strong>Servicios Vendidos</strong></p>
 						</div>
 						<div class="icon">
 							<i class="ion ion-paper-airplane"></i>
@@ -64,6 +64,28 @@ if ($reporte_encontrado):
 						</div>
 					</div>
 				</div>
+  			<!-- Generear Reportes -->
+   			<div class="col-md-3" style="margin-bottom: 20px;">
+		        <?php
+		        if (!empty($query)):
+		            echo $this->Form->create('show_reporte_6', array('url' => array('controller' => 'Reports', 'action' => 'showReporteExcel',6)));
+		            echo $this->Form->input('fecha1', array('value' => $fecha1, 'type' => 'hidden'));
+		            echo $this->Form->input('fecha2', array('value' => $fecha2, 'type' => 'hidden'));
+		            echo $this->Form->end(array('label' => 'Generar Reporte Excel', 'class' => 'btn btn-primary'));
+		        endif;
+		        ?>
+		   	</div><!-- ./col -->
+		   	
+		   	<div class="col-md-3" style="margin-bottom: 20px;">
+		        <?php
+		        if (!empty($query)):
+		            echo $this->Form->create('show_reporte_6', array('url' => array('controller' => 'Reports', 'action' => 'showReportePdf',6)));
+		            echo $this->Form->input('fecha1', array('value' => $fecha1, 'type' => 'hidden'));
+		            echo $this->Form->input('fecha2', array('value' => $fecha2, 'type' => 'hidden'));
+		            echo $this->Form->end(array('label' => 'Generar Reporte PDF', 'class' => 'btn btn-primary'));
+		        endif;
+		        ?>
+		    </div><!-- ./col --> 
 				<div class="col-md-3">
 					<?php
 					if (!empty($query)) {
@@ -172,7 +194,7 @@ if ($reporte_encontrado):
 					<div class="small-box bg-aqua">
 						<div class="inner">
 							<h3><?= number_format($sumatorias['cantidad_por_proveedor'], 0, '.', ','); ?></h3>
-							<p><strong>Boletos Vendidos</strong></p>
+							<p><strong>Servicios Vendidos</strong></p>
 						</div>
 						<div class="icon">
 							<i class="ion ion-paper-airplane"></i>
@@ -190,6 +212,28 @@ if ($reporte_encontrado):
 						</div>
 					</div>
 				</div>
+  			<!-- Generear Reportes -->
+   			<div class="col-md-3" style="margin-bottom: 20px;">
+		        <?php
+		        if (!empty($query)):
+		            echo $this->Form->create('show_reporte_7', array('url' => array('controller' => 'Reports', 'action' => 'showReporteExcel',7)));
+		            echo $this->Form->input('fecha1', array('value' => $fecha1, 'type' => 'hidden'));
+		            echo $this->Form->input('fecha2', array('value' => $fecha2, 'type' => 'hidden'));
+		            echo $this->Form->end(array('label' => 'Generar Reporte Excel', 'class' => 'btn btn-primary'));
+		        endif;
+		        ?>
+		   	</div><!-- ./col -->
+		   	
+		   	<div class="col-md-3" style="margin-bottom: 20px;">
+		        <?php
+		        if (!empty($query)):
+		            echo $this->Form->create('show_reporte_7', array('url' => array('controller' => 'Reports', 'action' => 'showReportePdf',7)));
+		            echo $this->Form->input('fecha1', array('value' => $fecha1, 'type' => 'hidden'));
+		            echo $this->Form->input('fecha2', array('value' => $fecha2, 'type' => 'hidden'));
+		            echo $this->Form->end(array('label' => 'Generar Reporte PDF', 'class' => 'btn btn-primary'));
+		        endif;
+		        ?>
+		    </div><!-- ./col --> 
 				<div class="col-md-3">
 					<?php
 					if (!empty($query)) {
@@ -274,7 +318,7 @@ if ($reporte_encontrado):
 				<div class="col-md-6">
 					<div class="box box-primary">
 						<div class="box-header with-border">
-							<h3 class="box-title">Seleccione Línea Aérea</h3>
+							<h3 class="box-title">Seleccione Línea <?= trim($aereolineas[$airline_id]);?>Aérea </h3>
 						</div>
 						<?= $this->Form->create('show_reporte_8', array('role' => 'form')); ?>
 						<div class="box-body">
@@ -296,49 +340,71 @@ if ($reporte_encontrado):
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3">
-					<div class="small-box bg-aqua">
-						<div class="inner">
-							<h3><?= number_format($sumatorias['boletos_periodo'], 0, '.', ','); ?></h3>
-							<p><strong>Boletos Vendidos</strong></p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-paper-airplane"></i>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="small-box bg-green">
-						<div class="inner">
-							<h3><sup style="font-size: 20px;">$</sup> <?= number_format($sumatorias['total_periodo'], 2, '.', ','); ?></h3>
-							<p><strong>Ventas Totales</strong></p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-stats-bars"></i>
+				<div class="col-md-6" style="padding-left: 0px; padding-right: 0px; margin-bottom: 20px">
+					<div class="col-md-6">
+						<div class="small-box bg-aqua">
+							<div class="inner">
+								<h3><?= number_format($sumatorias['boletos_periodo'], 0, '.', ','); ?></h3>
+								<p><strong>Boletos Vendidos</strong></p>
+							</div>
+							<div class="icon">
+								<i class="ion ion-paper-airplane"></i>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="small-box bg-yellow">
-						<div class="inner">
-							<h3><sup style="font-size: 20px;">$</sup> <?= number_format($sumatorias['meta_bsp'], 2, '.', ','); ?></h3>
-							<p><strong>Meta BSP</strong></p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-arrow-graph-down-right"></i>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="small-box bg-red">
-						<div class="inner">
-							<h3><?= number_format($sumatorias['porcentaje'], 2, '.', ','); ?> <sup style="font-size: 20px">%</sup></h3>
-							<p><strong>Porcentaje de Incumplimiento</strong></p>
-						</div>
-						<div class="icon">
-							<i class="ion ion-pie-graph"></i>
+					<div class="col-md-6">
+						<div class="small-box bg-green">
+							<div class="inner">
+								<h3><sup style="font-size: 20px;">$</sup> <?= number_format($sumatorias['total_periodo'], 2, '.', ','); ?></h3>
+								<p><strong>Ventas Totales</strong></p>
+							</div>
+							<div class="icon">
+								<i class="ion ion-stats-bars"></i>
+							</div>
 						</div>
 					</div>
+					<div class="col-md-6">
+						<div class="small-box bg-yellow">
+							<div class="inner">
+								<h3><sup style="font-size: 20px;">$</sup> <?= number_format($sumatorias['meta_bsp'], 2, '.', ','); ?></h3>
+								<p><strong>Meta BSP</strong></p>
+							</div>
+							<div class="icon">
+								<i class="ion ion-arrow-graph-down-right"></i>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="small-box bg-red">
+							<div class="inner">
+								<h3><?= number_format($sumatorias['porcentaje'], 2, '.', ','); ?> <sup style="font-size: 20px">%</sup></h3>
+								<p><strong>Porcentaje de Incumplimiento</strong></p>
+							</div>
+							<div class="icon">
+								<i class="ion ion-pie-graph"></i>
+							</div>
+						</div>
+					</div>
+	  			<!-- Generear Reportes -->
+	   			<div class="col-md-6">
+			        <?php
+			        if (!empty($query)):
+			            echo $this->Form->create('show_reporte_8', array('url' => array('controller' => 'Reports', 'action' => 'showReporteExcel',8)));
+			            echo $this->Form->input('airline_id', array('value' => $airline_id, 'type' => 'hidden'));
+			            echo $this->Form->end(array('label' => 'Generar Reporte Excel', 'class' => 'btn btn-primary'));
+			        endif;
+			        ?>
+			   	</div><!-- ./col -->
+			   	
+			   	<div class="col-md-6">
+			        <?php
+			        if (!empty($query)):
+			            echo $this->Form->create('show_reporte_8', array('url' => array('controller' => 'Reports', 'action' => 'showReportePdf',8)));
+			            echo $this->Form->input('airline_id', array('value' => $airline_id, 'type' => 'hidden'));
+			            echo $this->Form->end(array('label' => 'Generar Reporte PDF', 'class' => 'btn btn-primary'));
+			        endif;
+			        ?>
+			    </div><!-- ./col --> 
 				</div>
 			</div>
 			<?php if (!empty($query)) { ?>
@@ -444,7 +510,7 @@ endif;
                 });
                 
                     $("#show_reporte_<?= $opcion; ?>Fecha1").change(function() {
-					   $("#show_reporte_<?= $opcion; ?>Fecha2").val(suma_fecha(7, $("#show_reporte_<?= $opcion; ?>Fecha1").val()));
+					   $("#show_reporte_<?= $opcion; ?>Fecha2").val(suma_fecha(6, $("#show_reporte_<?= $opcion; ?>Fecha1").val()));
 				    });
             });
 			
