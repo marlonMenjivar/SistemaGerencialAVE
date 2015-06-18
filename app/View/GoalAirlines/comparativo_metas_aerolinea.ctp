@@ -18,6 +18,14 @@
     $ingresoPorComision=0;
     $id=0;
 ?>
+<?php
+    $this->start('pagePath');
+    echo '<ol class="breadcrumb">';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
+    echo  '<li class="active">Aquí</li>
+          </ol>';
+    $this->end();
+?>
 <?php 
     if(empty($consultaBoletos)):
  
@@ -92,7 +100,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                         <?php
                         echo '<div class="box-footer">';
                                 echo $this->Form->end( (array('label'=>'Generar',
-                                                'class'=>'btn btn-primary'))); 
+                                                'class'=>'btn btn-primary')));
                         echo '</div>';
                         ?>
             </div><!--fin del box-boxprimary-->
@@ -208,7 +216,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                     <th>Ruta</th>
                     <th>Destino</th>
                     <th>Pasajero</th>
-                    <th>Tarifa</th> 
+                    <th>Tarifa ($)</th> 
                 </tr>
             </thead>
             <tbody>

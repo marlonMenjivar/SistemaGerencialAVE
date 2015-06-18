@@ -35,7 +35,7 @@ if ($reporte_encontrado):
 							<div class="row">
 								<div class="col-md-12">
 									<?= $this->Form->button(__('<i class="fa fa-table"></i> Generar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => false)); ?>
-									<?= $this->Html->link(__('<i class="fa fa-eraser"></i> Limpiar'), array('controller' => 'reports', 'action' => 'show', 6), array('class' => 'btn btn-warning', 'escape' => false)); ?>
+<!--									<?= $this->Html->link(__('<i class="fa fa-eraser"></i> Limpiar'), array('controller' => 'reports', 'action' => 'show', 6), array('class' => 'btn btn-warning', 'escape' => false)); ?>-->
 									<?= $this->Form->end(); ?>
 								</div>
 							</div>
@@ -161,7 +161,7 @@ if ($reporte_encontrado):
 							<div class="row">
 								<div class="col-md-12">
 									<?= $this->Form->button(__('<i class="fa fa-table"></i> Generar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => false)); ?>
-									<?= $this->Html->link(__('<i class="fa fa-eraser"></i> Limpiar'), array('controller' => 'reports', 'action' => 'show', 7), array('class' => 'btn btn-warning', 'escape' => false)); ?>
+<!--									<?= $this->Html->link(__('<i class="fa fa-eraser"></i> Limpiar'), array('controller' => 'reports', 'action' => 'show', 7), array('class' => 'btn btn-warning', 'escape' => false)); ?>-->
 									<?= $this->Form->end(); ?>
 								</div>
 							</div>
@@ -289,7 +289,7 @@ if ($reporte_encontrado):
 							<div class="row">
 								<div class="col-md-12">
 									<?= $this->Form->button(__('<i class="fa fa-table"></i> Generar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => false)); ?>
-									<?= $this->Html->link(__('<i class="fa fa-eraser"></i> Limpiar'), array('controller' => 'reports', 'action' => 'show', 8), array('class' => 'btn btn-warning', 'escape' => false)); ?>
+<!--									<?= $this->Html->link(__('<i class="fa fa-eraser"></i> Limpiar'), array('controller' => 'reports', 'action' => 'show', 8), array('class' => 'btn btn-warning', 'escape' => false)); ?>-->
 									<?= $this->Form->end(); ?>
 								</div>
 							</div>
@@ -415,3 +415,54 @@ if ($reporte_encontrado):
 	}
 endif;
 ?>
+
+ <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4
+    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>-->
+    <?php echo $this->Html->script('jQuery-2.1.4.min.js') ?>
+
+    <?php
+    echo $this->Html->script(array('bootstrap-datepicker','bootstrap-datepicker.es.min'));
+    ?>
+        <script type="text/javascript">
+            // When the document is ready
+            $(document).ready(function () {
+                
+                $('.fecha').datepicker({
+                    language: "es",
+                    format: "yyyy/mm/dd",
+                    todayHighlight: true,
+                    autoclose:true
+                }); 
+                $('.mes').datepicker({
+                    format: "yyyy/mm/dd",
+                    startView: "months", 
+                    minViewMode: "months",
+                    autoclose:true,
+                    language:"es"
+                });
+                
+                    $("#show_reporte_<?= $opcion; ?>Fecha1").change(function() {
+					   $("#show_reporte_<?= $opcion; ?>Fecha2").val(suma_fecha(7, $("#show_reporte_<?= $opcion; ?>Fecha1").val()));
+				    });
+            });
+			
+			function suma_fecha(p_dias, p_fecha) {
+				var fecha = new Date();
+				var fecha_string = p_fecha || (fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
+				var separador = fecha_string.toString().indexOf('/') != -1 ? '/' : '-'; 
+				var fecha_array = fecha_string.toString().split(separador);
+				var p_fecha = fecha_array[0] + '/' + fecha_array[1] + '/' + fecha_array[2];
+				p_fecha= new Date(p_fecha);
+				p_fecha.setDate(p_fecha.getDate() + parseInt(p_dias));
+				var anio = p_fecha.getFullYear();
+				var mes = p_fecha.getMonth() + 1;
+				var dia = p_fecha.getDate();
+				mes = (mes < 10) ? ("0" + mes) : mes;
+				dia = (dia < 10) ? ("0" + dia) : dia;
+				var fecha_final = anio + separador + mes + separador + dia;
+				return fecha_final;
+			}
+            
+        </script>

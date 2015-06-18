@@ -57,6 +57,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
   |---------------------------------------------------------|
   -->
   <body class="skin-blue sidebar-mini">
+      <?php 
+        //Lee el rol de usuario
+        $role = $this->element('userRole')
+      ?>
     <div class="wrapper">
 
       <!-- Main Header -->
@@ -194,7 +198,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                   </li>
               </ul>
             </li>
-            <li class="treeview">
+            <?php if ($role != 'tactic')  { ?>
+                <li class="treeview">
               <a href="#"><i class='fa fa-link'></i> <span>Salidas Estratégicas</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
 				<li><?= $this->Html->link(__('Total de venta de boletos aéreos por línea aérea por periodo BSP'), array('controller' => 'reports', 'action' => 'show', 8)); ?></li>
@@ -216,6 +221,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                
               </ul>
             </li>
+            <?php } ?>
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
@@ -267,29 +273,30 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
           <ul class="sidebar-menu">
             <li class="header">CONFIGURACIONES GENERALES</li>
             <!-- Optionally, you can add icons to the links -->
-            <li><?php echo $this->Html->link('Sucursales',array('controller'=>'BranchOffices',
+            <?php if ($role != 'tactic')  { ?>
+                <?php if ($role != 'strategic')  { ?>
+                    <li><?php echo $this->Html->link('Sucursales',array('controller'=>'BranchOffices',
                                                       'action'=>'index'
-                ))?>
-            </li>
-            <li><?php echo $this->Html->link('Metas por Sucursales',array('controller'=>'GoalBranchOffices',
-                                                      'action'=>'index'
-                ))?>
-            </li>
-            <li><?php echo $this->Html->link('Aerolínea',array('controller'=>'Airlines',
-                                                      'action'=>'index'
-                ))?>
-            </li>
-            <li><?php echo $this->Html->link('Metas por Aerolínea',array('controller'=>'GoalAirlines',
-                                                      'action'=>'index'
-                ))?>
-            </li>
-            <li><?php echo $this->Html->link('Usuarios',array('controller'=>'Users',
-                                                      'action'=>'index'
-                ))?>
-            </li>
-          
-          
-          
+                        ))?>
+                    </li>
+                    <li><?php echo $this->Html->link('Metas por Sucursales',array('controller'=>'GoalBranchOffices',
+                                                              'action'=>'index'
+                        ))?>
+                    </li>
+                    <li><?php echo $this->Html->link('Aerolínea',array('controller'=>'Airlines',
+                                                              'action'=>'index'
+                        ))?>
+                    </li>
+                    <li><?php echo $this->Html->link('Metas por Aerolínea',array('controller'=>'GoalAirlines',
+                                                              'action'=>'index'
+                        ))?>
+                    </li>
+                    <li><?php echo $this->Html->link('Usuarios',array('controller'=>'Users',
+                                                              'action'=>'index'
+                        ))?>
+                    </li>
+                <?php } ?>      
+            <?php } ?>          
           </ul><!-- /.sidebar-menu -->
           </div><!-- /.tab-pane -->
         </div>
@@ -330,7 +337,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <?php
     echo $this->Html->script(array('bootstrap-datepicker','bootstrap-datepicker.es.min'));
     ?>
-    <script type="text/javascript">
+        <script type="text/javascript">
             // When the document is ready
             $(document).ready(function () {
                 
@@ -346,30 +353,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     minViewMode: "months",
                     autoclose:true,
                     language:"es"
-                }); 
+                });
+                
                 <?php echo $this->fetch('scriptReady');?>
-				
-				$("#show_reporte_<?= $opcion; ?>Fecha1").change(function() {
-					$("#show_reporte_<?= $opcion; ?>Fecha2").val(suma_fecha(7, $("#show_reporte_<?= $opcion; ?>Fecha1").val()));
-				});
             });
 			
-			function suma_fecha(p_dias, p_fecha) {
-				var fecha = new Date();
-				var fecha_string = p_fecha || (fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
-				var separador = fecha_string.toString().indexOf('/') != -1 ? '/' : '-'; 
-				var fecha_array = fecha_string.toString().split(separador);
-				var p_fecha = fecha_array[0] + '/' + fecha_array[1] + '/' + fecha_array[2];
-				p_fecha= new Date(p_fecha);
-				p_fecha.setDate(p_fecha.getDate() + parseInt(p_dias));
-				var anio = p_fecha.getFullYear();
-				var mes = p_fecha.getMonth() + 1;
-				var dia = p_fecha.getDate();
-				mes = (mes < 10) ? ("0" + mes) : mes;
-				dia = (dia < 10) ? ("0" + dia) : dia;
-				var fecha_final = anio + separador + mes + separador + dia;
-				return fecha_final;
-			}
+
+            
         </script>
         <!-- page script -->
         <script type="text/javascript">

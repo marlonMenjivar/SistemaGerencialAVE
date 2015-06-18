@@ -17,6 +17,15 @@ endif;
 
 ?>
 
+<?php
+    $this->start('pagePath');
+    echo '<ol class="breadcrumb">';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
+    echo  '<li class="active">Aquí</li>
+          </ol>';
+    $this->end();
+?>
+
 <!--Formulario para generar reporte, busca una meta por aerolínea y periodo y 
 los boletos vendidos en ese periodo por esa aerolínea-->
 <div class="row">
@@ -94,7 +103,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                     <th>Fecha inicio</th>
                     <th>Fecha fin</th>
                     <th>Boleto</th>
-                    <th>Total</th>
+                    <th>Total ($)</th>
                 </tr>
             </thead>
             <tbody>

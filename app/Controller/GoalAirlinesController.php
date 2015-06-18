@@ -148,7 +148,7 @@ class GoalAirlinesController extends AppController {
                     
                         //Manda el array consultaMetas a la vista
                         $this->set('consultaMetas',$consultaMetas[0]);
-                        $this->Session->setFlash(__('Datos leídos.'));
+                        $this->Session->setFlash(__('Datos leídos'));
                         
                         //Sacando fechas de inicio y fin de resultado de query de metas para consulta
                         $fecha_inicio=$consultaMetas[0]['GoalAirline']['fecha_inicio'];
@@ -186,7 +186,7 @@ class GoalAirlinesController extends AppController {
                                     "`ingreso_comision`= ".$ingresoPorComision." "
                                     . "where id= ".$id.";";
                         $this->GoalAirline->query($query);
-                        $this->Session->setFlash('Meta Actualizada.');
+                        $this->Session->setFlash('Meta Actualizada');
                         return $this->redirect(array('action' => 'comparativoMetasAerolinea'));
 		}
                 else{

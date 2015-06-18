@@ -112,8 +112,8 @@ class AirlinesController extends AppController {
                 return $airlines;
             endif;
         }
-		
-public function boletosPorDestinoSemanal() {
+    
+    public function boletosPorDestinoSemanal() {
         //Lee las lista de aerolíneas
         $airlines = $this->Airline->find('list');
         //Manda lista de airlines a la vista
@@ -144,6 +144,7 @@ public function boletosPorDestinoSemanal() {
             $consultaDestinos=$this->InvoicedTicket->query($consultaDestino);
             
             $this->set('consultaDestinos',$consultaDestinos);
+            $this->Session->setFlash('Datos leidos');
         }
 	}
     
@@ -155,8 +156,6 @@ public function boletosPorDestinoSemanal() {
             $fecha_inicio = $this->request->data['guarda_destinos']['fecha_inicio'];
             $fecha_fin = $this->request->data['guarda_destinos']['fecha_fin'];
             $boletos_destinos = $this->request->data['guarda_destinos']['boletos_destino'];
-
-
             $total_destino = $this->request->data['guarda_destinos']['total_destino'];
         
             //Carga el modelo de las ventas por destinos
@@ -189,14 +188,10 @@ public function boletosPorDestinoSemanal() {
 
             $this->Session->setFlash('Reporte de boletos por destino registrado');
             return $this->redirect(array('action' => 'boletosPorDestinoSemanal'));
-
-
         else:
             $this->Session->setFlash('Método no soportado.');
-
         endif;
 	}
-
 
     public function boletosPorRutaSemanal() {
         //Lee las lista de aerolíneas
@@ -230,6 +225,7 @@ public function boletosPorDestinoSemanal() {
             $consultaRutas=$this->InvoicedTicket->query($consultaRuta);
             
             $this->set('consultaRutas',$consultaRutas);
+            $this->Session->setFlash('Datos leidos');
         }
 	}
     

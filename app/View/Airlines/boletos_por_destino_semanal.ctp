@@ -12,6 +12,14 @@
     $total_destino=0;
 
 ?>
+<?php
+    $this->start('pagePath');
+    echo '<ol class="breadcrumb">';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
+    echo  '<li class="active">Aquí</li>
+          </ol>';
+    $this->end();
+?>
 <?php 
     if(empty($consultaDestinos)):
             
@@ -46,11 +54,13 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                                 //El usuario lo tiene que seleccionar
                                 echo $this->Form->input('fecha_inicio',array('label'=>'Desde',
                                                             'type'=>'text',
-                                                            'class'=>'fecha form-control')); 
+                                                            'class'=>'fecha form-control', 
+                                                            'required' => true)); 
                             //Se selecciona automaticamente 
                                 echo $this->Form->input('fecha_fin',array('label'=>'Hasta',
                                                             'type'=>'text',
-                                                            'class'=>'fecha form-control')); 
+                                                            'class'=>'fecha form-control', 
+                                                            'required' => true)); 
                             ?>
                             <!--fin del box-body-->
                         </div>
