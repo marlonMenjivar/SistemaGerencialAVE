@@ -57,6 +57,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
   |---------------------------------------------------------|
   -->
   <body class="skin-blue sidebar-mini">
+      <?php 
+        //Lee el rol de usuario
+        $role = $this->element('userRole')
+      ?>
     <div class="wrapper">
 
       <!-- Main Header -->
@@ -154,7 +158,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
           <ul class="sidebar-menu">
             <li class="header">SALIDAS</li>
             <!-- Optionally, you can add icons to the links -->
-            <li><a href="#"><i class='fa fa-link'></i> <span>Carga de Datos</span></a></li>
+           <li>
+                <?php 
+                    echo $this->Html->link("Historial carga de datos", array('controller'=>'EtlUsers','action'=>'index'));
+                ?>
+            </li>
             <li class="treeview">
               <a href="#"><i class='fa fa-link'></i> <span>Salidas Tácticas</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
@@ -163,17 +171,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                 array('controller'=>'GoalAirlines','action'=>'comparativoMetasAerolinea'));
                         ?>
                   </li>
-                  <li><a href="#">
-                          <p>
-                              Semi-resumen venta de boletos por líneas aéreas por destino semanal
-                          </p>
-                      </a>
+                  <li><?php 
+                      echo $this->Html->link("Semi-resumen venta de boletos por líneas aéreas por destino semanal", 
+                                             array('controller'=>'Airlines','action'=>'boletosPorDestinoSemanal'));
+?>
                   </li>
-                  <li><a href="#">
-                          <p>
-                              Semi-resumen venta de boletos de líneas aéreas por rutas semanal
-                          </p>
-                      </a>
+                  <li><?php
+                        echo $this->Html->link("Semi-resumen venta de boletos de líneas aéreas por rutas semanal", array('controller'=>'Airlines','action'=>'boletosPorRutaSemanal'));
+                        ?>
                   </li>
                   <li>
                       <?php echo $this->Html->link("Comparativo de cumplimiento de venta de boletos aéreos por sucursal",
@@ -185,29 +190,38 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                 array('controller'=>'GoalBranchOffices','action'=>'comparativoMetasTerrestres'));
                       ?>
                   </li>
-                  <li><a href="#">
-                          <p>
-                              Semi-resumen venta de servicios terrestres por tipo de servicio semanal
-                          </p>
-                      </a>
+                  <li>
+					<?= $this->Html->link(__('Semi-resumen de venta de servicios terrestres por tipo de servicio semanal'), array('controller' => 'reports', 'action' => 'show', 6)); ?>
                   </li>
-                  <li><a href="#">
-                          <p>
-                              Semi-resumen venta de servicios terrestres por proveedor semanal
-                          </p>
-                      </a>
+                  <li>
+					<?= $this->Html->link(__('Semi-resumen de venta de servicios terrestres por proveedor semanal'), array('controller' => 'reports', 'action' => 'show', 7)); ?>
                   </li>
               </ul>
             </li>
-            <li class="treeview">
+            <?php if ($role != 'tactic')  { ?>
+                <li class="treeview">
               <a href="#"><i class='fa fa-link'></i> <span>Salidas Estratégicas</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">Total de venta de boletos aéreos por línea aérea por periodo BSP</a></li>
-                <li><a href="#">Acumulado de venta de boletos aéreos por líneas aéreas mensual</a></li>
-                <li><a href="#">Acumulado venta de servicios terrestres por tipo de servicio mensual</a></li>
-                <li><a href="#">Acumulado venta de servicios terrestres por proveedor mensual</a></li>
+				<li><?= $this->Html->link(__('Total de venta de boletos aéreos por línea aérea por periodo BSP'), array('controller' => 'reports', 'action' => 'show', 8)); ?></li>
+                <li><?php 
+                        echo $this->Html->link("Acumulado de venta de boletos aéreos por líneas aéreas mensual",
+                                array('controller'=>'GoalAirlines','action'=>'ventaBoletoAereosMensual'));
+                        ?>
+                </li>
+                 <li><?php 
+                        echo $this->Html->link("Acumulado venta de servicios terrestres por tipo de servicio mensual",
+                                array('controller'=>'Reports','action'=>'ventaServicioTerrestreTipoServicioMensual'));
+                        ?>
+                  </li>
+                   <li><?php 
+                        echo $this->Html->link("Acumulado venta de servicios terrestres por proveedor mensual",
+                                array('controller'=>'Reports','action'=>'ventaProveedorServicioTerrestreMensual'));
+                        ?>
+                  </li>
+               
               </ul>
             </li>
+            <?php } ?>
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
@@ -219,7 +233,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <section class="content-header">
           <h1>
             <?php echo $this->fetch('pageHeader');?>
-            <small>Optional description</small>
           </h1>
           <?php echo $this->fetch('pagePath');?>
         </section>
@@ -260,29 +273,30 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
           <ul class="sidebar-menu">
             <li class="header">CONFIGURACIONES GENERALES</li>
             <!-- Optionally, you can add icons to the links -->
-            <li><?php echo $this->Html->link('Sucursales',array('controller'=>'BranchOffices',
+            <?php if ($role != 'tactic')  { ?>
+                <?php if ($role != 'strategic')  { ?>
+                    <li><?php echo $this->Html->link('Sucursales',array('controller'=>'BranchOffices',
                                                       'action'=>'index'
-                ))?>
-            </li>
-            <li><?php echo $this->Html->link('Metas por Sucursales',array('controller'=>'GoalBranchOffices',
-                                                      'action'=>'index'
-                ))?>
-            </li>
-            <li><?php echo $this->Html->link('Aerolínea',array('controller'=>'Airlines',
-                                                      'action'=>'index'
-                ))?>
-            </li>
-            <li><?php echo $this->Html->link('Metas por Aerolínea',array('controller'=>'GoalAirlines',
-                                                      'action'=>'index'
-                ))?>
-            </li>
-            <li><?php echo $this->Html->link('Usuarios',array('controller'=>'Users',
-                                                      'action'=>'index'
-                ))?>
-            </li>
-          
-          
-          
+                        ))?>
+                    </li>
+                    <li><?php echo $this->Html->link('Metas por Sucursales',array('controller'=>'GoalBranchOffices',
+                                                              'action'=>'index'
+                        ))?>
+                    </li>
+                    <li><?php echo $this->Html->link('Aerolínea',array('controller'=>'Airlines',
+                                                              'action'=>'index'
+                        ))?>
+                    </li>
+                    <li><?php echo $this->Html->link('Metas por Aerolínea',array('controller'=>'GoalAirlines',
+                                                              'action'=>'index'
+                        ))?>
+                    </li>
+                    <li><?php echo $this->Html->link('Usuarios',array('controller'=>'Users',
+                                                              'action'=>'index'
+                        ))?>
+                    </li>
+                <?php } ?>      
+            <?php } ?>          
           </ul><!-- /.sidebar-menu -->
           </div><!-- /.tab-pane -->
         </div>
@@ -323,7 +337,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <?php
     echo $this->Html->script(array('bootstrap-datepicker','bootstrap-datepicker.es.min'));
     ?>
-    <script type="text/javascript">
+        <script type="text/javascript">
             // When the document is ready
             $(document).ready(function () {
                 
@@ -339,9 +353,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     minViewMode: "months",
                     autoclose:true,
                     language:"es"
-                }); 
-            
+                });
+                
+                <?php echo $this->fetch('scriptReady');?>
             });
+			
+
+            
         </script>
         <!-- page script -->
         <script type="text/javascript">

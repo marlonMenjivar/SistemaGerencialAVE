@@ -18,6 +18,14 @@
     $ingresoPorComision=0;
     $id=0;
 ?>
+<?php
+    $this->start('pagePath');
+    echo '<ol class="breadcrumb">';
+    echo '<li><i class="ion-home"> </i>'.$this->Html->link(__('Inicio'), array('controller'=>'pages','action' => 'home')).'</li>';
+    echo  '<li class="active">Aquí</li>
+          </ol>';
+    $this->end();
+?>
 <?php 
     if(empty($consultaBoletos)):
  
@@ -92,7 +100,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                         <?php
                         echo '<div class="box-footer">';
                                 echo $this->Form->end( (array('label'=>'Generar',
-                                                'class'=>'btn btn-primary'))); 
+                                                'class'=>'btn btn-primary')));
                         echo '</div>';
                         ?>
             </div><!--fin del box-boxprimary-->
@@ -120,44 +128,70 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                     <i class="ion ion-stats-bars"></i>
                 </div>
             </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-            <div class="small-box bg-yellow">
+        </div><!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+        <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3><sup style="font-size: 20px">$</sup><?php echo number_format($faltante, 2)?></h3>
+              <p><strong>Faltante para llegar a la meta</strong></p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-arrow-graph-down-right"></i>
+            </div>
+        </div>
+        </div><!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
                 <div class="inner">
-                  <h3><sup style="font-size: 20px">$</sup><?php echo number_format($faltante, 2)?></h3>
-                  <p><strong>Faltante para llegar a la meta</strong></p>
+                  <h3><?php echo $porcentajeFaltante?><sup style="font-size: 20px">%</sup></h3>
+                  <p><strong>Porcentaje de incumplimiento</strong></p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-arrow-graph-down-right"></i>
+                    <i class="ion ion-pie-graph"></i>
                 </div>
             </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-red">
-                    <div class="inner">
-                      <h3><?php echo $porcentajeFaltante?><sup style="font-size: 20px">%</sup></h3>
-                      <p><strong>Porcentaje de incumplimiento</strong></p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
-                    </div>
+        </div><!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-light-blue">
+                <div class="inner">
+                  <h3><sup style="font-size: 20px">$</sup><?php echo number_format($ingresoPorComision,2)?></h3>
+                  <p><strong>Ingreso por comisión</strong></p>
                 </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-light-blue">
-                    <div class="inner">
-                      <h3><sup style="font-size: 20px">$</sup><?php echo number_format($ingresoPorComision,2)?></h3>
-                      <p><strong>Ingreso por comisión</strong></p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-cash"></i>
-                    </div>
+                <div class="icon">
+                    <i class="ion ion-cash"></i>
                 </div>
             </div>
-            <div class="col-lg-3 col-xs-6">
+        </div><!-- ./col -->
+    </div>
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6" style="padding-left: 0px; padding-right: 0px;">
+            <!-- Generear Reportes -->
+            <div class="col-xs-6" style="margin-bottom: 20px">
+                <?php
+                if (!empty($consultaMetas)):
+                    echo $this->Form->create('GoalAirline', array('url' => array('controller' => 'GoalAirlines', 'action' => 'comparativoMetasAerolineaReporteExcel')));
+                    echo $this->Form->input('airline_id', array('value' => $airline_id, 'type' => 'hidden'));
+                    echo $this->Form->input('fecha_inicio', array('value' => $fecha, 'type' => 'hidden'));
+                    echo $this->Form->end(array('label' => 'Generar Reporte Excel', 'class' => 'btn btn-primary'));
+                endif;
+                ?>
+            </div><!-- ./col -->
+            
+            <div class="col-xs-6" style="margin-bottom: 20px">
+                <?php
+                if (!empty($consultaMetas)):
+                    echo $this->Form->create('GoalAirline', array('url' => array('controller' => 'GoalAirlines', 'action' => 'comparativoMetasAerolineaReportePdf')));
+                    echo $this->Form->input('airline_id', array('value' => $airline_id, 'type' => 'hidden'));
+                    echo $this->Form->input('fecha_inicio', array('value' => $fecha, 'type' => 'hidden'));
+                    echo $this->Form->end(array('label' => 'Generar Reporte PDF', 'class' => 'btn btn-primary'));
+                endif;
+                ?>
+            </div><!-- ./col --> 
+            <div class="col-xs-6" style="margin-bottom: 20px">
                 <!-- small box -->
                 <?php
                 
@@ -174,26 +208,8 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                         array('class'=>'btn btn-primary'));
                     endif;
                     ?>
-            </div><!-- ./col -->
-        <!--<div class="col-md-6">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Resultados</h3>
-                </div><!-- /.box-header 
-                <div class="form-horizontal">   
-                    <div role="form">
-                    <div class="box-body">
-                        
-                        <div class="form-control"><?php //echo '<strong>Boletos del periodo:</strong> '.$boletos_periodo?></div>
-                        <div class="form-control"><?php //echo '<strong>Total del periodo:</strong> $'.$total_periodo?></div>
-                        <div class="form-control"><?php //echo '<strong>Faltante:</strong> $'.$faltante?></div>
-                        <div class="form-control"><?php //echo '<strong>Porcentaje faltante de meta:</strong> '.$porcentajeFaltante."%"?></div>
-                        <div class="form-control"><?php //echo '<strong>Ingreso por comisión:</strong> $'.$ingresoPorComision?></div>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>-->
+        </div>
     </div>
 <div class="box">
     <div class="box-header">
@@ -208,7 +224,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                     <th>Ruta</th>
                     <th>Destino</th>
                     <th>Pasajero</th>
-                    <th>Tarifa</th> 
+                    <th>Tarifa ($)</th> 
                 </tr>
             </thead>
             <tbody>

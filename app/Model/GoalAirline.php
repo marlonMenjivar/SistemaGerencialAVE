@@ -33,7 +33,7 @@ class GoalAirline extends AppModel {
             ),
             'periodo_bsp' => array(
             'number' => array(
-                'rule' => array('range',1,12),
+                'rule' => array('range',0,13),
                 'required' => true,
                 'message' => 'Por favor ingrese un número entre 1 y 12.'
             )
@@ -47,7 +47,7 @@ class GoalAirline extends AppModel {
             ),
             'comision'=>array(
                 'number' => array(
-                'rule' => array('range',1,100),
+                'rule' => array('range',0,101),
                 'required' => true,
                 'message' => 'Por favor ingrese un porcentaje válido (1-100).'
             ))
@@ -61,4 +61,9 @@ class GoalAirline extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	public function metas_aereolineas($airline_id) {
+		return $this->query("SELECT periodo_bsp, fecha_inicio, fecha_fin, meta_bsp, boletos_periodo, total_periodo, faltante, porcentaje, comision, ingreso_comision
+		FROM goal_airlines WHERE airline_id = ? AND boletos_periodo <> 0 ORDER BY fecha_inicio", array($airline_id));
+	}
 }
