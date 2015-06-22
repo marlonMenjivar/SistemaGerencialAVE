@@ -1,6 +1,6 @@
 <?php
     $this->start('pageHeader');
-    echo '<h1>Comparativo de Metas por Aerolínea</h1>';
+  echo '<h1>Comparativo de Metas por Aerolínea</h1>';
     $this->end();
     //var_dump($id);
     //var_dump($fecha);

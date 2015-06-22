@@ -132,7 +132,33 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                     </div>
                 </div>
             </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
+<div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6" style="padding-left: 0px; padding-right: 0px;">
+            <!-- Generear Reportes -->
+            <div class="col-xs-6" style="margin-bottom: 20px">
+                <?php
+                if (!empty($queryConsultaMetas)):
+                    echo $this->Form->create('GoalBranchOffice', array('url' => array('controller' => 'GoalBranchOffices', 'action' => 'comparativoMetasTerrestresReporteExcel')));
+                    echo $this->Form->input('branch_office_id', array('value' => $idSucursal, 'type' => 'hidden'));
+                    echo $this->Form->input('mes', array('value' => $fecha, 'type' => 'hidden'));
+                    echo $this->Form->end(array('label' => 'Generar Reporte Excel', 'class' => 'btn btn-primary'));
+                endif;
+                ?>
+            </div><!-- ./col -->
+            
+            <div class="col-xs-6" style="margin-bottom: 20px">
+                <?php
+                if (!empty($queryConsultaMetas)):
+                    echo $this->Form->create('GoalBranchOffice', array('url' => array('controller' => 'GoalBranchOffices', 'action' => 'comparativoMetasTerrestresReportePdf')));
+                    echo $this->Form->input('branch_office_id', array('value' => $idSucursal, 'type' => 'hidden'));
+                    echo $this->Form->input('mes', array('value' => $fecha, 'type' => 'hidden'));
+                    echo $this->Form->end(array('label' => 'Generar Reporte PDF', 'class' => 'btn btn-primary'));
+                endif;
+                ?>
+            </div><!-- ./col --> 
+                 <div class="col-xs-6" style="margin-bottom: 20px">
+            <!--<div class="col-lg-3 col-xs-6">--> 
                 <!-- small box -->
                 <?php
                         if(empty($mes)):
@@ -149,6 +175,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                                 array('class'=>'btn btn-primary'));
                         endif;
                     ?>
+            </div>
             </div>
     </div>
 <div class="box">

@@ -117,6 +117,7 @@ class GoalBranchOfficesController extends AppController {
                 //Saca el id de la sucursal del request
                 $id=$this->request->data["GoalBranchOffice"]['branch_office_id'];
                 $this->set('idSucursal',$id);
+
                 //Saca el del request
                 $fecha=$this->request->data["GoalBranchOffice"]['mes'];
                 $mes=  date('m',strtotime($fecha));
@@ -149,9 +150,110 @@ class GoalBranchOfficesController extends AppController {
                         $consultaBoletos=$this->InvoicedTicket->query($consultaBoletos);
 
                         $this->set('consultaBoletos',$consultaBoletos);
+                        $this->set('idSucursal',$id);
+                        $this->set('fecha',$fecha);
+                        $this->set('name',$branchOffices[$id]);
+
                 endif;
             }
         }
+
+        //Reporte excel
+  public function comparativoMetasReporteExcel() {
+            $branchOffices = $this->GoalBranchOffice->BranchOffice->find('list');
+            $this->set(compact('branchOffices'));
+            if ($this->request->is(array('post', 'put'))) {
+                //Saca el id de la sucursal del request
+                $id=$this->request->data["GoalBranchOffice"]['branch_office_id'];
+                $this->set('idSucursal',$id);
+                //Saca el del request
+                $fecha=$this->request->data["GoalBranchOffice"]['mes'];
+                $mes=  date('m',strtotime($fecha));
+                $this->set('mes',$mes);
+                
+                //ejecuta consulta de metas para aerolínea y por fecha
+                $queryConsultaMetas="SELECT * FROM goal_branch_offices as GoalBranchOffice "
+                            . "WHERE EXTRACT(MONTH from mes)= '".$mes."' and branch_office_id= ".$id;   
+                $consultaMetas=$this->GoalBranchOffice->query($queryConsultaMetas);
+                
+                
+                if(empty($consultaMetas)):
+                        $this->Session->setFlash(__('Meta no encontrada para este mes.'));
+                    //Si encuentra la meta
+                else:
+                        //Esta línea hace que el resultado de la consulta se ponga en el form
+                        $this->request->data=$consultaMetas[0];
+                        
+                        $this->set('queryConsultaMetas',$consultaMetas[0]); 
+                        $this->Session->setFlash(__('Datos leídos.'));
+                        
+                        //Si encuentra meta ejecuta consulta de boletos por sucursal y por mes
+                        $consultaBoletos=""
+                            . " SELECT * from invoiced_tickets"
+                            . " WHERE sucursal=".$id." and "
+                                . "EXTRACT(MONTH from fecha) = '".$mes."';";
+                        //Carga modelo
+                        $this->loadModel('InvoicedTicket');
+                        
+                        $consultaBoletos=$this->InvoicedTicket->query($consultaBoletos);
+
+                        $this->set('consultaBoletos',$consultaBoletos);
+                        $this->set('idSucursal',$id);
+                        $this->set('fecha',$fecha);
+                        $this->set('name',$branchOffices[$id]);
+
+
+                endif;
+            }
+        }
+       
+            //Reporte pdf
+          public function comparativoMetasReportePdf() {
+            $branchOffices = $this->GoalBranchOffice->BranchOffice->find('list');
+            $this->set(compact('branchOffices'));
+            if ($this->request->is(array('post', 'put'))) {
+                //Saca el id de la sucursal del request
+                $id=$this->request->data["GoalBranchOffice"]['branch_office_id'];
+                $this->set('idSucursal',$id);
+                //Saca el del request
+                $fecha=$this->request->data["GoalBranchOffice"]['mes'];
+                $mes=  date('m',strtotime($fecha));
+                $this->set('mes',$mes);
+                
+                //ejecuta consulta de metas para aerolínea y por fecha
+                $queryConsultaMetas="SELECT * FROM goal_branch_offices as GoalBranchOffice "
+                            . "WHERE EXTRACT(MONTH from mes)= '".$mes."' and branch_office_id= ".$id;   
+                $consultaMetas=$this->GoalBranchOffice->query($queryConsultaMetas);
+                
+                
+                if(empty($consultaMetas)):
+                        $this->Session->setFlash(__('Meta no encontrada para este mes.'));
+                    //Si encuentra la meta
+                else:
+                        //Esta línea hace que el resultado de la consulta se ponga en el form
+                        $this->request->data=$consultaMetas[0];
+                        
+                        $this->set('queryConsultaMetas',$consultaMetas[0]); 
+                        $this->Session->setFlash(__('Datos leídos.'));
+                        
+                        //Si encuentra meta ejecuta consulta de boletos por sucursal y por mes
+                        $consultaBoletos=""
+                            . " SELECT * from invoiced_tickets"
+                            . " WHERE sucursal=".$id." and "
+                                . "EXTRACT(MONTH from fecha) = '".$mes."';";
+                        //Carga modelo
+                        $this->loadModel('InvoicedTicket');
+                        
+                        $consultaBoletos=$this->InvoicedTicket->query($consultaBoletos);
+
+                        $this->set('consultaBoletos',$consultaBoletos);
+                        $this->set('idSucursal',$id);
+                        $this->set('fecha',$fecha);
+                        $this->set('name',$branchOffices[$id]);
+                endif;
+            }
+        }
+
         public function editar($id=null,
                         $boletos_periodo=null,
                         $total_periodo=null,
@@ -240,9 +342,107 @@ class GoalBranchOfficesController extends AppController {
                         $consultaServicios=$this->InvoicedService->query($consultaServicios);
 
                         $this->set('consultaServicios',$consultaServicios);
+                        $this->set('idSucursal',$id);
+                        $this->set('fecha',$fecha);
+                        $this->set('name',$branchOffices[$id]);
                 endif;
             }
         }
+//Reporte excel
+          public function comparativoMetasTerrestresReporteExcel(){
+            //Llena combobox con sucursales
+            $branchOffices = $this->GoalBranchOffice->BranchOffice->find('list');
+            $this->set(compact('branchOffices'));
+            if ($this->request->is(array('post', 'put'))) {
+                //Saca el id de la sucursal del request
+                $id=$this->request->data["GoalBranchOffice"]['branch_office_id'];
+                $this->set('idSucursal',$id);
+                //Saca el del request
+                $fecha=$this->request->data["GoalBranchOffice"]['mes'];
+                $mes=  date('m',strtotime($fecha));
+                $this->set('mes',$mes);
+                
+                //ejecuta consulta de metas para sucursal y por fecha
+                $queryConsultaMetas="SELECT * FROM goal_branch_offices as GoalBranchOffice "
+                            . "WHERE EXTRACT(MONTH from mes)= '".$mes."' and branch_office_id= ".$id;   
+                $consultaMetas=$this->GoalBranchOffice->query($queryConsultaMetas);
+                
+                
+                if(empty($consultaMetas)):
+                        $this->Session->setFlash(__('Meta no encontrada para este mes.'));
+                    //Si encuentra la meta
+                else:
+                        //Esta línea hace que el resultado de la consulta se ponga en el form
+                        $this->request->data=$consultaMetas[0];
+                        
+                        $this->set('queryConsultaMetas',$consultaMetas[0]); 
+                        $this->Session->setFlash(__('Datos leídos.'));
+                        
+                        //Si encuentra meta ejecuta consulta de boletos por sucursal y por mes
+                        $consultaServicios=""
+                            . " SELECT * from invoiced_services"
+                            . " WHERE sucursal=".$id." and "
+                                . "EXTRACT(MONTH from fecha) = '".$mes."';";
+                        //Carga modelo
+                        $this->loadModel('InvoicedService');
+                        
+                        $consultaServicios=$this->InvoicedService->query($consultaServicios);
+
+                        $this->set('consultaServicios',$consultaServicios);
+                        $this->set('idSucursal',$id);
+                        $this->set('fecha',$fecha);
+                        $this->set('name',$branchOffices[$id]);
+                endif;
+            }
+        }
+//Reporte pdf
+          public function comparativoMetasTerrestresReportePdf(){
+            //Llena combobox con sucursales
+            $branchOffices = $this->GoalBranchOffice->BranchOffice->find('list');
+            $this->set(compact('branchOffices'));
+            if ($this->request->is(array('post', 'put'))) {
+                //Saca el id de la sucursal del request
+                $id=$this->request->data["GoalBranchOffice"]['branch_office_id'];
+                $this->set('idSucursal',$id);
+                //Saca el del request
+                $fecha=$this->request->data["GoalBranchOffice"]['mes'];
+                $mes=  date('m',strtotime($fecha));
+                $this->set('mes',$mes);
+                
+                //ejecuta consulta de metas para sucursal y por fecha
+                $queryConsultaMetas="SELECT * FROM goal_branch_offices as GoalBranchOffice "
+                            . "WHERE EXTRACT(MONTH from mes)= '".$mes."' and branch_office_id= ".$id;   
+                $consultaMetas=$this->GoalBranchOffice->query($queryConsultaMetas);
+                
+                
+                if(empty($consultaMetas)):
+                        $this->Session->setFlash(__('Meta no encontrada para este mes.'));
+                    //Si encuentra la meta
+                else:
+                        //Esta línea hace que el resultado de la consulta se ponga en el form
+                        $this->request->data=$consultaMetas[0];
+                        
+                        $this->set('queryConsultaMetas',$consultaMetas[0]); 
+                        $this->Session->setFlash(__('Datos leídos.'));
+                        
+                        //Si encuentra meta ejecuta consulta de boletos por sucursal y por mes
+                        $consultaServicios=""
+                            . " SELECT * from invoiced_services"
+                            . " WHERE sucursal=".$id." and "
+                                . "EXTRACT(MONTH from fecha) = '".$mes."';";
+                        //Carga modelo
+                        $this->loadModel('InvoicedService');
+                        
+                        $consultaServicios=$this->InvoicedService->query($consultaServicios);
+
+                        $this->set('consultaServicios',$consultaServicios);
+                        $this->set('idSucursal',$id);
+                        $this->set('fecha',$fecha);
+                        $this->set('name',$branchOffices[$id]);
+                endif;
+            }
+        }
+
         public function editar2($id=null,
                         $servicios_periodo_sucursal=null,
                         $total_periodo=null,
