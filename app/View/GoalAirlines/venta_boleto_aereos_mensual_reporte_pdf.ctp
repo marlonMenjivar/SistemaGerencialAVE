@@ -1,10 +1,10 @@
 <?php
 // Importamos la clase PHPExcel
 App::import('Vendor', 'Classes/PHPExcel');
-App::import('Vendor', 'Classes/MPDF54');
+App::import('Vendor', 'Classes/tcpdf');
 
-$rendererName = PHPExcel_Settings::PDF_RENDERER_MPDF;
-$rendererLibraryPath = '..\Vendor\Classes\MPDF54' ;
+$rendererName = PHPExcel_Settings::PDF_RENDERER_TCPDF;
+$rendererLibraryPath = '..\Vendor\Classes\tcpdf' ;
 
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objPHPExcel = $objReader->load("..\Template\Reporte9.xlsx");
@@ -16,9 +16,9 @@ $total_periodo=0;
 $row = 0;
 if (!empty($consultaVentas)):
     $baseRow = 17;
+    $objPHPExcel->getActiveSheet()->insertNewRowBefore($row,count($consultaVentas));
     foreach ($consultaVentas as $r => $aerolinea) {
       $row = $baseRow + $r;
-      $objPHPExcel->getActiveSheet()->insertNewRowBefore($row,1);
       $objPHPExcel->getActiveSheet()->setCellValue('B'.$row, $aerolinea['airlines']['name'])
                                     ->setCellValue('C'.$row, $aerolinea['goal_airlines']['fecha_inicio'])
                                     ->setCellValue('D'.$row, $aerolinea['goal_airlines']['fecha_fin'])

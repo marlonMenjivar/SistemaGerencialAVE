@@ -5,7 +5,7 @@ App::import('Vendor', 'Classes/PHPExcel');
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objPHPExcel = $objReader->load("..\Template\Reporte6.xlsx");
 
-switch ($opcion) {
+switch ($reporte) {
   case 6:
     $objPHPExcel->getActiveSheet()->setCellValue('B7', $fecha1);
     $objPHPExcel->getActiveSheet()->setCellValue('C7', $fecha2);
@@ -16,9 +16,10 @@ switch ($opcion) {
 
     if (!empty($query)):
         $baseRow = 17;
+        $objPHPExcel->getActiveSheet()->insertNewRowBefore($baseRow,count($query));
         foreach ($query as $r => $qrow) {
           $row = $baseRow + $r;
-          $objPHPExcel->getActiveSheet()->insertNewRowBefore($row,1);
+          
           $objPHPExcel->getActiveSheet()->setCellValue('B'.$row, $qrow['invoiced_services']['tipo_servicio'])
                                         ->setCellValue('C'.$row, $qrow[0]['cantidad_por_tipo'])
                                         ->setCellValue('D'.$row, $qrow[0]['total_por_tipo'])
@@ -47,9 +48,10 @@ switch ($opcion) {
 
     if (!empty($query)):
         $baseRow = 17;
+        $objPHPExcel->getActiveSheet()->insertNewRowBefore($baseRow,count($query));
         foreach ($query as $r => $qrow) {
           $row = $baseRow + $r;
-          $objPHPExcel->getActiveSheet()->insertNewRowBefore($row,1);
+          
           $objPHPExcel->getActiveSheet()->setCellValue('B'.$row, $qrow['invoiced_services']['proveedor_servicio'])
                                         ->setCellValue('C'.$row, $qrow[0]['cantidad_por_proveedor'])
                                         ->setCellValue('D'.$row, $qrow[0]['total_por_proveedor'])
@@ -77,9 +79,10 @@ switch ($opcion) {
 
     if (!empty($query)):
         $baseRow = 21;
+      $objPHPExcel->getActiveSheet()->insertNewRowBefore($baseRow,count($query));
         foreach ($query as $r => $qrow) {
           $row = $baseRow + $r;
-          $objPHPExcel->getActiveSheet()->insertNewRowBefore($row,1);
+          
           $objPHPExcel->getActiveSheet()->setCellValue('B'.$row, $qrow['goal_airlines']['periodo_bsp'])
                                         ->setCellValue('C'.$row, $qrow['goal_airlines']['fecha_inicio'])
                                         ->setCellValue('D'.$row, $qrow['goal_airlines']['fecha_fin'])

@@ -181,7 +181,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                 ?>
             </div><!-- ./col -->
             
-            <div class="col-xs-6" style="margin-bottom: 20px">
+            <div class="col-xs-6" style="margin-bottom: 20px; display:none;"">
                 <?php
                 if (!empty($consultaMetas)):
                     echo $this->Form->create('GoalAirline', array('url' => array('controller' => 'GoalAirlines', 'action' => 'comparativoMetasAerolineaReportePdf')));

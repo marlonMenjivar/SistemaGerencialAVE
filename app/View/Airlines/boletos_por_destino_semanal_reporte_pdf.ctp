@@ -1,6 +1,10 @@
 <?php
 // Importamos la clase PHPExcel
 App::import('Vendor', 'Classes/PHPExcel');
+App::import('Vendor', 'Classes/MPDF54');
+
+$rendererName = PHPExcel_Settings::PDF_RENDERER_MPDF;
+$rendererLibraryPath = '..\Vendor\Classes\MPDF54' ;
 
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objPHPExcel = $objReader->load("..\Template\Reporte2.xlsx");
@@ -34,11 +38,20 @@ endif;
 $objPHPExcel->getActiveSheet()->setCellValue('E7', $boletos_destino);
 $objPHPExcel->getActiveSheet()->setCellValue('F7', '$ '.$total_destino);
 
-header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="ventaBoletosLADestinoSemanalReporteExcel.xlsx"');
+if (!PHPExcel_Settings::setPdfRenderer($rendererName, $rendererLibraryPath)) {
+        die(
+                'NOTICE: Please set the $rendererName and $rendererLibraryPath values' .
+                '<br />' .
+                'at the top of this script as appropriate for your directory structure'
+        );
+}
+
+// Redirect output to a client’s web browser (PDF)
+header('Content-Type: application/pdf');
+header('Content-Disposition: attachment;filename="ventaBoletosLADestinoSemanalReporteExcel.pdf"');
 header('Cache-Control: max-age=0');
 
-$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'PDF');
 $objWriter->save('php://output');
 exit;
 ?>

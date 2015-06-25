@@ -12,9 +12,10 @@ $total_periodo=0;
 $row = 0;
 if (!empty($consultaVentas)):
     $baseRow = 17;
+    $objPHPExcel->getActiveSheet()->insertNewRowBefore($baseRow,count($consultaVentas));
     foreach ($consultaVentas as $r => $aerolinea) {
       $row = $baseRow + $r;
-      $objPHPExcel->getActiveSheet()->insertNewRowBefore($row,1);
+    
       $objPHPExcel->getActiveSheet()->setCellValue('B'.$row, $aerolinea['airlines']['name'])
                                     ->setCellValue('C'.$row, $aerolinea['goal_airlines']['fecha_inicio'])
                                     ->setCellValue('D'.$row, $aerolinea['goal_airlines']['fecha_fin'])

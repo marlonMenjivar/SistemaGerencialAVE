@@ -16,9 +16,9 @@ $row = 0;
 
 if (!empty($consultaServiciosTipo)):
     $baseRow = 17;
+    $objPHPExcel->getActiveSheet()->insertNewRowBefore($baseRow,count($consultaServiciosTipo));
     foreach ($consultaServiciosTipo as $r => $ServicioTipo) {
       $row = $baseRow + $r;
-      $objPHPExcel->getActiveSheet()->insertNewRowBefore($row,1);
       $objPHPExcel->getActiveSheet()->setCellValue('B'.$row, $ServicioTipo['services_sales_types']['id'])
                                     ->setCellValue('C'.$row, $ServicioTipo['types']['tipo_servicio'])
                                     ->setCellValue('D'.$row, $ServicioTipo['types']['cantidad_servicios_tipo'])

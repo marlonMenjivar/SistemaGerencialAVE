@@ -110,7 +110,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
             endif;
             ?>
         </div><!-- ./col -->
-        <div class="col-lg-3 col-xs-6" style="margin-bottom: 20px">
+        <div class="col-lg-3 col-xs-6" style="margin-bottom: 20px; display:none;">
         
             <?php
             if (!empty($consultaRutas)):

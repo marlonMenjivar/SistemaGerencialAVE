@@ -92,7 +92,7 @@ if ($reporte_encontrado):
 							}
 							?>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-4" style="display:none;">
 							<?php
 							if (!empty($query)) {
 								echo $this->Form->create('pdf_reporte_'.$reporte, array('url' => array('controller' => 'reports', 'action' => 'pdf', $reporte)));
@@ -256,7 +256,7 @@ if ($reporte_encontrado):
 							}
 							?>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-4" style="display:none;">
 							<?php
 							if (!empty($query)) {
 								echo $this->Form->create('pdf_reporte_'.$reporte, array('url' => array('controller' => 'reports', 'action' => 'pdf', $reporte)));

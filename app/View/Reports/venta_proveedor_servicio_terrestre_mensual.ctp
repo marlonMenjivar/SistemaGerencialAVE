@@ -103,7 +103,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
         endif;
         ?>
     </div><!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
+    <div class="col-lg-3 col-xs-6" style="display:none;>
     
         <?php
         if (!empty($consultaServicios)):

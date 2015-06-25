@@ -145,7 +145,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                 ?>
             </div><!-- ./col -->
             
-            <div class="col-xs-6" style="margin-bottom: 20px">
+            <div class="col-xs-6" style="margin-bottom: 20px; display:none;">
                 <?php
                 if (!empty($queryConsultaMetas)):
                     echo $this->Form->create('GoalBranchOffice', array('url' => array('controller' => 'GoalBranchOffices', 'action' => 'comparativoMetasReportePdf')));

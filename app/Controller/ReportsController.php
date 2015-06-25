@@ -155,8 +155,8 @@ class ReportsController extends AppController {
 		$nombres_reportes = array(
 			0 => '',
 			6 => 'Semi-Resumen de Venta de Servicios Terrestres por Tipo de Servicio Semanal',
-			7 => 'Usuarios por Tipo de Capacitados, Departamento y Municipio',
-			8 => 'Usuarios por Departamento, Tipo de Capacitados y Fecha'
+			7 => 'Semi-Resumen de Venta de Servicios Terrestres por Proveedor Semanal',
+			8 => 'Total de Venta de Boletos por Linea Aerea por Periodo BSP'
 		);
 		return $nombres_reportes[$reporte >= 6 && $reporte <= 8 ? $reporte : 0];
 	}
