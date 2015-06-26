@@ -181,7 +181,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                 ?>
             </div><!-- ./col -->
             
-            <div class="col-xs-6" style="margin-bottom: 20px; display:none;"">
+            <div class="col-xs-6" style="margin-bottom: 20px; display:none;">
                 <?php
                 if (!empty($consultaMetas)):
                     echo $this->Form->create('GoalAirline', array('url' => array('controller' => 'GoalAirlines', 'action' => 'comparativoMetasAerolineaReportePdf')));
@@ -209,6 +209,27 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                     endif;
                     ?>
             </div>
+			<div class="col-xs-6" style="margin-bottom: 20px">
+				<?php
+				if (!empty($consultaMetas)) {
+					echo $this->Form->create('imprimir', array('url' => array('controller' => 'goalairlines', 'action' => 'imprimir'), 'target' => '_blank'));
+					echo $this->Form->input('airline_id', array('value' => @$consultaMetas['GoalAirline']['airline_id'], 'type' => 'hidden'));
+					echo $this->Form->input('aereolinea', array('value' => @$airlines[@$consultaMetas['GoalAirline']['airline_id']], 'type' => 'hidden'));
+					echo $this->Form->input('fecha', array('value' => @$fecha, 'type' => 'hidden'));
+					echo $this->Form->input('fecha_inicio', array('value' => @$consultaMetas['GoalAirline']['fecha_inicio'], 'type' => 'hidden'));
+					echo $this->Form->input('fecha_fin', array('value' => @$consultaMetas['GoalAirline']['fecha_fin'], 'type' => 'hidden'));
+					echo $this->Form->input('meta_bsp', array('value' => @$metaBSP, 'type' => 'hidden'));
+					echo $this->Form->input('comision', array('value' => @$comision, 'type' => 'hidden'));
+					echo $this->Form->input('servicios_periodo_sucursal', array('value' => @$servicios_periodo_sucursal, 'type' => 'hidden'));
+					echo $this->Form->input('total_periodo', array('value' => @$total_periodo, 'type' => 'hidden'));
+					echo $this->Form->input('faltante', array('value' => @$faltante, 'type' => 'hidden'));
+					echo $this->Form->input('porcentaje_faltante', array('value' => @$porcentajeFaltante, 'type' => 'hidden'));
+					echo $this->Form->input('ingreso_comision', array('value' => @$ingresoPorComision, 'type' => 'hidden'));
+					echo $this->Form->button(__('<i class="fa fa-print"></i> Imprimir'), array('class' => 'btn btn-warning', 'escape' => false));
+					echo $this->Form->end();
+				}
+				?>
+			</div>
         </div>
     </div>
 <div class="box">

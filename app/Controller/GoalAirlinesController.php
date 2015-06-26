@@ -14,7 +14,7 @@ class GoalAirlinesController extends AppController {
  *
  * @var array
  */
-	public $helpers = array('Html', 'Form');
+	public $helpers = array('Html', 'Form', 'Time');
 
 /**
  * Components
@@ -412,5 +412,28 @@ class GoalAirlinesController extends AppController {
         }
 
 
-
+	public function imprimir() {
+		$this->layout = 'imprimir';
+		$this->loadModel('InvoicedTicket');
+		$this->set(array(
+			'aereolinea' => $this->request->data['imprimir']['aereolinea'],
+			'fecha' => $this->request->data['imprimir']['fecha'],
+			'meta_bsp' => $this->request->data['imprimir']['meta_bsp'],
+			'comision' => $this->request->data['imprimir']['comision'],
+			'servicios_periodo_sucursal' => $this->request->data['imprimir']['servicios_periodo_sucursal'],
+			'total_periodo' => $this->request->data['imprimir']['total_periodo'],
+			'faltante' => $this->request->data['imprimir']['faltante'],
+			'porcentaje_faltante' => $this->request->data['imprimir']['porcentaje_faltante'],
+			'ingreso_comision' => $this->request->data['imprimir']['ingreso_comision'],
+			'consulta_boletos' => $this->InvoicedTicket->query(	//	método de creación de query para evitar inyección sql
+				'SELECT * FROM invoiced_tickets InvoicedTicket WHERE InvoicedTicket.airline_id = ? AND InvoicedTicket.fecha BETWEEN ? AND ?',
+				array(
+					$this->request->data['imprimir']['airline_id'],
+					$this->request->data['imprimir']['fecha_inicio'],
+					$this->request->data['imprimir']['fecha_fin']
+				)
+			),
+			'nombre_reporte' => 'COMPARATIVO DE METAS POR AEROLÍNEA'
+		));
+	}
 }
