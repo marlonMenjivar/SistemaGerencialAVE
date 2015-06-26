@@ -10,21 +10,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<?php echo $cakeDescription ?>:
 		<?php echo $this->fetch('title'); ?>
     </title>
-    <!--<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>-->
-    <!-- Bootstrap 3.3.4 -->
-    <!--<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />-->
-    <!-- Font Awesome Icons -->
-    <!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />-->
-    <!-- Ionicons -->
-    <!--<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />-->
-    <!-- Theme style -->
-    <!--<link href="dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />-->
-    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-          page. However, you can choose any other skin. Make sure you
-          apply the skin class to the body tag so the changes take effect.
-    -->
-    <!--<link href="dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" />-->
-    <!--<link href="../../webroot/dist/css/AdminLTE.css" rel="stylesheet" type="text/css"/>-->
     <?php
         echo $this->Html->css(array('bootstrap',
             'font-awesome.min.css',
@@ -36,26 +21,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             ));
     ?>
   </head>
-  <!--
-  BODY TAG OPTIONS:
-  =================
-  Apply one or more of the following classes to get the
-  desired effect
-  |---------------------------------------------------------|
-  | SKINS         | skin-blue                               |
-  |               | skin-black                              |
-  |               | skin-purple                             |
-  |               | skin-yellow                             |
-  |               | skin-red                                |
-  |               | skin-green                              |
-  |---------------------------------------------------------|
-  |LAYOUT OPTIONS | fixed                                   |
-  |               | layout-boxed                            |
-  |               | layout-top-nav                          |
-  |               | sidebar-collapse                        |
-  |               | sidebar-mini                            |
-  |---------------------------------------------------------|
-  -->
   <body class="skin-blue sidebar-mini">
       <?php 
         //Lee el rol de usuario
@@ -67,7 +32,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="#" class="logo">
+        <a href="../pages/home" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><?php echo $this->Html->image('logo-mini.png',array('alt'=>'Logo mini'));?>
           </span>

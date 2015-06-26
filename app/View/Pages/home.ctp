@@ -14,7 +14,7 @@
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-             <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                  <?php echo $this->Html->link(__('<i class="fa fa-arrow-circle-right"></i>'), array('controller'=>'GoalAirlines','action'=>'comparativoMetasAerolinea'), array('class' => 'small-box-footer','escape' => false));?>
               </div>
 </div><!-- ./col -->
 <div class="col-lg-3 col-xs-6">
@@ -22,12 +22,12 @@
               <div class="small-box bg-light-blue">
                 <div class="inner">
                   <h3>2</h3>
-                  <p>Venta de boletos por líneas aéreas por destino semanal</p>
+                  <p>Venta de boletos de líneas aéreas por destino semanal</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                <?php echo $this->Html->link(__('<i class="fa fa-arrow-circle-right"></i>'), array('controller'=>'Airlines','action'=>'boletosPorDestinoSemanal'), array('class' => 'small-box-footer','escape' => false));?>
               </div>
 </div><!-- ./col -->
 <div class="col-lg-3 col-xs-6">
@@ -40,7 +40,7 @@
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                <?php echo $this->Html->link(__('<i class="fa fa-arrow-circle-right"></i>'), array('controller'=>'Airlines','action'=>'boletosPorRutaSemanal'), array('class' => 'small-box-footer','escape' => false));?>
               </div>
 </div><!-- ./col -->
 <div class="col-lg-3 col-xs-6">
@@ -53,7 +53,7 @@
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                <?php echo $this->Html->link(__('<i class="fa fa-arrow-circle-right"></i>'), array('controller'=>'GoalBranchOffices','action'=>'comparativoMetas'), array('class' => 'small-box-footer','escape' => false));?>
               </div>
 </div><!-- ./col -->
 <div class="col-lg-3 col-xs-6">
@@ -66,7 +66,7 @@
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                <?php echo $this->Html->link(__('<i class="fa fa-arrow-circle-right"></i>'), array('controller'=>'GoalBranchOffices','action'=>'comparativoMetasTerrestres'), array('class' => 'small-box-footer','escape' => false));?>
               </div>
 </div><!-- ./col -->
 <div class="col-lg-3 col-xs-6">
@@ -79,7 +79,7 @@
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                <?php echo $this->Html->link(__('<i class="fa fa-arrow-circle-right"></i>'), array('controller' => 'reports', 'action' => 'show', 6), array('class' => 'small-box-footer','escape' => false));?>
               </div>
 </div><!-- ./col -->
 <div class="col-lg-3 col-xs-6">
@@ -92,7 +92,7 @@
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                <?php echo $this->Html->link(__('<i class="fa fa-arrow-circle-right"></i>'), array('controller' => 'reports', 'action' => 'show', 7), array('class' => 'small-box-footer','escape' => false));?>
               </div>
 </div><!-- ./col -->
 <div class="col-lg-3 col-xs-6">
@@ -105,7 +105,7 @@
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                <?php echo $this->Html->link(__('<i class="fa fa-arrow-circle-right"></i>'), array('controller' => 'reports', 'action' => 'show', 8), array('class' => 'small-box-footer','escape' => false));?>
               </div>
 </div><!-- ./col -->
 <div class="col-lg-3 col-xs-6">
@@ -118,7 +118,7 @@
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                <?php echo $this->Html->link(__('<i class="fa fa-arrow-circle-right"></i>'), array('controller'=>'GoalAirlines','action'=>'ventaBoletoAereosMensual'), array('class' => 'small-box-footer','escape' => false));?>
               </div>
 </div><!-- ./col -->
 <div class="col-lg-3 col-xs-6">
@@ -131,7 +131,7 @@
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                <?php echo $this->Html->link(__('<i class="fa fa-arrow-circle-right"></i>'), array('controller'=>'Reports','action'=>'ventaServicioTerrestreTipoServicioMensual'), array('class' => 'small-box-footer','escape' => false));?>
               </div>
 </div><!-- ./col -->
 <div class="col-lg-3 col-xs-6">
@@ -144,7 +144,7 @@
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                <?php echo $this->Html->link(__('<i class="fa fa-arrow-circle-right"></i>'), array('controller'=>'Reports','action'=>'ventaProveedorServicioTerrestreMensual'), array('class' => 'small-box-footer','escape' => false));?>
               </div>
 </div><!-- ./col -->
 <div class="col-lg-3 col-xs-6">
@@ -157,6 +157,6 @@
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
+                <?php echo $this->Html->link(__('<i class="fa fa-arrow-circle-right"></i>'), array('controller'=>'EtlUsers','action'=>'index'), array('class' => 'small-box-footer','escape' => false));?>
               </div>
 </div><!-- ./col -->
