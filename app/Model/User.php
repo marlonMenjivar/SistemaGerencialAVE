@@ -15,8 +15,8 @@ class User extends AppModel {
                 'message' => 'Contraseña requerida'
             ),
             'between'=>array(
-                'rule' => array('lengthBetween', 5, 255),
-                'message' => 'Entre 5 y 255 caracteres'
+                'rule' => array('lengthBetween', 8, 255),
+                'message' => 'Entre 8 y 255 caracteres'
             )
         ),
         'role' => array(
