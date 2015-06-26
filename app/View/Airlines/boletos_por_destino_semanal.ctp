@@ -141,7 +141,21 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                         endif;
                 ?>
         </div><!-- ./col -->
-        
+			<div class="col-xs-6" style="margin-bottom: 20px">
+				<?php
+				if (!empty($consultaDestinos)) {
+					echo $this->Form->create('imprimir', array('url' => array('controller' => 'airlines', 'action' => 'imprimir'), 'target' => '_blank'));
+					echo $this->Form->input('airline_id', array('value' => @$this->request->data['TicketDestiny']['airline_id'], 'type' => 'hidden'));
+					echo $this->Form->input('aereolinea', array('value' => trim(@$airlines[@$this->request->data['TicketDestiny']['airline_id']]), 'type' => 'hidden'));
+					echo $this->Form->input('fecha_inicio', array('value' => @$this->request->data['TicketDestiny']['fecha_inicio'], 'type' => 'hidden'));
+					echo $this->Form->input('fecha_fin', array('value' => @$this->request->data['TicketDestiny']['fecha_fin'], 'type' => 'hidden'));
+					echo $this->Form->input('boletos_destino', array('value' => @$boletos_destino, 'type' => 'hidden'));
+					echo $this->Form->input('total_destino', array('value' => @$total_destino, 'type' => 'hidden'));
+					echo $this->Form->button(__('<i class="fa fa-print"></i> Imprimir'), array('class' => 'btn btn-warning', 'escape' => false));
+					echo $this->Form->end();
+				}
+				?>
+			</div>
     </div>
 <div class="box">
     <div class="box-header">

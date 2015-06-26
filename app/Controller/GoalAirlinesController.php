@@ -433,7 +433,7 @@ class GoalAirlinesController extends AppController {
 					$this->request->data['imprimir']['fecha_fin']
 				)
 			),
-			'nombre_reporte' => 'COMPARATIVO DE METAS POR AEROLÍNEA'
+			'nombre_reporte' => 'COMPARATIVO DE CUMPLIMIENTO DE METAS POR LÍNEA AÉREA POR PERIODO BSP'
 		));
 	}
 }

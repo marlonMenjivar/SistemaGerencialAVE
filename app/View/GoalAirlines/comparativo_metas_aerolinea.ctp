@@ -214,7 +214,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
 				if (!empty($consultaMetas)) {
 					echo $this->Form->create('imprimir', array('url' => array('controller' => 'goalairlines', 'action' => 'imprimir'), 'target' => '_blank'));
 					echo $this->Form->input('airline_id', array('value' => @$consultaMetas['GoalAirline']['airline_id'], 'type' => 'hidden'));
-					echo $this->Form->input('aereolinea', array('value' => @$airlines[@$consultaMetas['GoalAirline']['airline_id']], 'type' => 'hidden'));
+					echo $this->Form->input('aereolinea', array('value' => trim(@$airlines[@$consultaMetas['GoalAirline']['airline_id']]), 'type' => 'hidden'));
 					echo $this->Form->input('fecha', array('value' => @$fecha, 'type' => 'hidden'));
 					echo $this->Form->input('fecha_inicio', array('value' => @$consultaMetas['GoalAirline']['fecha_inicio'], 'type' => 'hidden'));
 					echo $this->Form->input('fecha_fin', array('value' => @$consultaMetas['GoalAirline']['fecha_fin'], 'type' => 'hidden'));
