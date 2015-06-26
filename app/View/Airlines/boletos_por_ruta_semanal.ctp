@@ -59,7 +59,8 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                             //Se selecciona automaticamente 
                                 echo $this->Form->input('fecha_fin',array('label'=>'Hasta',
                                                             'type'=>'text',
-                                                            'class'=>'fecha form-control', 
+                                                            'class'=>'fecha form-control',
+                                                            'readonly'=>'true',
                                                             'required' => true)); 
                             ?>
                             <!--fin del box-body-->
@@ -199,3 +200,45 @@ los boletos vendidos en ese periodo por esa aerolínea-->
           <div class="row">
             
           </div><!-- /.row -->
+
+
+<?= $this->Html->script(array('jQuery-2.1.4.min.js', 'bootstrap-datepicker', 'bootstrap-datepicker.es.min')); ?>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('.fecha').datepicker( {
+			format: "yyyy/mm/dd",
+			todayHighlight: true,
+			autoclose: true,
+			language: "es"
+		});
+		
+		$('.mes').datepicker( {
+			format: "yyyy/mm/dd",
+			startView: "months", 
+			minViewMode: "months",
+			autoclose: true,
+			language: 'es'
+		});
+
+		$("#TicketRouteFechaInicio").change(function() {
+			$("#TicketRouteFechaFin").val(suma_fecha(6, $("#TicketRouteFechaInicio").val()));
+		});
+	});
+
+	function suma_fecha(p_dias, p_fecha) {
+		var fecha = new Date();
+		var fecha_string = p_fecha || (fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
+		var separador = fecha_string.toString().indexOf('/') != -1 ? '/' : '-'; 
+		var fecha_array = fecha_string.toString().split(separador);
+		var p_fecha = fecha_array[0] + '/' + fecha_array[1] + '/' + fecha_array[2];
+		p_fecha= new Date(p_fecha);
+		p_fecha.setDate(p_fecha.getDate() + parseInt(p_dias));
+		var anio = p_fecha.getFullYear();
+		var mes = p_fecha.getMonth() + 1;
+		var dia = p_fecha.getDate();
+		mes = (mes < 10) ? ("0" + mes) : mes;
+		dia = (dia < 10) ? ("0" + dia) : dia;
+		var fecha_final = anio + separador + mes + separador + dia;
+		return fecha_final;
+	}
+</script>

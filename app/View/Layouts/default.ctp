@@ -32,7 +32,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="../pages/home" class="logo">
+        <a href="#" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><?php echo $this->Html->image('logo-mini.png',array('alt'=>'Logo mini'));?>
           </span>
