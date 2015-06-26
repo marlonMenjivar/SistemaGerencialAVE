@@ -24,7 +24,7 @@
 			</table>
 		</td>
 	</tr>
-	<tr>
+	<!--<tr>
 		<td align="center">
 			<table border="1">
 				<caption><h3>Boletos Facturados</h3></caption>
@@ -39,7 +39,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($consulta_boletos as $boletos) { ?>
+					<?php /**foreach ($consulta_boletos as $boletos) { ?>
 					<tr>
 						<td><?= $boletos['InvoicedTicket']['boleto']; ?></td>
 						<td><?= $this->Time->format('d/m/Y', $boletos['InvoicedTicket']['fecha']); ?></td>
@@ -48,9 +48,9 @@
 						<td><?= $boletos['InvoicedTicket']['pasajero']; ?></td>
 						<td><?= number_format($boletos['InvoicedTicket']['tarifa'], 2, '.', ','); ?></td>
 					</tr>
-					<?php } ?>
+					<?php } **/?>
 				</tbody>
 			</table>
 		</td>
-	</tr>
+	</tr>-->
 </table>

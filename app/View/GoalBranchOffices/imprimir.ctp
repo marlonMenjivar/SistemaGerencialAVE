@@ -20,51 +20,51 @@
 			</table>
 		</td>
 	</tr>
-	<tr>
+	<!--<tr>
 		<td align="center">
 			<table border="1">
-				<caption><h3><?= $tipo == 'tickets' ? 'Boletos' : 'Servicios'; ?> Facturados</h3></caption>
+				<caption><h3><?//= $tipo == 'tickets' ? 'Boletos' : 'Servicios'; ?> Facturados</h3></caption>
 				<thead>
 					<tr>
-						<th><?= $tipo == 'tickets' ? 'Boleto' : 'Tipo Servicio'; ?></th>
+						<th><?//= $tipo == 'tickets' ? 'Boleto' : 'Tipo Servicio'; ?></th>
 						<th>Fecha</th>
-						<?php if ($tipo == 'tickets') { ?>
+						<?php// if ($tipo == 'tickets') { ?>
 						<th>Ruta</th>
 						<th>Destino</th>
-						<?php } ?>
+						<?php// } ?>
 						<th>Pasajero</th>
 						<th>Tarifa ($)</th>
-						<?php if ($tipo == 'services') { ?>
+						<?php// if ($tipo == 'services') { ?>
 						<th>IVA($)</th>
 						<th>Proveedor de Servicio</th>
 						<th>Descripción</th>
 						<th>Correlativo de Comprobante</th>
 						<th>Tipo de Documento</th>
-						<?php } ?>
+						<?php //} ?>
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($consulta as $registros) { ?>
+					<?php //foreach ($consulta as $registros) { ?>
 					<tr>
-						<td><?= $registros['invoiced_'.$tipo][$tipo == 'tickets' ? 'boleto' : 'tipo_servicio']; ?></td>
-						<td><?= $this->Time->format('d/m/Y', $registros['invoiced_'.$tipo]['fecha']); ?></td>
-						<?php if ($tipo == 'tickets') { ?>
-						<td><?= $registros['invoiced_'.$tipo]['ruta']; ?></td>
-						<td><?= $registros['invoiced_'.$tipo]['destino']; ?></td>
-						<?php } ?>
-						<td><?= $registros['invoiced_'.$tipo]['pasajero']; ?></td>
-						<td><?= number_format($registros['invoiced_'.$tipo]['tarifa'], 2, '.', ','); ?></td>
-						<?php if ($tipo == 'services') { ?>
-						<td><?= number_format($registros['invoiced_'.$tipo]['iva'], 2, '.', ','); ?></td>
-						<td><?= $registros['invoiced_'.$tipo]['proveedor_servicio']; ?></td>
-						<td><?= $registros['invoiced_'.$tipo]['descripcion']; ?></td>
-						<td><?= $registros['invoiced_'.$tipo]['correlativo_comprobante']; ?></td>
-						<td><?= $registros['invoiced_'.$tipo]['tipo_documento']; ?></td>
-						<?php } ?>
+						<td><?//= $registros['invoiced_'.$tipo][$tipo == 'tickets' ? 'boleto' : 'tipo_servicio']; ?></td>
+						<td><?//= $this->Time->format('d/m/Y', $registros['invoiced_'.$tipo]['fecha']); ?></td>
+						<?//php if ($tipo == 'tickets') { ?>
+						<td><//?= $registros['invoiced_'.$tipo]['ruta']; ?></td>
+						<td><//?= $registros['invoiced_'.$tipo]['destino']; ?></td>
+						<?//php } ?>
+						<td><?//= $registros['invoiced_'.$tipo]['pasajero']; ?></td>
+						<td><?//= number_format($registros['invoiced_'.$tipo]['tarifa'], 2, '.', ','); ?></td>
+						<?php //if ($tipo == 'services') { ?>
+						<td><?//= number_format($registros['invoiced_'.$tipo]['iva'], 2, '.', ','); ?></td>
+						<td><?//= $registros['invoiced_'.$tipo]['proveedor_servicio']; ?></td>
+						<td><?//= $registros['invoiced_'.$tipo]['descripcion']; ?></td>
+						<td><?//= $registros['invoiced_'.$tipo]['correlativo_comprobante']; ?></td>
+						<td><?//= $registros['invoiced_'.$tipo]['tipo_documento']; ?></td>
+						<?php //} ?>
 					</tr>
-					<?php } ?>
+					<?php// } ?>
 				</tbody>
 			</table>
 		</td>
-	</tr>
+	</tr>-->
 </table>

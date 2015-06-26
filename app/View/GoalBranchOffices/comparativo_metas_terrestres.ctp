@@ -195,10 +195,10 @@ los boletos vendidos en ese periodo por esa aerolínea-->
 				?>
 			</div>
     </div>
-<div class="box">
+<!--<div class="box">
     <div class="box-header">
         <h3 class="box-title">Servicios Facturados</h3>
-    </div><!-- /.box-header -->
+    </div>
     <div class="box-body">
         <table class="tablitaBonita" class="table table-bordered table-striped">
             <thead>
@@ -216,7 +216,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
             </thead>
             <tbody>
             <?php 
-                if(empty($consultaServicios)):
+                /**if(empty($consultaServicios)):
  
                 else:
                     foreach ($consultaServicios as $k=>$nivel0):
@@ -253,8 +253,8 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                     endforeach;   
                 endforeach;
                 endif;
-             ?>
+             **/?>
             </tbody>
         </table>
-    </div><!-- /.box-body -->
-</div><!-- /.box -->
+    </div>
+</div> -->
