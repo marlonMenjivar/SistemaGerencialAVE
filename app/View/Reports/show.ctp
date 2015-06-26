@@ -111,7 +111,7 @@ if ($reporte_encontrado):
 					<?php if (@$tipo_mensaje == '2') echo $this->Session->flash(); ?>
 					<div class="box box-primary">
 						<div class="box-header with-border">
-							<h3 class="box-title">Venta de Servicios Terrestres por <?= $servicio; ?> de Servicio</h3>
+							<h3 class="box-title">Venta de Servicios Terrestres por <?= ucwords($servicio); ?> de Servicio</h3>
 						</div>
 						<div class="box-body">
 							<div class="row">

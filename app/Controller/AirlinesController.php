@@ -439,26 +439,28 @@ class AirlinesController extends AppController {
         endif;
 	}
     
-	public function imprimir() {
+	public function imprimir($tipo = '') {
 		$this->layout = 'imprimir';
 		$this->loadModel('InvoicedTicket');
 		$this->set(array(
 			'aereolinea' => $this->request->data['imprimir']['aereolinea'],
 			'fecha_inicio' => $this->request->data['imprimir']['fecha_inicio'],
 			'fecha_fin' => $this->request->data['imprimir']['fecha_fin'],
-			'boletos_destino' => $this->request->data['imprimir']['boletos_destino'],
-			'total_destino' => $this->request->data['imprimir']['total_destino'],
-			'consulta_destinos' => $this->InvoicedTicket->query(	//	método de creación de query para evitar inyección sql
-				'SELECT it.destino, count(it.boleto) boletos_destino, sum(it.tarifa) total_destino, iit.nombre_ciudad2 ciudad_destino, iit.pais2 pais_destino
-				FROM invoiced_tickets it INNER JOIN itinerary_invoiced_tickets iit ON it.itinerary_invoiced_ticket_id = iit.id
-				WHERE it.airline_id = ? AND it.fecha BETWEEN ? AND ? GROUP BY destino ORDER BY destino',
+			'boletos' => $this->request->data['imprimir']['boletos_'.$tipo],
+			'total' => $this->request->data['imprimir']['total_'.$tipo],
+			'consulta' => $this->InvoicedTicket->query(	//	método de creación de query para evitar inyección sql
+				'SELECT it.'.$tipo.', count(it.boleto) boletos_'.$tipo.', sum(it.tarifa) total_'.$tipo.',
+				'.($tipo == 'ruta' ? 'iit.nombre_ciudad1 ciudad_origen, iit.pais1 pais_origen, ' : '').'iit.nombre_ciudad2 ciudad_destino, iit.pais2 pais_destino
+				FROM invoiced_tickets it INNER JOIN itinerary_invoiced_tickets iit ON it.itinerary_invoiced_ticket_id = iit.id 
+				WHERE it.airline_id = ? AND it.fecha BETWEEN ? AND ? GROUP BY '.$tipo.' ORDER BY '.$tipo,
 				array(
 					$this->request->data['imprimir']['airline_id'],
 					$this->request->data['imprimir']['fecha_inicio'],
 					$this->request->data['imprimir']['fecha_fin']
 				)
 			),
-			'nombre_reporte' => 'SEMI-RESUMEN VENTA DE BOLETOS POR LÍNEAS AÉREAS POR DESTINO SEMANAL'
+			'nombre_reporte' => 'SEMI-RESUMEN VENTA DE BOLETOS POR LÍNEAS AÉREAS POR '.strtoupper($tipo).' SEMANAL',
+			'tipo' => $tipo
 		));
 	}
 }

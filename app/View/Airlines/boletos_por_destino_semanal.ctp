@@ -144,7 +144,7 @@ los boletos vendidos en ese periodo por esa aerolínea-->
 			<div class="col-xs-6" style="margin-bottom: 20px">
 				<?php
 				if (!empty($consultaDestinos)) {
-					echo $this->Form->create('imprimir', array('url' => array('controller' => 'airlines', 'action' => 'imprimir'), 'target' => '_blank'));
+					echo $this->Form->create('imprimir', array('url' => array('controller' => 'airlines', 'action' => 'imprimir', 'destino'), 'target' => '_blank'));
 					echo $this->Form->input('airline_id', array('value' => @$this->request->data['TicketDestiny']['airline_id'], 'type' => 'hidden'));
 					echo $this->Form->input('aereolinea', array('value' => trim(@$airlines[@$this->request->data['TicketDestiny']['airline_id']]), 'type' => 'hidden'));
 					echo $this->Form->input('fecha_inicio', array('value' => @$this->request->data['TicketDestiny']['fecha_inicio'], 'type' => 'hidden'));
