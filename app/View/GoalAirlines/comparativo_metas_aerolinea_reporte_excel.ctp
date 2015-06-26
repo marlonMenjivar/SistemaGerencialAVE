@@ -50,15 +50,15 @@
         endif;
     endif;
 
-    $objPHPExcel->getActiveSheet()->setCellValue('B6', $airlineaNombre);
-    $objPHPExcel->getActiveSheet()->setCellValue('B9', $fecha);
-    $objPHPExcel->getActiveSheet()->setCellValue('B12', '$ '.$metaBSP);
-    $objPHPExcel->getActiveSheet()->setCellValue('B15', '$ '.$comision);
-    $objPHPExcel->getActiveSheet()->setCellValue('D6', $servicios_periodo_sucursal);
-    $objPHPExcel->getActiveSheet()->setCellValue('E6', '$ '.$total_periodo);
-    $objPHPExcel->getActiveSheet()->setCellValue('D9', '$ '.$faltante);
-    $objPHPExcel->getActiveSheet()->setCellValue('E9', $porcentajeFaltante. ' %');
-    $objPHPExcel->getActiveSheet()->setCellValue('D12', '$ '.$ingresoPorComision);
+$objPHPExcel->getActiveSheet()->setCellValue('B6', $airlineaNombre);
+$objPHPExcel->getActiveSheet()->setCellValue('B9', $fecha);
+$objPHPExcel->getActiveSheet()->setCellValue('B12', '$ '.number_format($metaBSP, 2, '.', ','));
+$objPHPExcel->getActiveSheet()->setCellValue('B15', '$ '.number_format($comision, 2, '.', ','));
+$objPHPExcel->getActiveSheet()->setCellValue('D6', $servicios_periodo_sucursal);
+$objPHPExcel->getActiveSheet()->setCellValue('E6', '$ '.number_format($total_periodo, 2, '.', ','));
+$objPHPExcel->getActiveSheet()->setCellValue('D9', '$ '.number_format($faltante, 2, '.', ','));
+$objPHPExcel->getActiveSheet()->setCellValue('E9', number_format($porcentajeFaltante, 2, '.', ',').' %');
+ $objPHPExcel->getActiveSheet()->setCellValue('D12', '$ '.number_format($ingresoPorComision, 2, '.', ','));
 
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Disposition: attachment;filename="ComparativoMetasAerolíneaReporteExcel.xlsx"');

@@ -22,6 +22,7 @@ if (!empty($consultaVentas)):
                                     ->setCellValue('E'.$row, $aerolinea['goal_airlines']['boletos_periodo'])
                                     ->setCellValue('F'.$row, $aerolinea['goal_airlines']['total_periodo']);
 
+      $objPHPExcel->getActiveSheet()->getStyle('F'.$row)->getNumberFormat()->setFormatCode('#,##0.00');
       $boletos_periodo = $boletos_periodo + $aerolinea['goal_airlines']['boletos_periodo'];
       $total_periodo = $total_periodo + $aerolinea['goal_airlines']['total_periodo'];
     }
@@ -30,7 +31,7 @@ endif;
 
 $objPHPExcel->getActiveSheet()->setCellValue('E7', $boletos_periodo);
 
-$objPHPExcel->getActiveSheet()->setCellValue('F7', '$ '.$total_periodo);
+$objPHPExcel->getActiveSheet()->setCellValue('F7', '$ '.number_format($total_periodo, 2, '.', ','));
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename="ventaBoletoAereosMensualReporteExcel.xlsx"');

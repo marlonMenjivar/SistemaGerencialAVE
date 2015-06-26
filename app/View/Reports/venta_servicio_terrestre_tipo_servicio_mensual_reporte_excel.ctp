@@ -23,6 +23,7 @@ if (!empty($consultaServiciosTipo)):
                                     ->setCellValue('F'.$row, $ServicioTipo['services_sales_types']['fecha_inicio_tipo'])
                                     ->setCellValue('G'.$row, $ServicioTipo['services_sales_types']['fecha_fin_tipo']);
     
+      $objPHPExcel->getActiveSheet()->getStyle('E'.$row)->getNumberFormat()->setFormatCode('#,##0.00');
       $cantidad_servicios = $cantidad_servicios + $ServicioTipo['types']['cantidad_servicios_tipo'];
       $total_servicios = $total_servicios + $ServicioTipo['types']['total_servicios_tipo'];
     }
@@ -30,7 +31,7 @@ if (!empty($consultaServiciosTipo)):
 endif;
 
 $objPHPExcel->getActiveSheet()->setCellValue('F7', $cantidad_servicios);
-$objPHPExcel->getActiveSheet()->setCellValue('G7', '$ '.$total_servicios);
+$objPHPExcel->getActiveSheet()->setCellValue('G7', '$ '.number_format($total_servicios, 2, '.', ','));
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename="ventaTipoDeServiciosMensualReporteExcel.xlsx"');

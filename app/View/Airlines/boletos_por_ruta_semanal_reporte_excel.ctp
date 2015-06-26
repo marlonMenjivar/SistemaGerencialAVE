@@ -26,6 +26,8 @@ if (!empty($consultaRutas)):
                                     ->setCellValue('F'.$row, $nivel0['iit']['pais_destino'])
                                     ->setCellValue('G'.$row, $nivel0[0]['boletos_ruta'])
                                     ->setCellValue('H'.$row, $nivel0[0]['total_ruta']);
+
+     $objPHPExcel->getActiveSheet()->getStyle('H'.$row)->getNumberFormat()->setFormatCode('#,##0.00');
     
       $boletos_ruta = $boletos_ruta+$nivel0[0]['boletos_ruta'];
       $total_ruta = $total_ruta+$nivel0[0]['total_ruta'];
@@ -34,7 +36,7 @@ if (!empty($consultaRutas)):
 endif;
 
 $objPHPExcel->getActiveSheet()->setCellValue('G7', $boletos_ruta);
-$objPHPExcel->getActiveSheet()->setCellValue('H7', '$ '.$total_ruta);
+$objPHPExcel->getActiveSheet()->setCellValue('H7', '$ '.number_format($total_ruta, 2, '.', ','));
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename="ventaBoletosLARSemanalReporteExcel.xlsx"');

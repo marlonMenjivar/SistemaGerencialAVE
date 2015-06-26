@@ -23,6 +23,8 @@ if (!empty($consultaDestinos)):
                                     ->setCellValue('D'.$row, $nivel0['iit']['pais_destino'])
                                     ->setCellValue('E'.$row, $nivel0['0']['boletos_destino'])
                                     ->setCellValue('F'.$row, $nivel0['0']['total_destino']);
+
+      $objPHPExcel->getActiveSheet()->getStyle('F'.$row)->getNumberFormat()->setFormatCode('#,##0.00');
                                     
     
      $boletos_destino=$boletos_destino+$nivel0['0']['boletos_destino'];;
@@ -32,7 +34,7 @@ if (!empty($consultaDestinos)):
 endif;
 
 $objPHPExcel->getActiveSheet()->setCellValue('E7', $boletos_destino);
-$objPHPExcel->getActiveSheet()->setCellValue('F7', '$ '.$total_destino);
+$objPHPExcel->getActiveSheet()->setCellValue('F7', '$ '.number_format($total_destino, 2, '.', ','));
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename="ventaBoletosLADestinoSemanalReporteExcel.xlsx"');

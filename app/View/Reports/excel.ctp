@@ -25,6 +25,9 @@ switch ($reporte) {
                                         ->setCellValue('D'.$row, $qrow[0]['total_por_tipo'])
                                         ->setCellValue('E'.$row, $qrow[0]['iva_por_tipo']);
 
+          $objPHPExcel->getActiveSheet()->getStyle('D'.$row)->getNumberFormat()->setFormatCode('#,##0.00');
+          $objPHPExcel->getActiveSheet()->getStyle('E'.$row)->getNumberFormat()->setFormatCode('#,##0.00');
+
           $sumatorias['cantidad_por_tipo'] = $sumatorias['cantidad_por_tipo'] + $qrow[0]['cantidad_por_tipo'];
           $sumatorias['total_por_tipo'] = $sumatorias['total_por_tipo'] + $qrow[0]['total_por_tipo'];
           $sumatorias['iva_por_tipo'] = $sumatorias['iva_por_tipo'] + $qrow[0]['iva_por_tipo'];
@@ -56,6 +59,9 @@ switch ($reporte) {
                                         ->setCellValue('C'.$row, $qrow[0]['cantidad_por_proveedor'])
                                         ->setCellValue('D'.$row, $qrow[0]['total_por_proveedor'])
                                         ->setCellValue('E'.$row, $qrow[0]['iva_por_proveedor']);
+
+          $objPHPExcel->getActiveSheet()->getStyle('D'.$row)->getNumberFormat()->setFormatCode('#,##0.00');
+          $objPHPExcel->getActiveSheet()->getStyle('E'.$row)->getNumberFormat()->setFormatCode('#,##0.00');
 
           $sumatorias['cantidad_por_proveedor'] = $sumatorias['cantidad_por_proveedor'] + $qrow[0]['cantidad_por_proveedor'];
           $sumatorias['total_por_proveedor'] = $sumatorias['total_por_proveedor'] + $qrow[0]['total_por_proveedor'];
@@ -93,6 +99,12 @@ switch ($reporte) {
                                         ->setCellValue('I'.$row, $qrow['goal_airlines']['porcentaje'])
                                         ->setCellValue('J'.$row, $qrow['goal_airlines']['comision'])
                                         ->setCellValue('K'.$row, $qrow['goal_airlines']['ingreso_comision']);
+
+          $objPHPExcel->getActiveSheet()->getStyle('E'.$row)->getNumberFormat()->setFormatCode('#,##0.00');
+          $objPHPExcel->getActiveSheet()->getStyle('G'.$row)->getNumberFormat()->setFormatCode('#,##0.00');
+          $objPHPExcel->getActiveSheet()->getStyle('H'.$row)->getNumberFormat()->setFormatCode('#,##0.00');
+          $objPHPExcel->getActiveSheet()->getStyle('J'.$row)->getNumberFormat()->setFormatCode('#,##0.00');
+          $objPHPExcel->getActiveSheet()->getStyle('K'.$row)->getNumberFormat()->setFormatCode('#,##0.00');
 
           $sumatorias['meta_bsp'] += $qrow['goal_airlines']['meta_bsp'];
           $sumatorias['boletos_periodo'] += $qrow['goal_airlines']['boletos_periodo'];

@@ -23,6 +23,7 @@ if (!empty($consultaServicios)):
                                     ->setCellValue('F'.$row, $ServicioProveedor['services_sales_providers']['fecha_inicio_proveedor'])
                                     ->setCellValue('G'.$row, $ServicioProveedor['services_sales_providers']['fecha_fin_proveedor']);
     
+     $objPHPExcel->getActiveSheet()->getStyle('E'.$row)->getNumberFormat()->setFormatCode('#,##0.00');
      $cantidad_servicios = $cantidad_servicios + $ServicioProveedor['providers']['cantidad_servicios_proveedor'];
      $total_servicios = $total_servicios + $ServicioProveedor['providers']['total_servicios_proveedor'];
     }
@@ -30,7 +31,7 @@ if (!empty($consultaServicios)):
 endif;
 
 $objPHPExcel->getActiveSheet()->setCellValue('F7', $cantidad_servicios);
-$objPHPExcel->getActiveSheet()->setCellValue('G7', '$ '.$total_servicios);
+$objPHPExcel->getActiveSheet()->setCellValue('G7', '$ '.number_format($total_servicios, 2, '.', ','));
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename="ventaProveedorDeServiciosTerrestresMensualReporteExcel.xlsx"');
