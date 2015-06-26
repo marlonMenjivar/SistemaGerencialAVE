@@ -19,7 +19,7 @@
 	<tr>
 		<td align="center">
 			<table border="1">
-				<caption><h1>Boletos Facturados por <?= ucwords($tipo); ?></h1></caption>
+				<caption><h3>Boletos Facturados por <?= ucwords($tipo); ?></h3></caption>
 				<thead>
 					<tr>
 						<th><?= ucwords($tipo); ?></th>

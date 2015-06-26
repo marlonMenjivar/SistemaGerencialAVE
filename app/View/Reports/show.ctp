@@ -103,6 +103,19 @@ if ($reporte_encontrado):
 							}
 							?>
 						</div>
+						<div class="col-md-4">
+							<?php
+							if (!empty($query)) {
+								echo $this->Form->create('imprimir', array('url' => array('controller' => 'reports', 'action' => 'imprimir', $reporte), 'target' => '_blank'));
+								echo $this->Form->input('fecha1', array('value' => $this->request->data['show_reporte_'.$reporte]['fecha1'], 'type' => 'hidden'));
+								echo $this->Form->input('fecha2', array('value' => $this->request->data['show_reporte_'.$reporte]['fecha2'], 'type' => 'hidden'));
+								echo $this->Form->input('cantidad_por_'.$servicio, array('value' => $sumatorias['cantidad_por_'.$servicio], 'type' => 'hidden'));
+								echo $this->Form->input('total_por_'.$servicio, array('value' => $sumatorias['total_por_'.$servicio], 'type' => 'hidden'));
+								echo $this->Form->button(__('<i class="fa fa-print"></i> Imprimir'), array('class' => 'btn btn-warning', 'escape' => false));
+								echo $this->Form->end();
+							}
+							?>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -262,6 +275,21 @@ if ($reporte_encontrado):
 								echo $this->Form->create('pdf_reporte_'.$reporte, array('url' => array('controller' => 'reports', 'action' => 'pdf', $reporte)));
 								echo $this->Form->input('airline_id', array('value' => $this->request->data['show_reporte_'.$reporte]['airline_id'], 'type' => 'hidden'));
 								echo $this->Form->button(__('<i class="fa fa-file-pdf-o"></i> Exportar a PDF'), array('type' => 'submit', 'class' => 'btn btn-danger', 'escape' => false));
+								echo $this->Form->end();
+							}
+							?>
+						</div>
+						<div class="col-md-4">
+							<?php
+							if (!empty($query)) {
+								echo $this->Form->create('imprimir', array('url' => array('controller' => 'reports', 'action' => 'imprimir', $reporte), 'target' => '_blank'));
+								echo $this->Form->input('airline_id', array('value' => $this->request->data['show_reporte_'.$reporte]['airline_id'], 'type' => 'hidden'));
+								echo $this->Form->input('aereolinea', array('value' => $aereolineas[$this->request->data['show_reporte_'.$reporte]['airline_id']], 'type' => 'hidden'));
+								echo $this->Form->input('boletos_periodo', array('value' => $sumatorias['boletos_periodo'], 'type' => 'hidden'));
+								echo $this->Form->input('total_periodo', array('value' => $sumatorias['total_periodo'], 'type' => 'hidden'));
+								echo $this->Form->input('meta_bsp', array('value' => $sumatorias['meta_bsp'], 'type' => 'hidden'));
+								echo $this->Form->input('porcentaje', array('value' => $sumatorias['porcentaje'], 'type' => 'hidden'));
+								echo $this->Form->button(__('<i class="fa fa-print"></i> Imprimir'), array('class' => 'btn btn-warning', 'escape' => false));
 								echo $this->Form->end();
 							}
 							?>

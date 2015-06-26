@@ -458,4 +458,31 @@ class ReportsController extends AppController {
     }
         }
      
+	public function imprimir($reporte = null) {
+		$this->set(array('nombre_reporte' => strtoupper($this->_nombre_reporte($reporte)), 'reporte' => $reporte));
+		$this->layout = 'imprimir';
+		if ($reporte == 6 || $reporte == 7) {
+			$servicio = $reporte == 6 ? 'tipo' : ($reporte == 7 ? 'proveedor' : '');
+			$this->loadModel('InvoicedService');
+			$this->set(array(
+				'fecha1' => $this->request->data['imprimir']['fecha1'],
+				'fecha2' => $this->request->data['imprimir']['fecha2'],
+				'cantidad' => $this->request->data['imprimir']['cantidad_por_'.$servicio],
+				'total' => $this->request->data['imprimir']['total_por_'.$servicio],
+				'consulta' => $this->InvoicedService->servicios($this->request->data['imprimir']['fecha1'], $this->request->data['imprimir']['fecha2'], $servicio),
+				'servicio' => $servicio
+			));
+		}
+		elseif ($reporte == 8) {
+			$this->loadModel('GoalAirline');
+			$this->set(array(
+				'aereolinea' => $this->request->data['imprimir']['aereolinea'],
+				'boletos_periodo' => $this->request->data['imprimir']['boletos_periodo'],
+				'total_periodo' => $this->request->data['imprimir']['total_periodo'],
+				'meta_bsp' => $this->request->data['imprimir']['meta_bsp'],
+				'porcentaje' => $this->request->data['imprimir']['porcentaje'],
+				'consulta' => $this->GoalAirline->metas_aereolineas($this->request->data['imprimir']['airline_id'])
+			));
+		}
+	}
 }

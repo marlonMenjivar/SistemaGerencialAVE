@@ -27,7 +27,7 @@
 	<tr>
 		<td align="center">
 			<table border="1">
-				<caption><h1>Boletos Facturados</h1></caption>
+				<caption><h3>Boletos Facturados</h3></caption>
 				<thead>
 					<tr>
 						<th>Boleto</th>

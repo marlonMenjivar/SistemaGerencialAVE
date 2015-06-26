@@ -23,7 +23,7 @@
 	<tr>
 		<td align="center">
 			<table border="1">
-				<caption><h1><?= $tipo == 'tickets' ? 'Boletos' : 'Servicios'; ?> Facturados</h1></caption>
+				<caption><h3><?= $tipo == 'tickets' ? 'Boletos' : 'Servicios'; ?> Facturados</h3></caption>
 				<thead>
 					<tr>
 						<th><?= $tipo == 'tickets' ? 'Boleto' : 'Tipo Servicio'; ?></th>
