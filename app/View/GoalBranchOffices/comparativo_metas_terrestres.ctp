@@ -177,6 +177,23 @@ los boletos vendidos en ese periodo por esa aerolínea-->
                     ?>
             </div>
             </div>
+			<div class="col-xs-6" style="margin-bottom: 20px">
+				<?php
+				if (!empty($queryConsultaMetas)) {
+					echo $this->Form->create('imprimir', array('url' => array('controller' => 'goalbranchoffices', 'action' => 'imprimir', 'services'), 'target' => '_blank'));
+					echo $this->Form->input('branch_office_id', array('value' => @$queryConsultaMetas['GoalBranchOffice']['branch_office_id'], 'type' => 'hidden'));
+					echo $this->Form->input('sucursal', array('value' => @$branchOffices[@$queryConsultaMetas['GoalBranchOffice']['branch_office_id']], 'type' => 'hidden'));
+					echo $this->Form->input('mes', array('value' => date('m', strtotime(@$queryConsultaMetas['GoalBranchOffice']['mes'])), 'type' => 'hidden'));
+					echo $this->Form->input('meta_servicios', array('value' => @$queryConsultaMetas['GoalBranchOffice']['meta_servicios'], 'type' => 'hidden'));
+					echo $this->Form->input('servicios_periodo_sucursal', array('value' => @$servicios_periodo_sucursal, 'type' => 'hidden'));
+					echo $this->Form->input('total_periodo', array('value' => @$total_periodo, 'type' => 'hidden'));
+					echo $this->Form->input('faltante', array('value' => @$faltante, 'type' => 'hidden'));
+					echo $this->Form->input('porcentaje_faltante', array('value' => @$porcentajeFaltante, 'type' => 'hidden'));
+					echo $this->Form->button(__('<i class="fa fa-print"></i> Imprimir'), array('class' => 'btn btn-warning', 'escape' => false));
+					echo $this->Form->end();
+				}
+				?>
+			</div>
     </div>
 <div class="box">
     <div class="box-header">

@@ -491,4 +491,48 @@ class GoalBranchOfficesController extends AppController {
                     $this->Session->setFlash('Método no soportado.');
                 endif;
 	}
+	
+	public function imprimir($tipo = '') {
+		$this->layout = 'imprimir';
+		$query = 'SELECT * FROM invoiced_'.$tipo.' WHERE sucursal = ? AND  EXTRACT(MONTH FROM fecha) = ?';
+		$parametros = array($this->request->data['imprimir']['branch_office_id'], $this->request->data['imprimir']['mes']);
+		if ($tipo == 'tickets') {
+			$this->loadModel('InvoicedTicket');
+			$consulta = $this->InvoicedTicket->query($query, $parametros);
+		}
+		elseif ($tipo == 'services') {
+			$this->loadModel('InvoicedService');
+			$consulta = $this->InvoicedService->query($query, $parametros);
+		}
+		$this->set(array(
+			'sucursal' => $this->request->data['imprimir']['sucursal'],
+			'mes' => $this->_mes($this->request->data['imprimir']['mes']),
+			'meta' => $this->request->data['imprimir']['meta_'.($tipo == 'tickets' ? 'boletos' : 'servicios')],
+			'servicios_periodo_sucursal' => $this->request->data['imprimir']['servicios_periodo_sucursal'],
+			'total_periodo' => $this->request->data['imprimir']['total_periodo'],
+			'faltante' => $this->request->data['imprimir']['faltante'],
+			'porcentaje_faltante' => $this->request->data['imprimir']['porcentaje_faltante'],
+			'consulta' => $consulta,
+			'nombre_reporte' => 'COMPARATIVO DE CUMPLIMIENTO DE VENTA '.($tipo == 'tickets' ? 'DE BOLETOS AÉREOS' : ($tipo == 'services' ? 'DE SERVICIOS TERRESTRES' : '')).' POR SUCURSAL',
+			'tipo' => $tipo
+		));
+	}
+	
+	protected function _mes($mes) {
+		$meses = array(
+			'01' => 'Enero',
+			'02' => 'Febrero',
+			'03' => 'Marzo',
+			'04' => 'Abril',
+			'05' => 'Mayo',
+			'06' => 'Junio',
+			'07' => 'Julio',
+			'08' => 'Agosto',
+			'09' => 'Septiembre',
+			'10' => 'Octubre',
+			'11' => 'Noviembre',
+			'12' => 'Diciembre'
+		);
+		return $meses[$mes];
+	}
 }
