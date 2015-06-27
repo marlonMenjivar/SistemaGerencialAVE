@@ -3,9 +3,6 @@
 /* Created on:     10/06/2015 11:04:44 p.m.                     */
 /*==============================================================*/
 
-DROP DATABASE IF EXISTS sig_ave;
-CREATE DATABASE IF NOT EXISTS sig_ave DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE sig_ave;
 
 drop table if exists airlines;
 

@@ -20,9 +20,9 @@ SET time_zone = "+00:00";
 -- Base de datos: `ave_sig`
 --
 
-DROP DATABASE IF EXISTS ave_sig;
-CREATE DATABASE IF NOT EXISTS ave_sig DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE ave_sig;
+DROP DATABASE IF EXISTS sigave;
+CREATE DATABASE IF NOT EXISTS sigave DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE sigave;
 
 -- --------------------------------------------------------
 
