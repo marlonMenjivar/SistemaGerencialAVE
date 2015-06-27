@@ -272,25 +272,33 @@ class ReportsController extends AppController {
                     $fechaInicio=$this->request->data["services_sales_types"]['fecha_inicio'];
                     //Saca la fecha del request
                     $fechaFin=$this->request->data["services_sales_types"]['fecha_fin'];
-                    
-                    $this->loadModel('ServicesSalesType');
-                    //ejecuta consulta la venta de servicios terrestres por proveedor por Mes
-                    $queryConsultaServiciosTipo="SELECT  services_sales_types.id, types.tipo_servicio, types.cantidad_servicios_tipo, types.total_servicios_tipo, services_sales_types.fecha_inicio_tipo, services_sales_types.fecha_fin_tipo "
-                            . "FROM services_sales_types inner join types ON services_sales_types.id = types.services_sales_type_id  "
-                            . "WHERE  fecha_inicio_tipo >= '". $fechaInicio . "' AND fecha_inicio_tipo <= '". $fechaFin . "' ORDER BY tipo_servicio;";
-                    $consultaServiciosTipo=$this->ServicesSalesType->query($queryConsultaServiciosTipo);
-                    
-                    //Si la consulta retorna vacía
-                    if(empty($consultaServiciosTipo)):
-                        $this->Session->setFlash(__('No se encontro registros servicios terrestres vendidos por tipo de servicio para este mes. '));
-                    
+
+                     if (empty($fechaAnio)&&empty($fechaMes)):
+                    	$this->Session->setFlash(__('Seleccione el mes y el año para poder realizar la busqueda. '));
+                    elseif (empty($fechaAnio)):
+                    	$this->Session->setFlash(__('El año no puede ir vacio para realizar la consulta. '));
+                    elseif (empty($fechaMes)):
+                      $this->Session->setFlash(__('El mes no puede ir vacio para realizar la consulta. '));
                     else:
-                        $this->set('consultaServiciosTipo',$consultaServiciosTipo);
-                        $this->set('fechaInicio',$fechaInicio);
-                        $this->set('fechaFin',$fechaFin);
-                        $this->set('fechaAnio',$fechaAnio);
-                        $this->set('fechaMes',$fechaMes);
-                    endif;                    
+	                    $this->loadModel('ServicesSalesType');
+	                    //ejecuta consulta la venta de servicios terrestres por proveedor por Mes
+	                    $queryConsultaServiciosTipo="SELECT  services_sales_types.id, types.tipo_servicio, types.cantidad_servicios_tipo, types.total_servicios_tipo, services_sales_types.fecha_inicio_tipo, services_sales_types.fecha_fin_tipo "
+	                            . "FROM services_sales_types inner join types ON services_sales_types.id = types.services_sales_type_id  "
+	                            . "WHERE  fecha_inicio_tipo >= '". $fechaInicio . "' AND fecha_inicio_tipo <= '". $fechaFin . "' ORDER BY tipo_servicio;";
+	                    $consultaServiciosTipo=$this->ServicesSalesType->query($queryConsultaServiciosTipo);
+	                    
+	                    //Si la consulta retorna vacía
+	                    if(empty($consultaServiciosTipo)):
+	                        $this->Session->setFlash(__('No se encontro registros servicios terrestres vendidos por tipo de servicio para este mes. '));
+	                    
+	                    else:
+	                        $this->set('consultaServiciosTipo',$consultaServiciosTipo);
+	                        $this->set('fechaInicio',$fechaInicio);
+	                        $this->set('fechaFin',$fechaFin);
+	                        $this->set('fechaAnio',$fechaAnio);
+	                        $this->set('fechaMes',$fechaMes);
+	                    endif;
+	                  endif;
 		}
         }
 
@@ -307,7 +315,7 @@ class ReportsController extends AppController {
                     $fechaInicio=$this->request->data["reporte_excel"]['fecha_inicio'];
                     //Saca la fecha del request
                     $fechaFin=$this->request->data["reporte_excel"]['fecha_fin'];
-                    
+
                     $this->loadModel('ServicesSalesType');
                     //ejecuta consulta la venta de servicios terrestres por proveedor por Mes
                     $queryConsultaServiciosTipo="SELECT  services_sales_types.id, types.tipo_servicio, types.cantidad_servicios_tipo, types.total_servicios_tipo, services_sales_types.fecha_inicio_tipo, services_sales_types.fecha_fin_tipo "
@@ -323,7 +331,7 @@ class ReportsController extends AppController {
                         $this->set('consultaServiciosTipo',$consultaServiciosTipo);
                         $this->set('fechaAnio',$fechaAnio);
                         $this->set('fechaMes',$fechaMes);
-                    endif;                    
+                    endif;
     }
         }      // Salida 10 para reporte en pdf
         public function ventaServicioTerrestreTipoServicioMensualReportePdf() { //Acumulado venta de servicios terrestres por tipo de servicio mensual
@@ -371,25 +379,33 @@ class ReportsController extends AppController {
                     $fechaInicio=$this->request->data["ServicesSalesProvider"]['fecha_inicio'];
                     //Saca la fecha del request
                     $fechaFin=$this->request->data["ServicesSalesProvider"]['fecha_fin'];
-                    
-                    $this->loadModel('Providers');
-                    //ejecuta consulta la venta de servicios terrestres por proveedor por Mes
-                    $queryConsultaServicios="SELECT services_sales_providers.id, proveedor_servicio, cantidad_servicios_proveedor, total_servicios_proveedor, fecha_inicio_proveedor, fecha_fin_proveedor "
-                            . "FROM services_sales_providers inner join providers ON providers.services_sales_provider_id = services_sales_providers.id "
-                            . "WHERE fecha_inicio_proveedor >= '". $fechaInicio . "' AND fecha_inicio_proveedor <= '". $fechaFin . "' ORDER BY proveedor_servicio;";
-                    $consultaServicios=$this->Providers->query($queryConsultaServicios);
-                    
-                    //Si la consulta retorna vacía
-                    if(empty($consultaServicios)):
-                        $this->Session->setFlash(__('No se encontro registros servicios terrestres vendidos de proveerdor para este mes. '));
-                    
+
+                     if (empty($fechaAnio)&&empty($fechaMes)):
+                    	$this->Session->setFlash(__('Seleccione el mes y el año para poder realizar la busqueda. '));
+                    elseif (empty($fechaAnio)):
+                    	$this->Session->setFlash(__('El año no puede ir vacio para realizar la consulta. '));
+                    elseif (empty($fechaMes)):
+                      $this->Session->setFlash(__('El mes no puede ir vacio para realizar la consulta. '));
                     else:
-                        $this->set('consultaServicios',$consultaServicios);
-                        $this->set('fechaInicio',$fechaInicio);
-                        $this->set('fechaFin',$fechaFin);
-                        $this->set('fechaAnio',$fechaAnio);
-                        $this->set('fechaMes',$fechaMes);
-                    endif;                    
+		                  $this->loadModel('Providers');
+	                    //ejecuta consulta la venta de servicios terrestres por proveedor por Mes
+	                    $queryConsultaServicios="SELECT services_sales_providers.id, proveedor_servicio, cantidad_servicios_proveedor, total_servicios_proveedor, fecha_inicio_proveedor, fecha_fin_proveedor "
+	                            . "FROM services_sales_providers inner join providers ON providers.services_sales_provider_id = services_sales_providers.id "
+	                            . "WHERE fecha_inicio_proveedor >= '". $fechaInicio . "' AND fecha_inicio_proveedor <= '". $fechaFin . "' ORDER BY proveedor_servicio;";
+	                    $consultaServicios=$this->Providers->query($queryConsultaServicios);
+	                    
+	                    //Si la consulta retorna vacía
+	                    if(empty($consultaServicios)):
+	                        $this->Session->setFlash(__('No se encontro registros servicios terrestres vendidos de proveerdor para este mes. '));
+	                    
+	                    else:
+	                        $this->set('consultaServicios',$consultaServicios);
+	                        $this->set('fechaInicio',$fechaInicio);
+	                        $this->set('fechaFin',$fechaFin);
+	                        $this->set('fechaAnio',$fechaAnio);
+	                        $this->set('fechaMes',$fechaMes);
+	                    endif;
+	                  endif;
 		}
        
         }   
